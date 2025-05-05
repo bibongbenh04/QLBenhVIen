@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // This is a special configuration for the ASP.NET Core MVC project
-  // It tells Next.js to use the ASP.NET Core MVC project as the source
-  distDir: ".next",
-  // Disable server-side rendering for this project
-  target: "serverless",
+  // Use the output property instead of target
+  output: "standalone",
   eslint: {
     ignoreDuringBuilds: true,
   },
