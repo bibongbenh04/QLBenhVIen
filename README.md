@@ -1,30 +1,65 @@
-# Asp.net mvc hospital project
+# Hospital Management System
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+A comprehensive Hospital Management System built with ASP.NET Core MVC and SQL Server.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/bibongbenh04s-projects/v0-asp-net-mvc-hospital-project)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/o8Sh7T1heeu)
+## Features
 
-## Overview
+- Multi-role authentication (Admin, Doctor, Staff, Patient)
+- Patient management
+- Doctor management with specialties and schedules
+- Appointment scheduling
+- Medical records management
+- Medication and pharmacy inventory
+- Billing and insurance processing
+- Reporting and analytics
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## Technology Stack
 
-## Deployment
+- ASP.NET Core MVC
+- Entity Framework Core (Code-First)
+- SQL Server
+- ASP.NET Identity for authentication
+- Bootstrap 5 for responsive UI
+- Chart.js for data visualization
 
-Your project is live at:
+## Getting Started
 
-**[https://vercel.com/bibongbenh04s-projects/v0-asp-net-mvc-hospital-project](https://vercel.com/bibongbenh04s-projects/v0-asp-net-mvc-hospital-project)**
+### Prerequisites
 
-## Build your app
+- Visual Studio 2022
+- .NET 6.0 SDK or later
+- SQL Server (LocalDB or higher)
 
-Continue building your app on:
+### Setup Instructions
 
-**[https://v0.dev/chat/projects/o8Sh7T1heeu](https://v0.dev/chat/projects/o8Sh7T1heeu)**
+1. Clone the repository
+2. Open the solution in Visual Studio
+3. Update the connection string in `appsettings.json` to point to your SQL Server instance
+4. Open Package Manager Console and run:
+   \`\`\`
+   Update-Database
+   \`\`\`
+5. Run the application (F5)
 
-## How It Works
+### Default Users
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+The system comes with pre-configured users:
+
+| Username | Password | Role |
+|----------|----------|------|
+| admin@hospital.com | Admin@123 | Administrator |
+| doctor1@hospital.com | Doctor@123 | Doctor |
+| staff1@hospital.com | Staff@123 | Staff |
+| patient1@hospital.com | Patient@123 | Patient |
+
+## Project Structure
+
+- **HospitalManagement.Web**: MVC Web Application
+- **HospitalManagement.Data**: Data Access Layer
+- **HospitalManagement.Core**: Business Logic Layer
+- **HospitalManagement.Models**: Domain Models
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+\`\`\`
