@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HospitalManagement.Models.Entities;
+using HospitalManagement.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddScoped<HospitalManagement.Data.Repositories.IRepository<Hosp
 builder.Services.AddScoped<HospitalManagement.Data.Repositories.IRepository<HospitalManagement.Models.Entities.Bill>, HospitalManagement.Data.Repositories.Repository<HospitalManagement.Models.Entities.Bill>>();
 
 var app = builder.Build();
+
+// Initialize the database
+await DbInitializer.Initialize(app.Services);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -38,7 +38,7 @@ namespace HospitalManagement.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = "/Home/Index")
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -50,10 +50,10 @@ namespace HospitalManagement.Web.Controllers
                     if (user != null)
                     {
                         user.LastLogin = DateTime.Now;
-                    await _userManager.UpdateAsync(user);
+                        await _userManager.UpdateAsync(user);
 
-                    return RedirectToLocal(returnUrl);
-                }
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
                 else
                 {
@@ -143,7 +143,7 @@ namespace HospitalManagement.Web.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model, string returnUrl = "/Home/Index")
         {
             if (!ModelState.IsValid)
             {
@@ -160,7 +160,7 @@ namespace HospitalManagement.Web.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToLocal(returnUrl);
             }
             AddErrors(result);
             return View(model);
@@ -182,8 +182,14 @@ namespace HospitalManagement.Web.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction("Login", "Account");
             }
         }
+        [HttpGet]
+        public IActionResult AccessDenied(string returnUrl = null)
+        {
+            return RedirectToAction("Login", "Account", new { returnUrl });
+        }
     }
+
 }

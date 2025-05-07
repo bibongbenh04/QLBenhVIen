@@ -1,3 +1,4 @@
+using DnsClient;
 using HospitalManagement.Core.Services.Interfaces;
 using HospitalManagement.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -25,10 +26,13 @@ namespace HospitalManagement.Web.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var patientDetails = await _patientService.GetPatientDetailsAsync(id);
+            // Ensure that patientDetails is of type PatientDetailsViewModel and update the view accordingly.
             if (patientDetails == null)
             {
                 return NotFound();
             }
+            Console.WriteLine($"[LOG] Bệnh nhân: {patientDetails.FullName}, SDT: {patientDetails.PhoneNumber}");
+
             return View(patientDetails);
         }
 

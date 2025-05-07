@@ -1,8 +1,65 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Trang Chủ - Quản Lý Bệnh Viện"; Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<div class="container mt-5"> <!-- Banner giới thiệu -->
+    <div class="jumbotron p-5 bg-light rounded-3">
+        <div class="container">
+            <h1 class="display-5 fw-bold">Hệ Thống Quản Lý Bệnh Viện</h1>
+            <p class="fs-4">Giải pháp quản lý bệnh viện hiện đại, hiệu quả và bảo mật.</p> <a
+                class="btn btn-primary btn-lg" href="@Url.Action("DatLich", "LichKham")">Đặt lịch khám</a>
+        </div>
+    </div> <!-- Các chức năng chính -->
+    <div class="row text-center mt-5">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body"> <i class="bi bi-person-vcard fs-1 text-primary"></i>
+                    <h5 class="card-title mt-3">Quản lý Bệnh nhân</h5>
+                    <p class="card-text">Theo dõi thông tin, hồ sơ, lịch sử khám của bệnh nhân.</p> <a
+                        href="@Url.Action("Index", "Patients")" class="btn btn-outline-primary">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body"> <i class="bi bi-person-lines-fill fs-1 text-success"></i>
+                    <h5 class="card-title mt-3">Quản lý Bác sĩ</h5>
+                    <p class="card-text">Cập nhật thông tin bác sĩ, chuyên khoa và lịch làm việc.</p> <a
+                        href="@Url.Action("Index", "Doctors")" class="btn btn-outline-success">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body"> <i class="bi bi-hospital fs-1 text-danger"></i>
+                    <h5 class="card-title mt-3">Quản lý Phòng ban</h5>
+                    <p class="card-text">Tổ chức, sắp xếp các phòng ban, khoa trong bệnh viện.</p> <a
+                        href="@Url.Action("Index", "Departments")" class="btn btn-outline-danger">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div> <!-- Thêm mục khác -->
+    <div class="row text-center mt-4">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body"> <i class="bi bi-calendar-check fs-1 text-warning"></i>
+                    <h5 class="card-title mt-3">Lịch khám</h5>
+                    <p class="card-text">Quản lý, đặt lịch và theo dõi lịch khám bệnh.</p> <a
+                        href="@Url.Action("Index", "Schedules")" class="btn btn-outline-warning">Xem lịch</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body"> <i class="bi bi-shield-lock fs-1 text-dark"></i>
+                    <h5 class="card-title mt-3">Quản lý tài khoản</h5>
+                    <p class="card-text">Phân quyền người dùng và bảo mật hệ thống.</p> <a
+                        href="@Url.Action("Index", "Account")" class="btn btn-outline-dark">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- Footer -->
+<footer class="bg-dark text-white text-center py-3 mt-5">
+    <p>&copy; 2025 Bệnh viện ABC. Mọi quyền được bảo lưu.</p>
+    <p>Email: contact@benhvienabc.vn | Điện thoại: 0123 456 789</p>
+</footer>

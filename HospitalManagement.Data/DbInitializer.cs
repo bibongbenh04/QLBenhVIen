@@ -13,17 +13,19 @@ namespace HospitalManagement.Data
     {
         public static async Task Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new ApplicationDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>()))
+            using (var scope = serviceProvider.CreateScope())
             {
+                var scopedServices = scope.ServiceProvider;
+                var context = scopedServices.GetRequiredService<ApplicationDbContext>();
+
                 // Check if the database already has data
                 if (context.Departments.Any())
                 {
                     return; // Database has been seeded
                 }
 
-                var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+                var userManager = scopedServices.GetRequiredService<UserManager<ApplicationUser>>();
+                var roleManager = scopedServices.GetRequiredService<RoleManager<IdentityRole>>();
 
                 // Create roles
                 string[] roleNames = { "Admin", "Doctor", "Staff", "Patient" };
