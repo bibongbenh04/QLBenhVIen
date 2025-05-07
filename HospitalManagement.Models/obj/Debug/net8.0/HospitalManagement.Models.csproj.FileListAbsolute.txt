@@ -1,0 +1,13 @@
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.AssemblyInfoInputs.cache
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.AssemblyInfo.cs
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.csproj.CoreCompileInputs.cache
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.sourcelink.json
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.csproj.AssemblyReference.cache
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\bin\Debug\net8.0\HospitalManagement.Models.deps.json
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\bin\Debug\net8.0\HospitalManagement.Models.dll
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\bin\Debug\net8.0\HospitalManagement.Models.pdb
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.dll
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\refint\HospitalManagement.Models.dll
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\HospitalManagement.Models.pdb
+D:\BiBongBenh\Desktop\Dotnet\QLBenhVIen\HospitalManagement.Models\obj\Debug\net8.0\ref\HospitalManagement.Models.dll

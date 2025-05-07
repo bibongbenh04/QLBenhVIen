@@ -31,6 +31,8 @@ namespace HospitalManagement.Models.ViewModels
         [Display(Name = "Reason for Visit")]
         public string Reason { get; set; }
 
+        public string Notes { get; set; }
+
         public string Status { get; set; }
 
         [Display(Name = "Created At")]

@@ -48,6 +48,8 @@ namespace HospitalManagement.Models.ViewModels
 
         [Display(Name = "Insurance Policy Number")]
         public string InsurancePolicyNumber { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
     }
 
     public class PatientDetailsViewModel

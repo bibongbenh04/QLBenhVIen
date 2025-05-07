@@ -43,14 +43,17 @@ namespace HospitalManagement.Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email!, model.Password!, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(model.Email);
-                    user.LastLogin = DateTime.Now;
+                    var user = await _userManager.FindByEmailAsync(model.Email!);
+                    if (user != null)
+                    {
+                        user.LastLogin = DateTime.Now;
                     await _userManager.UpdateAsync(user);
 
                     return RedirectToLocal(returnUrl);
+                }
                 }
                 else
                 {

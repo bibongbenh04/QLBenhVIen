@@ -1,7 +1,7 @@
-using HospitalManagement.Models.Entities;
-using HospitalManagement.Models.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HospitalManagement.Models.ViewModels;
+using HospitalManagement.Models.Entities;
 
 namespace HospitalManagement.Core.Services.Interfaces
 {

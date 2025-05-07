@@ -27,9 +27,6 @@ namespace HospitalManagement.Models.Entities
 
         public DateTime CreatedAt { get; set; }
 
-        public DateTime? UpdatedAt { get; set; }
-
-        // Navigation properties
         public MedicalRecord MedicalRecord { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace HospitalManagement.Models.ViewModels
 
         [Display(Name = "Record Date")]
         public DateTime RecordDate { get; set; }
+        public string DoctorName { get; set; }
+        public DateTime AdmissionDate { get; set; }
     }
 
     public class MedicalRecordDetailsViewModel

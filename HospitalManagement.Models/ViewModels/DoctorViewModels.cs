@@ -16,6 +16,8 @@ namespace HospitalManagement.Models.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        public string FullName => $"{FirstName} {LastName}";
+
         public string Gender { get; set; }
 
         [Display(Name = "Phone Number")]

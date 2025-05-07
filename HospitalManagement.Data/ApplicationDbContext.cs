@@ -30,6 +30,43 @@ namespace HospitalManagement.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            // Configure decimal precision for Bill
+            modelBuilder.Entity<Bill>()
+                .Property(b => b.DueAmount)
+                .HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>()
+                .Property(b => b.InsuranceCoverage)
+                .HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>()
+                .Property(b => b.PaidAmount)
+                .HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>()
+                .Property(b => b.TotalAmount)
+                .HasPrecision(18, 2);
+
+            // Configure decimal precision for BillItem
+            modelBuilder.Entity<BillItem>()
+                .Property(b => b.Subtotal)
+                .HasPrecision(18, 2);
+            modelBuilder.Entity<BillItem>()
+                .Property(b => b.UnitPrice)
+                .HasPrecision(18, 2);
+
+            // Configure decimal precision for Doctor
+            modelBuilder.Entity<Doctor>()
+                .Property(d => d.ConsultationFee)
+                .HasPrecision(18, 2);
+
+            // Configure decimal precision for Medication
+            modelBuilder.Entity<Medication>()
+                .Property(m => m.UnitPrice)
+                .HasPrecision(18, 2);
+
+            // Configure decimal precision for Test
+            modelBuilder.Entity<Test>()
+                .Property(t => t.Cost)
+                .HasPrecision(18, 2);
+
             // Configure relationships
             modelBuilder.Entity<Patient>()
                 .HasOne(p => p.User)
