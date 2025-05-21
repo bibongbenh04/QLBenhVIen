@@ -1,0 +1,64 @@
+/* Card Styles */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Header Styles */
+.card-header {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.5rem 0.5rem 0 0;
+    text-align: center;
+}
+
+/* Form Styles */
+.form-floating .form-control, .form-floating .form-select {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    padding: 20px 10px;
+}
+
+.form-floating .form-control:focus, .form-floating .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.form-floating label {
+    color: #495057;
+    font-weight: 600;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    padding: 15px;
+    font-size: 18px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #ffffff;
+}
+
+/* Link Styles */
+.card-footer a {
+    color: #007bff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.card-footer a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

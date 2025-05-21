@@ -1,0 +1,47 @@
+/* Card Styles */
+.card-header {
+    background: linear-gradient(90deg, #28a745, #20c997);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/* Form Styles */
+.form-control {
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.2);
+}
+
+/* Button Styles */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    margin-right: 5px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 0.25rem;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}

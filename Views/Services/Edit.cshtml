@@ -1,0 +1,45 @@
+@model HospitalManagement.Models.ViewModels.ServiceViewModel
+
+@{
+    ViewData["Title"] = "Sửa Dịch vụ";
+}
+
+<head>
+    <link href="~/css/Services/edit.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2 class="mb-0">Sửa Dịch vụ</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Tên dịch vụ</label>
+                    <input asp-for="Name" class="form-control" placeholder="Nhập tên dịch vụ" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Mô tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Mô tả ngắn gọn về dịch vụ"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label">Giá</label>
+                    <input asp-for="Price" class="form-control" placeholder="Nhập giá (VNĐ)" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">Cập nhật</button>
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

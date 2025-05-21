@@ -1,0 +1,30 @@
+@model HospitalManagement.Models.ViewModels.StaffViewModels
+
+@{
+    ViewData["Title"] = "Xóa nhân viên";
+}
+
+<div class="container my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">Xác nhận xóa nhân viên</h4>
+        </div>
+        <div class="card-body">
+            <p class="fs-5">Bạn có chắc chắn muốn xóa nhân viên <strong class="text-danger">@Model.FullName</strong> không?</p>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="DepartmentId" />
+
+                <div class="d-flex gap-3">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Xóa
+                    </button>
+                    <a asp-action="Index" asp-route-departmentId="@Model.DepartmentId" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Hủy
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

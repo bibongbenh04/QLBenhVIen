@@ -1,0 +1,38 @@
+@model HospitalManagement.Models.ViewModels.DoctorScheduleViewModel
+@{
+    ViewData["Title"] = "Xóa lịch làm việc";
+}
+
+<head>
+    <link href="~/css/Doctors/delete_schedule.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card">
+        <div class="card-header">Xác nhận xóa lịch làm việc</div>
+        <div class="card-body">
+            <p class="mb-4 text-danger fs-5 text-center">Bạn có chắc chắn muốn xóa lịch làm việc này không?</p>
+
+            <dl class="row">
+                <dt class="col-sm-4">Ngày</dt>
+                <dd class="col-sm-8">@Model.DayOfWeek</dd>
+
+                <dt class="col-sm-4">Thời gian</dt>
+                <dd class="col-sm-8">@Model.StartTime - @Model.EndTime</dd>
+
+                <dt class="col-sm-4">Số lượng bệnh nhân</dt>
+                <dd class="col-sm-8">@Model.MaxAppointments</dd>
+            </dl>
+
+            <form asp-action="DeleteSchedule" method="post" class="mt-4 d-flex gap-2">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash"></i> Xóa
+                </button>
+                <a asp-action="Details" asp-route-id="@Model.DoctorId" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left-circle"></i> Huỷ
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

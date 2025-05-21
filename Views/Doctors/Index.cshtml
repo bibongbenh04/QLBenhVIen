@@ -1,0 +1,60 @@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.DoctorViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Danh sách bác sĩ";
+}
+
+<head>
+    <link href="~/css/Doctors/index.css" rel="stylesheet" />
+    <link href="~/css/pagination.css" rel="stylesheet" />
+</head>
+
+<div class="container py-5">
+    <h1 class="page-header">Danh sách bác sĩ</h1>
+
+    <form method="get" class="form-search">
+        <input type="text" class="form-control" placeholder="Tìm bác sĩ theo tên hoặc chuyên môn..."
+               data-search-table="doctor-table" data-search-cols="0,1" />
+    </form>
+
+    <div class="text-end mb-4">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-2"></i>Thêm bác sĩ mới
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table id="doctor-table" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Họ tên</th>
+                    <th>Chuyên môn</th>
+                    <th>Số điện thoại</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                        <td class="action-links">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-edit"><i class="bi bi-pencil-square"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-details"><i class="bi bi-eye"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-delete"><i class="bi bi-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/search-table.js"></script>
+}

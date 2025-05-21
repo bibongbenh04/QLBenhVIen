@@ -1,0 +1,92 @@
+@model HospitalManagement.Models.ViewModels.BillViewModel
+@{
+    ViewData["Title"] = "Thanh toán hóa đơn";
+    var lastTransactionTime = Model.Items?.OrderByDescending(i => i.Id).FirstOrDefault()?.Id; // Just for mock
+    var insuranceDiscount = Model.InsuranceCoverage * 100;
+}
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0">Thanh toán hóa đơn</h2>
+        </div>
+        <div class="card-body">
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger">@TempData["Error"]</div>
+            }
+
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success">@TempData["Success"]</div>
+            }
+
+            <div class="mb-3">
+                <label class="form-label">Bệnh nhân:</label>
+                <input value="@Model.PatientName" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Ngày hóa đơn:</label>
+                <input value="@Model.BillDate.ToString("dd/MM/yyyy HH:mm")" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Mức giảm từ bảo hiểm:</label>
+                <input value="@insuranceDiscount%" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Tổng tiền:</label>
+                <input value="@Model.TotalAmount.ToString("C")" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Đã thanh toán:</label>
+                <input value="@Model.PaidAmount.ToString("C")" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Còn lại:</label>
+                <input value="@Model.DueAmount.ToString("C")" class="form-control" readonly />
+            </div>
+
+            @if (Model.DueAmount == 0)
+            {
+                <div class="alert alert-success">Hóa đơn đã thanh toán đủ.</div>
+                <a asp-controller="Billing" asp-action="ListBill" asp-route-patientId="@Model.PatientId" class="btn btn-secondary">Quay lại danh sách</a>
+            }
+            else
+            {
+                <form asp-action="Pay" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="PatientId" />
+
+                    <div class="mb-3">
+                        <label asp-for="PaidAmount" class="form-label">Số tiền thanh toán</label>
+                        <input asp-for="PaidAmount" class="form-control" />
+                        <span asp-validation-for="PaidAmount" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PaymentMethod" class="form-label">Phương thức thanh toán</label>
+                        <select asp-for="PaymentMethod" class="form-select">
+                            <option value="Cash">Tiền mặt</option>
+                            <option value="Card">Thẻ</option>
+                            <option value="Bank Transfer">Chuyển khoản</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-success">
+                            Cập nhật thanh toán
+                        </button>
+                        <a asp-controller="Billing" asp-action="ListBill" asp-route-patientId="@Model.PatientId" class="btn btn-secondary">
+                            Quay lại danh sách
+                        </a>
+                    </div>
+                </form>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.card-header {
+    background: linear-gradient(to right, #dc3545, #ff6b6b);
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.25rem;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.card-body dl dt {
+    font-weight: 600;
+    color: #495057;
+}
+
+.card-body dl dd {
+    margin-bottom: 1rem;
+}
+
+.btn-danger {
+    font-weight: 600;
+    padding: 10px 20px;
+}
+
+.btn-secondary {
+    font-weight: 600;
+    padding: 10px 20px;
+}

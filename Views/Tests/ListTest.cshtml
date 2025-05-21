@@ -1,0 +1,75 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.TestViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.TestViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Danh sách xét nghiệm";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Tests/list_test.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h1 class="mb-4">Danh sách xét nghiệm</h1>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm bệnh nhân hoặc bác sĩ"
+                data-search-table="test-table" data-search-cols="0,3" />
+    </form>
+
+    <table id="test-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Bệnh nhân</th>
+                <th>Bác sĩ</th>
+                <th>Chẩn đoán</th>
+                <th>Điều trị</th>
+                <th>Ngày xét nghiệm</th>
+                <th>Kết quả</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@($"{item.MedicalRecord?.Patient?.FirstName} {item.MedicalRecord?.Patient?.LastName}")</td>
+                <td>@($"{item.MedicalRecord?.Appointment?.Doctor?.FirstName} {item.MedicalRecord?.Appointment?.Doctor?.LastName}")</td>
+                <td>@item.MedicalRecord?.Diagnosis</td>
+                <td>@item.MedicalRecord?.Treatment</td>
+                <td>@item.TestDate.ToString("dd/MM/yyyy")</td>
+                <td>@(string.IsNullOrWhiteSpace(item.Results) ? "(chưa có)" : item.Results)</td>
+                <td>
+                    @if (item.Status == "Completed")
+                    {
+                        <span class="status-completed">Hoàn thành</span>
+                    }
+                    else if (item.Status == "Cancelled")
+                    {
+                        <span class="status-cancelled">Đã hủy</span>
+                    }
+                    else
+                    {
+                        <span class="status-pending">Đang chờ</span>
+                    }
+                </td>
+                <td>
+                    <a asp-controller="Tests" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Ghi kết quả</a>
+                    <form asp-action="Delete" method="post" asp-route-id="@item.Id" asp-route-medicalRecordId="@item.MedicalRecordId" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="hidden" name="medicalRecordId" value="@item.MedicalRecordId" />
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xoá?');">Xoá</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

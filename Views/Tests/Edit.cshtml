@@ -1,0 +1,56 @@
+@model HospitalManagement.Models.ViewModels.TestViewModel
+@{
+    ViewData["Title"] = "Ghi kết quả xét nghiệm";
+}
+
+<head>
+    <link href="~/css/Tests/edit.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2>Ghi kết quả xét nghiệm</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="MedicalRecordId" />
+                <input type="hidden" asp-for="ServiceId" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tên dịch vụ</label>
+                    <input class="form-control" value="@Model.Service.Name" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Giá</label>
+                    <input class="form-control" value="@Model.Price.ToString("C")" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Results" class="form-label fw-bold">Kết quả</label>
+                    <textarea asp-for="Results" class="form-control" rows="4" placeholder="Nhập kết quả xét nghiệm"></textarea>
+                    <span asp-validation-for="Results" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label fw-bold">Trạng thái</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Completed">Hoàn thành</option>
+                        <option value="Cancelled">Huỷ</option>
+                    </select>
+                </div>
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-success">
+                        Lưu kết quả
+                    </button>
+                    <a asp-controller="Tests" asp-action="Index" class="btn btn-secondary">
+                        Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

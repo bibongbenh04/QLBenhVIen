@@ -1,0 +1,90 @@
+@model HospitalManagement.Models.ViewModels.PrescriptionCreateViewModel
+
+@using System.Text.Json
+@{
+    ViewData["Title"] = "Tạo đơn thuốc";
+}
+<head>
+    <link href="~/css/Prescription/create.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2 class="mb-0">Tạo đơn thuốc</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <input type="hidden" asp-for="MedicalRecordId" />
+                <input type="hidden" asp-for="DoctorId" />
+
+                <div class="mb-3">
+                    <label asp-for="Notes" class="form-label fw-bold">Ghi chú</label>
+                    <textarea asp-for="Notes" class="form-control" rows="3"></textarea>
+                </div>
+
+                <h4 class="mt-4 mb-3">Thuốc</h4>
+                <table class="table" id="itemsTable">
+                    <thead>
+                        <tr>
+                            <th>Thuốc</th>
+                            <th>Liều dùng</th>
+                            <th>Hướng dẫn</th>
+                            <th>Số lượng</th>
+                            <th>Số ngày</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Items.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DropDownListFor(m => m.Items[i].MedicationId,
+                                        new SelectList(Model.AvailableMedications, "Id", "Name"),
+                                        new { @class = "form-control" })
+                                </td>
+                                <td><input asp-for="Items[@i].Dosage" class="form-control" /></td>
+                                <td><input asp-for="Items[@i].Instructions" class="form-control" /></td>
+                                <td><input asp-for="Items[@i].Quantity" class="form-control" type="number" /></td>
+                                <td><input asp-for="Items[@i].DurationDays" class="form-control" type="number" /></td>
+                                <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Xoá</button></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-secondary" onclick="addRow()">Thêm thuốc</button>
+                <br /><br />
+                <button type="submit" class="btn btn-primary">Tạo đơn thuốc</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        var medications = @Html.Raw(JsonSerializer.Serialize(Model.AvailableMedications));
+        var rowIndex = @Model.Items.Count;
+
+        function addRow() {
+            let options = medications.map(m => `<option value="${m.Id}">${m.Name}</option>`).join('');
+            let row = `
+                <tr>
+                    <td><select name="Items[${rowIndex}].MedicationId" class="form-control" required>${options}</select></td>
+                    <td><input name="Items[${rowIndex}].Dosage" class="form-control" required /></td>
+                    <td><input name="Items[${rowIndex}].Instructions" class="form-control" required /></td>
+                    <td><input name="Items[${rowIndex}].Quantity" class="form-control" type="number" required /></td>
+                    <td><input name="Items[${rowIndex}].DurationDays" class="form-control" type="number" required /></td>
+                    <td><button type="button" class="btn btn-danger btn-sm" onclick="removeRow(this)">Xoá</button></td>
+                </tr>`;
+
+            document.querySelector("#itemsTable tbody").insertAdjacentHTML("beforeend", row);
+            rowIndex++;
+        }
+
+        function removeRow(button) {
+            button.closest("tr").remove();
+        }
+    </script>
+}

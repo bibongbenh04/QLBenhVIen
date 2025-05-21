@@ -1,0 +1,85 @@
+@model HospitalManagement.Models.ViewModels.BillCreateViewModel
+
+@{
+    ViewData["Title"] = "Tạo hóa đơn từ hồ sơ bệnh án";
+}
+
+<head>
+    <link href="~/css/Billing/create_from_medical_record.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2 class="mb-0">Tạo hóa đơn từ hồ sơ bệnh án</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="CreateFromMedicalRecord" method="post">
+                <input type="hidden" asp-for="PatientId" />
+                <input type="hidden" asp-for="PatientName" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tên bệnh nhân</label>
+                    <input class="form-control" asp-for="PatientName" readonly />
+                </div>
+
+                <div class="form-check mb-3">
+                    <input type="checkbox" asp-for="HasInsurance" class="form-check-input" />
+                    <label asp-for="HasInsurance" class="form-check-label fw-bold">Bảo hiểm y tế</label>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="InsuranceProvider" class="form-label fw-bold">Nhà cung cấp BHYT</label>
+                    <input asp-for="InsuranceProvider" class="form-control" placeholder="Nhập tên nhà cung cấp bảo hiểm" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="InsurancePolicyNumber" class="form-label fw-bold">Số BHYT</label>
+                    <input asp-for="InsurancePolicyNumber" class="form-control" placeholder="Nhập số BHYT" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="InsuranceCoverage" class="form-label fw-bold">Phần trăm giảm giá (BHYT)</label>
+                    <input asp-for="InsuranceCoverage" type="number" class="form-control" min="0" max="1" step="0.01" placeholder="Nhập mức giảm (0.8 = 80%)" />
+                </div>
+
+                <h4 class="mt-4">Hạng mục tính phí</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tên hạng mục</th>
+                            <th>Loại</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Items.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    <input asp-for="Items[@i].ItemName" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="Items[@i].ItemType" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="Items[@i].Quantity" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <input asp-for="Items[@i].UnitPrice" class="form-control" readonly />
+                                </td>
+                                <td>
+                                    <strong>@(Model.Items[i].Quantity * Model.Items[i].UnitPrice)</strong>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <button type="submit" class="btn btn-success w-100">Xác nhận và tạo hóa đơn</button>
+            </form>
+        </div>
+    </div>
+</div>

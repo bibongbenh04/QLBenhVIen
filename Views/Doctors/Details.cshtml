@@ -1,0 +1,105 @@
+@model HospitalManagement.Models.ViewModels.DoctorDetailsViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết bác sĩ";
+}
+
+<head>
+    <link href="~/css/Doctors/details.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card">
+        <div class="card-header">Chi tiết bác sĩ</div>
+        <div class="card-body">
+            <div class="row mb-3">
+                <div class="col-md-3 info-label">Họ tên:</div>
+                <div class="col-md-9">@Model.Doctor.FullName</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 info-label">Chuyên môn:</div>
+                <div class="col-md-9">@Model.Doctor.Specialization</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 info-label">Số điện thoại:</div>
+                <div class="col-md-9">@Model.Doctor.PhoneNumber</div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3 info-label">Giới tính:</div>
+                <div class="col-md-9">@Model.Doctor.Gender</div>
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Schedules != null && Model.Schedules.Any())
+    {
+        <div class="card">
+            <div class="card-header">Lịch làm việc</div>
+            <form method="get" class="p-3">
+                <input type="text" class="form-control" placeholder="Tìm theo ngày..." data-search-table="schedule-table" data-search-cols="0" />
+            </form>
+            <div class="table-responsive">
+                <table class="table mb-0" id="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Giờ bắt đầu</th>
+                            <th>Giờ kết thúc</th>
+                            <th>Số ca tối đa</th>
+                            <th>Trạng thái</th>
+                            <th colspan="2">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model.Schedules)
+                        {
+                            <tr>
+                                <td>@s.DayOfWeek</td>
+                                <td>@s.StartTime</td>
+                                <td>@s.EndTime</td>
+                                <td>@s.MaxAppointments</td>
+                                <td>
+                                    @if (s.IsAvailable)
+                                    {
+                                        <span class="badge bg-success">Có</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Không</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="EditSchedule" asp-route-id="@s.Id" class="btn btn-warning btn-sm btn-icon">
+                                        <i class="bi bi-pencil-square"></i> Sửa
+                                    </a>
+                                </td>
+                                <td>
+                                    <a asp-action="DeleteSchedule" asp-route-id="@s.Id" class="btn btn-danger btn-sm btn-icon">
+                                        <i class="bi bi-trash"></i> Xóa
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+
+    <div class="d-flex gap-3 mt-4">
+        <a asp-action="Edit" asp-route-id="@Model.Doctor.Id" class="btn btn-primary btn-icon">
+            <i class="bi bi-pencil-square"></i> Sửa thông tin
+        </a>
+        <a asp-action="AddSchedule" asp-route-id="@Model.Doctor.Id" class="btn btn-success btn-icon">
+            <i class="bi bi-calendar-plus"></i> Thêm lịch
+        </a>
+        <a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary btn-icon">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

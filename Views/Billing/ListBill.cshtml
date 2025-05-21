@@ -1,0 +1,59 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.BillViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.BillViewModel>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Danh sách hóa đơn của bệnh nhân";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Billing/list_bill.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h1 class="page-header">Danh sách hóa đơn của bệnh nhân</h1>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm bill theo tên bệnh nhân"
+               data-search-table="bill-table" data-search-cols="0" />
+    </form>
+
+    <table id="bill-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Họ tên bệnh nhân</th>
+                <th>Ngày tạo</th>
+                <th>Tổng tiền</th>
+                <th>Đã thanh toán</th>
+                <th>Còn lại</th>
+                <th>Trạng thái</th>
+                <th>Phương thức</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bill in Model)
+            {
+                <tr>
+                    <td>@bill.PatientName</td>
+                    <td>@bill.BillDate.ToString("dd/MM/yyyy")</td>
+                    <td>@bill.TotalAmount.ToString("C")</td>
+                    <td>@bill.PaidAmount.ToString("C")</td>
+                    <td>@bill.DueAmount.ToString("C")</td>
+                    <td>@bill.PaymentStatus</td>
+                    <td>@bill.PaymentMethod</td>
+                    <td>
+                        <a asp-controller="Billing" asp-action="Edit" asp-route-id="@bill.Id" class="btn btn-sm btn-edit">Sửa</a>
+                        <a asp-controller="Billing" asp-action="Delete" asp-route-id="@bill.Id" class="btn btn-sm btn-delete">Xoá</a>
+                        <a asp-controller="Billing" asp-action="Pay" asp-route-id="@bill.Id" class="btn btn-sm btn-pay">Thanh toán</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

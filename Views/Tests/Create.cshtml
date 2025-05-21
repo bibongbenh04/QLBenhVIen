@@ -1,0 +1,35 @@
+@model HospitalManagement.Models.ViewModels.TestCreateViewModel
+@{
+    ViewData["Title"] = "Tạo yêu cầu xét nghiệm";
+}
+
+<head>
+    <link href="~/css/Tests/create.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2>Tạo yêu cầu xét nghiệm</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <input type="hidden" asp-for="MedicalRecordId" />
+
+                <div class="mb-3">
+                    <label asp-for="ServiceId" class="form-label fw-bold">Chọn dịch vụ</label>
+                    <select asp-for="ServiceId" class="form-control" asp-items='@new SelectList(ViewBag.Services, "Id", "Name")'>
+                        <option value="">-- Chọn dịch vụ --</option>
+                    </select>
+                    <span asp-validation-for="ServiceId" class="text-danger"></span>
+                </div>
+
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <a asp-controller="MedicalRecords" asp-action="Details" asp-route-id="@Model.MedicalRecordId" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

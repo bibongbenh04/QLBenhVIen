@@ -1,0 +1,48 @@
+@model HospitalManagement.Models.ViewModels.PrescriptionViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết đơn thuốc";
+}
+<head>
+    <link href="~/css/Prescription/details.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2 class="mb-0">Chi tiết đơn thuốc</h2>
+        </div>
+        <div class="card-body">
+            <p><strong>Ngày kê:</strong> @Model.PrescriptionDate.ToString("dd/MM/yyyy")</p>
+            <p><strong>Bác sĩ:</strong> @Model.DoctorName</p>
+            <p><strong>Ghi chú:</strong> @Model.Notes</p>
+
+            <h4 class="mt-4 mb-3">Danh sách thuốc</h4>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>huốc</th>
+                        <th>Liều dùng</th>
+                        <th>Chỉ dẫn</th>
+                        <th>Số lượng</th>
+                        <th>Số ngày</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.MedicationName</td>
+                            <td>@item.Dosage</td>
+                            <td>@item.Instructions</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.DurationDays</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </div>
+</div>

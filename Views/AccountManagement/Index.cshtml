@@ -1,0 +1,65 @@
+@model X.PagedList.IPagedList<HospitalManagement.Models.Entities.ApplicationUser>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Quản lý tài khoản";
+}
+
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/AccountManagement/index.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h2 class="mb-4">Danh sách tài khoản người dùng</h2>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm tài khoản theo tên hoặc email"
+               data-search-table="account-table" data-search-cols="0,1" />
+    </form>
+
+    <table id="account-table" class="table table-hover table-bordered">
+        <thead class="table-primary">
+            <tr>
+                <th>Email</th>
+                <th>Họ tên</th>
+                <th>Trạng thái</th>
+                <th>Ngày tạo</th>
+                <th>Lần đăng nhập cuối</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@($"{user.FirstName} {user.LastName}")</td>
+                <td>
+                    @if (user.IsActive)
+                    {
+                        <span class="badge bg-success">Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Ngừng hoạt động</span>
+                    }
+                </td>
+                <td>@user.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                <td>@(user.LastLogin?.ToString("dd/MM/yyyy HH:mm") ?? "(chưa có)")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.Id" class="btn btn-sm btn-warning">Cấp quyền</a>
+                    <form method="post" asp-action="Delete" asp-route-id="@user.Id" style="display:inline-block" onsubmit="return confirm('Bạn có chắc muốn xóa tài khoản này?');">
+                        <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                    </form>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+    @await Html.PartialAsync("_Pagination", Model)
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

@@ -1,0 +1,86 @@
+@model HospitalManagement.Models.ViewModels.BillViewModel
+
+@{
+    ViewData["Title"] = "Xóa hóa đơn";
+}
+<head>
+    <link href="~/css/Billing/delete.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2 class="mb-0">Xóa hóa đơn</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tên bệnh nhân</label>
+                    <input asp-for="PatientName" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Hình thức thanh toán</label>
+                    <input asp-for="PaymentMethod" class="form-control" readonly/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Tiền đã thanh toán</label>
+                    <input asp-for="PaidAmount" class="form-control" readonly/>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Trạng thái thanh toán</label>
+                    <select asp-for="PaymentStatus" class="form-control">
+                        <option value="Paid">Đã thanh toán</option>
+                        <option value="Unpaid">Chưa thanh toán</option>
+                        <option value="Partial">Thanh toán một phần</option>
+                    </select>
+                </div>
+
+                <h4 class="mt-4">Hạng mục</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tên</th>
+                            <th>Loại</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>
+                                    <input type="hidden" name="Items[@item.Id].Id" value="@item.Id" />
+                                    <input name="Items[@item.Id].ItemName" class="form-control" value="@item.ItemName" readonly />
+                                </td>
+                                <td>
+                                    <input name="Items[@item.Id].ItemType" class="form-control" value="@item.ItemType" readonly />
+                                </td>
+                                <td>
+                                    <input name="Items[@item.Id].Quantity" class="form-control" value="@item.Quantity" readonly />
+                                </td>
+                                <td>
+                                    <input name="Items[@item.Id].UnitPrice" class="form-control" value="@item.UnitPrice" readonly />
+                                </td>
+                                <td>
+                                    <strong>@(item.Quantity * item.UnitPrice)</strong>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-danger w-100">Xác nhận xóa hóa đơn</button>
+                    <a asp-action="Index" class="btn btn-secondary w-100">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

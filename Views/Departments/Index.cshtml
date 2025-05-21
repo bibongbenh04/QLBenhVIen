@@ -1,0 +1,69 @@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.DepartmentViewModels>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Thông tin phòng ban";
+}
+
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Departments/index.css" rel="stylesheet" />
+</head>
+
+
+<div class="container-lg my-5">
+    <h1 class="page-header"><i class="bi bi-building"></i> Thông tin phòng ban</h1>
+
+    <div class="text-end mb-4">
+        <a asp-action="Create" class="btn btn-add">
+            <i class="bi bi-plus-circle me-1"></i> Thêm phòng ban mới
+        </a>
+    </div>
+
+    <form method="get" class="d-flex gap-2 mb-4 justify-content-end">
+        <input type="text" class="form-control w-25" placeholder="Tìm tên hoặc mô tả..."
+               data-search-table="department-table" data-search-cols="0,1" />
+    </form>
+
+    <div class="table-responsive">
+        <table id="department-table" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tên phòng ban</th>
+                    <th>Mô tả</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var department in Model)
+                {
+                    <tr>
+                        <td>@department.Name</td>
+                        <td>@department.Description</td>
+                        <td>
+                            <a asp-controller="Staffs" asp-action="Index" asp-route-departmentId="@department.Id" class="btn btn-staff">
+                                <i class="bi bi-person-badge"></i> Nhân viên
+                            </a>
+                            <a asp-controller="Doctors" asp-action="Index" asp-route-departmentId="@department.Id" class="btn btn-staff">
+                                <i class="bi bi-person-vcard"></i> Bác sĩ
+                            </a>
+                            <a asp-action="Edit" asp-route-id="@department.Id" class="btn btn-edit">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@department.Id" class="btn btn-delete">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    @await Html.PartialAsync("_Pagination", Model)
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/search-table.js"></script>
+}

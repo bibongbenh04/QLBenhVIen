@@ -1,0 +1,52 @@
+/* Card Styles */
+.card-header {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem 0.25rem 0 0;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.table thead th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+}
+
+.table tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Button Styles */
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    color: #ffffff;
+}

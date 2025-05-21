@@ -1,0 +1,67 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.AppointmentViewModels> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.AppointmentViewModels>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Danh sách lịch hẹn";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Appointments/index.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h1 class="page-header">Danh sách lịch hẹn</h1>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Tạo lịch hẹn mới</a>
+    </p>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm lịch hẹn theo tên bệnh nhân hoặc bác sĩ"
+               data-search-table="appointment-table" data-search-cols="0,1" />
+    </form>
+
+    <table id="appointment-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Bệnh nhân</th>
+                <th>Bác sĩ</th>
+                <th>Ngày hẹn</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
+                <th>Hồ sơ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                    <td>@item.AppointmentDate.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-edit">Sửa</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-details">Chi tiết</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-delete">Xóa</a>
+                    </td>
+                    <td>
+                        @if (item.Status == "Đã xác nhận" && !item.HasMedicalRecord)
+                        {
+                            <a asp-controller="MedicalRecords" asp-action="Create" asp-route-appointmentId="@item.Id" class="btn btn-sm btn-success">Tạo hồ sơ</a>
+                        }
+                        else if (item.HasMedicalRecord)
+                        {
+                            <span class="text-muted">Đã có hồ sơ</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

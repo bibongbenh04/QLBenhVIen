@@ -1,0 +1,82 @@
+/* Table Styles */
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.table thead th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    text-align: center;
+}
+
+.table tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Button Styles */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-weight: 600;
+    color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
+    border-radius: 0.25rem;
+    margin-bottom: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: #ffffff;
+}
+
+.btn-bill {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-bill:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #ffffff;
+}
+
+.btn-list {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    font-weight: 600;
+    color: #ffffff;
+    border-radius: 0.25rem;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-list:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: #ffffff;
+}
+
+/* Alert Styles */
+.alert {
+    font-weight: 600;
+    border-radius: 0.25rem;
+}

@@ -1,0 +1,77 @@
+@model HospitalManagement.Models.ViewModels.MedicationViewModel
+
+@{
+    ViewData["Title"] = "Sửa thuốc";
+}
+
+<head>
+    <link href="~/css/Medications/edit.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0">Sửa thuốc</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Tên thuốc</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="GenericName" class="form-label fw-bold">Tên gốc</label>
+                    <input asp-for="GenericName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Brand" class="form-label fw-bold">Thương hiệu</label>
+                    <input asp-for="Brand" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Category" class="form-label fw-bold">Phân loại</label>
+                    <input asp-for="Category" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Mô tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DosageForm" class="form-label fw-bold">Dạng bào chế</label>
+                    <input asp-for="DosageForm" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Strength" class="form-label fw-bold">Hàm lượng</label>
+                    <input asp-for="Strength" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="UnitPrice" class="form-label fw-bold">Giá mỗi đơn vị</label>
+                    <input asp-for="UnitPrice" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="StockQuantity" class="form-label fw-bold">Số lượng tồn kho</label>
+                    <input asp-for="StockQuantity" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ReorderLevel" class="form-label fw-bold">Mức đặt hàng lại</label>
+                    <input asp-for="ReorderLevel" class="form-control" />
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                    <a asp-action="Index" class="btn btn-secondary">Quay lại</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+@model HospitalManagement.Models.ViewModels.DoctorScheduleViewModel
+@{
+    ViewData["Title"] = "Sửa lịch làm việc";
+}
+<div class="container py-5">
+    <div class="bg-white p-4 rounded shadow-sm">
+        <h2 class="text-center mb-4 text-primary">
+            <i class="bi bi-calendar-check-fill me-2"></i>Sửa lịch làm việc
+        </h2>
+
+        <form asp-action="EditSchedule" method="post">
+            <input type="hidden" asp-for="DoctorId" />
+            <input type="hidden" asp-for="Id" />
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="DayOfWeek" class="form-label">Ngày</label>
+                    <select asp-for="DayOfWeek" class="form-select">
+                        @foreach (var day in Enum.GetValues(typeof(DayOfWeek)))
+                        {
+                            <option value="@day" selected="@(Model.DayOfWeek == (DayOfWeek)day)">
+                                @day
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="StartTime" class="form-label">Giờ bắt đầu</label>
+                    <input asp-for="StartTime" class="form-control" type="time" />
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="EndTime" class="form-label">Giờ kết thúc</label>
+                    <input asp-for="EndTime" class="form-control" type="time" />
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MaxAppointments" class="form-label">Số lượng bệnh nhân</label>
+                    <input asp-for="MaxAppointments" class="form-control" type="number" min="1" />
+                </div>
+
+                <div class="col-md-6 d-flex align-items-center mt-4">
+                    <div class="form-check">
+                        <input asp-for="IsAvailable" class="form-check-input" />
+                        <label asp-for="IsAvailable" class="form-check-label">Có sẵn</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-end gap-3">
+                <button type="submit" class="btn btn-primary px-4">
+                    <i class="bi bi-save me-1"></i> Lưu
+                </button>
+                <a asp-action="Details" asp-route-id="@Model.DoctorId" class="btn btn-secondary px-4">
+                    <i class="bi bi-x-circle me-1"></i> Hủy
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const start = document.querySelector('#StartTime').value;
+            const end = document.querySelector('#EndTime').value;
+
+            if (start && end && start >= end) {
+                e.preventDefault();
+                alert("Giờ kết thúc phải lớn hơn giờ bắt đầu!");
+            }
+        });
+    </script>
+}

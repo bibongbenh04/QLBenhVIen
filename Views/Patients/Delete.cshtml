@@ -1,0 +1,54 @@
+@model HospitalManagement.Models.ViewModels.PatientViewModel
+
+@{
+    ViewData["Title"] = "Xóa bệnh nhân";
+}
+
+<head>
+    <link href="~/css/Patients/delete.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h2>Xóa bệnh nhân</h2>
+        </div>
+        <div class="card-body">
+            <h4>Bạn có chắc chắn muốn xóa bệnh nhân này không?</h4>
+            <hr />
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label asp-for="FullName" class="form-label fw-bold">Họ và tên</label>
+                    <input asp-for="FullName" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DateOfBirth" class="form-label fw-bold">Ngày sinh</label>
+                    <input asp-for="DateOfBirth" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Gender" class="form-label fw-bold">Giới tính</label>
+                    <input asp-for="Gender" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Address" class="form-label fw-bold">Địa chỉ</label>
+                    <input asp-for="Address" class="form-control" readonly />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber" class="form-label fw-bold">Số điện thoại</label>
+                    <input asp-for="PhoneNumber" class="form-control" readonly />
+                </div>
+
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

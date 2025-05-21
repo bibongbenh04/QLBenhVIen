@@ -1,0 +1,45 @@
+@model HospitalManagement.Models.ViewModels.AppointmentViewModels
+
+@{
+    ViewData["Title"] = "Chi tiết lịch hẹn";
+}
+<head>
+    <link href="~/css/Appointments/details.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>Chi tiết lịch hẹn</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row dl-horizontal">
+                <dt class="col-sm-3">Bệnh nhân</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.PatientName)</dd>
+
+                <dt class="col-sm-3">Bác sĩ</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.DoctorName)</dd>
+
+                <dt class="col-sm-3">Ngày hẹn</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.AppointmentDate)</dd>
+
+                <dt class="col-sm-3">Trạng thái</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-info text-dark">@Html.DisplayFor(model => model.Status)</span>
+                </dd>
+
+                <dt class="col-sm-3">Ghi chú</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Notes)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex gap-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+            Sửa
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            Quay lại danh sách
+        </a>
+    </div>
+</div>

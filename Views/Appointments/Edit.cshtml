@@ -1,0 +1,104 @@
+@model HospitalManagement.Models.ViewModels.AppointmentViewModels
+
+@{
+    ViewData["Title"] = "Sửa lịch hẹn";
+}
+
+<head>
+    <link href="~/css/Appointments/edit.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white">
+            <h2>Sửa lịch hẹn</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input asp-for="Id" hidden />
+
+                <div class="mb-3">
+                    <label asp-for="PatientId" class="form-label fw-bold">👤 Bệnh nhân</label>
+                    <select asp-for="PatientId" class="form-select">
+                        @foreach (var patient in Model.Patients)
+                    {
+                        @if (@patient.Id != @Model.PatientId){
+                            <option value="@patient.Id">@patient.FirstName @patient.LastName</option>
+                        }
+                        else{ 
+                            <option value="@patient.Id" selected>@patient.FirstName @patient.LastName</option>
+                        }
+                        
+                    }
+                    </select>
+                    <span asp-validation-for="PatientId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="DoctorId" class="form-label fw-bold">Bác sĩ</label>
+                    <select asp-for="DoctorId" class="form-select">
+                        @foreach (var doctor in Model.Doctors)
+                    {
+                        @if (@doctor.Id != @Model.DoctorId){
+                            <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
+                        }
+                        else{
+                            <option value="@doctor.Id" selected>@doctor.FirstName @doctor.LastName</option>
+                        }
+                    }
+                    </select>
+                    <span asp-validation-for="DoctorId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AppointmentDate" class="form-label fw-bold">Ngày hẹn</label>
+                    <input asp-for="AppointmentDate" class="form-control" />
+                    <span asp-validation-for="AppointmentDate" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AppointmentTime" class="form-label fw-bold">Giờ hẹn</label>
+                    <input asp-for="AppointmentTime" class="form-control" type="time" />
+                    <span asp-validation-for="AppointmentTime" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Reason" class="form-label fw-bold">Lý do</label>
+                    <textarea asp-for="Reason" class="form-control" rows="3" placeholder="Lý do đặt lịch"></textarea>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Notes" class="form-label fw-bold">Ghi chú</label>
+                    <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Ghi chú (tuỳ chọn)"></textarea>
+                    <span asp-validation-for="Notes" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Status" class="form-label fw-bold">Trạng thái</label>
+                    <select asp-for="Status" class="form-control">
+                        <option value="Đang chờ">Đang chờ</option>
+                        <option value="Đã xác nhận">Đã xác nhận</option>
+                        <option value="Đã hoàn thành">Đã hoàn thành</option>
+                        <option value="Đã hủy">Đã hủy</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        Lưu thay đổi
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        Quay lại danh sách
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

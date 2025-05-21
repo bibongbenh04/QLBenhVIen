@@ -1,0 +1,62 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.MedicationViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.MedicationViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Danh sách thuốc";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Medications/index.css" rel="stylesheet" />
+</head>
+
+
+<div class="container-lg my-5">
+    <h2 class="page-header">Danh sách thuốc</h2>
+
+    <a asp-action="Create" class="btn btn-primary mb-3">Thêm thuốc mới</a>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm thuốc theo tên, hoạt chất hoặc hãng"
+               data-search-table="medication-table" data-search-cols="0,1,2" />
+    </form>
+
+    <table id="medication-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Hoạt chất</th>
+                <th>Hãng</th>
+                <th>Dạng bào chế</th>
+                <th>Hàm lượng</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var med in Model)
+            {
+                <tr>
+                    <td>@med.Name</td>
+                    <td>@med.GenericName</td>
+                    <td>@med.Brand</td>
+                    <td>@med.DosageForm</td>
+                    <td>@med.Strength</td>
+                    <td>@med.UnitPrice.ToString("C")</td>
+                    <td>@med.StockQuantity</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@med.Id" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@med.Id" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

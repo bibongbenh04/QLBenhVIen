@@ -1,0 +1,48 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.PrescriptionViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.PrescriptionViewModel>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Danh sách đơn thuốc";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Prescription/list_prescription.css" rel="stylesheet" />
+</head>
+
+
+<div class="container-lg my-5">
+    <h2 class="page-header">Danh sách đơn thuốc</h2>
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm theo tên bác sĩ hoặc ngày kê"
+            data-search-table="prescription-table" data-search-cols="0,1" />
+    </form>
+
+    <table id="prescription-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Ngày kê</th>
+                <th>Bác sĩ</th>
+                <th>Ghi chú</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.PrescriptionDate.ToString("dd/MM/yyyy")</td>
+                <td>@item.DoctorName</td>
+                <td>@item.Notes</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Xem</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

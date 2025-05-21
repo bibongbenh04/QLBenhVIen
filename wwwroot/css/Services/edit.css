@@ -1,0 +1,63 @@
+/* Card container */
+.card {
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+/* Header gradient */
+.card-header {
+    background: linear-gradient(90deg, #ffb300, #ff7043);
+    color: #fff;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    text-align: center;
+}
+
+/* Input styling */
+.form-control, .form-select, textarea {
+    border-radius: 0.375rem;
+    border: 1px solid #ced4da;
+    padding: 0.75rem;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+}
+
+/* Label */
+.form-label {
+    font-weight: 600;
+    color: #343a40;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 0.375rem;
+}
+
+.btn-primary:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 0.375rem;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}

@@ -1,0 +1,26 @@
+@model HospitalManagement.Models.ViewModels.TestCreateViewModel
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2>Thêm dịch vụ xét nghiệm</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="AddTest" method="post">
+                <input asp-for="MedicalRecordId" type="hidden" />
+
+                <div class="mb-3">
+                    <label asp-for="ServiceId" class="form-label fw-bold">Chọn dịch vụ</label>
+                    <select asp-for="ServiceId" class="form-control"
+                            asp-items='@new SelectList(ViewBag.Services, "Id", "Name")'>
+                        <option value="">-- Chọn dịch vụ --</option>
+                    </select>
+
+                    <span asp-validation-for="ServiceId" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Thêm dịch vụ</button>
+            </form>
+        </div>
+    </div>
+</div>

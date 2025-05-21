@@ -1,0 +1,38 @@
+.card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: none;
+}
+
+.card-header {
+    background: linear-gradient(to right, #dc3545, #ff6b6b);
+    color: white;
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-align: center;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.confirm-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.btn-danger {
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    font-weight: 600;
+}
+
+dl dt {
+    font-weight: 600;
+    color: #495057;
+}
+
+dl dd {
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,46 @@
+    /* Card Styles */
+    .card-header {
+        background: linear-gradient(90deg, #007bff, #00c6ff);
+        color: #ffffff;
+        border-radius: 0.25rem 0.25rem 0 0;
+        font-weight: 600;
+    }
+    
+    /* Form Styles */
+    .form-control, .form-select {
+        border-radius: 0.25rem;
+        border: 1px solid #ced4da;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+    
+    /* Button Styles */
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+    
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+    
+    /* Placeholder Styles */
+    textarea::placeholder {
+        color: #6c757d;
+        opacity: 0.8;
+    }

@@ -1,0 +1,31 @@
+@model HospitalManagement.Models.ViewModels.ServiceViewModel
+
+@{
+    ViewData["Title"] = "Xóa Dịch vụ";
+}
+
+<head>
+    <link href="~/css/Services/delete.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2>Xác nhận xóa dịch vụ</h2>
+        </div>
+        <div class="card-body">
+            <h4 class="text-danger">Bạn có chắc chắn muốn xóa dịch vụ này?</h4>
+            <p><strong>Tên dịch vụ:</strong> @Model.Name</p>
+            <p><strong>Mô tả:</strong> @Model.Description</p>
+            <p><strong>Giá:</strong> @Model.Price.ToString("N0") đ</p>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex gap-2 mt-4">
+                    <button type="submit" class="btn btn-danger">Xóa</button>
+                    <a asp-action="Index" class="btn btn-secondary">Hủy</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

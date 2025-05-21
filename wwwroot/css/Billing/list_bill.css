@@ -1,0 +1,83 @@
+/* Table Styles */
+.table {
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.table thead th {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    text-align: center;
+}
+
+.table tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+.table tbody tr:hover {
+    background-color: #e9ecef;
+    cursor: pointer;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Button Styles */
+.btn-edit {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    margin-right: 5px;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+    border-color: #e0a800;
+    color: #ffffff;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    margin-right: 5px;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+    color: #ffffff;
+}
+
+.btn-pay {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 0.25rem;
+}
+
+.btn-pay:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    color: #ffffff;
+}
+
+/* Header Styles */
+.page-header {
+    margin-bottom: 30px;
+    color: #343a40;
+    font-weight: 700;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}

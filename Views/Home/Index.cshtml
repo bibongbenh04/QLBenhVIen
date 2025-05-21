@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Trang Chủ - Quản Lý Bệnh Viện";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/css/home_index.css" rel="stylesheet" />
+</head>
+
+<div class="container my-5">
+    <!-- Banner -->
+    <div class="jumbotron mb-5">
+        <h1 class="display-5 fw-bold">Hệ Thống Quản Lý Bệnh Viện</h1>
+        <p class="lead mt-3">Giải pháp quản lý hiện đại - hiệu quả - bảo mật cho bệnh viện.</p>
+        <a class="btn btn-light btn-lg mt-3 shadow-sm" href="#">Đặt lịch khám</a>
+    </div>
+
+    <!-- Feature Grid -->
+    <div class="row g-4">
+        @foreach (var feature in new[] {
+            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý Bác sĩ", Description = "Cập nhật thông tin bác sĩ, chuyên khoa và lịch làm việc.", Controller = "Doctors", Action = "Index" },
+            new { Icon = "bi-hospital", Color = "danger", Title = "Quản lý Phòng ban", Description = "Tổ chức, sắp xếp các phòng ban, khoa trong bệnh viện.", Controller = "Departments", Action = "Index" },
+            new { Icon = "bi-capsule", Color = "secondary", Title = "Quản Lý thuốc", Description = "Quản lý danh sách thuốc trong kho.", Controller = "Medications", Action = "Index" },
+            new { Icon = "bi-heart-pulse", Color = "info", Title = "Quản Lý dịch vụ", Description = "Quản lý danh sách dịch vụ bệnh viện.", Controller = "Services", Action = "Index" },
+            new { Icon = "bi-person-vcard", Color = "primary", Title = "Quản lý Bệnh nhân", Description = "Theo dõi thông tin, hồ sơ, lịch sử khám của bệnh nhân.", Controller = "Patients", Action = "Index" },
+            new { Icon = "bi-calendar-check", Color = "warning", Title = "Lịch khám", Description = "Quản lý, đặt lịch và theo dõi lịch khám bệnh.", Controller = "Appointments", Action = "Index" },
+            new { Icon = "bi-file-medical", Color = "info", Title = "Hồ sơ bệnh án", Description = "Quản lý hồ sơ bệnh án, yêu cầu xét nghiệm và kê đơn.", Controller = "MedicalRecords", Action = "Index" },
+            new { Icon = "bi-activity", Color = "info", Title = "Xét nghiệm", Description = "Kết quả và quy trình xét nghiệm bệnh nhân.", Controller = "Tests", Action = "Index" },
+            new { Icon = "bi-prescription", Color = "secondary", Title = "Đơn thuốc", Description = "Tạo và quản lý đơn thuốc.", Controller = "Prescriptions", Action = "Index" },
+            new { Icon = "bi-receipt", Color = "secondary", Title = "Hóa đơn", Description = "Tạo và theo dõi thanh toán hóa đơn.", Controller = "Billing", Action = "Index" },
+            new { Icon = "bi-person-lock", Color = "dark", Title = "Tài khoản", Description = "Phân quyền và quản lý tài khoản hệ thống.", Controller = "AccountManagement", Action = "Index" }
+        })
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="icon-circle">
+                            <i class="bi @feature.Icon text-@feature.Color"></i>
+                        </div>
+                        <h5 class="card-title">@feature.Title</h5>
+                        <p class="card-text">@feature.Description</p>
+                        <a asp-controller="@feature.Controller" asp-action="@feature.Action" class="btn btn-outline-@feature.Color">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<footer class="text-center">
+    <p class="mb-1">&copy; 2025 Bệnh viện ABC. Mọi quyền được bảo lưu.</p>
+    <small>Email: contact@benhvienabc.vn | Điện thoại: 0123 456 789</small>
+</footer>

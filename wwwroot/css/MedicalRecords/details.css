@@ -1,0 +1,52 @@
+/* Card Headers */
+.card-header {
+    font-weight: 600;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.bg-info {
+    background: linear-gradient(90deg, #17a2b8, #20c997);
+    color: #ffffff !important;
+}
+
+.bg-primary {
+    background: linear-gradient(90deg, #007bff, #00c6ff);
+    color: #ffffff !important;
+}
+
+.bg-warning {
+    background: linear-gradient(90deg, #ffc107, #fdd835);
+    color: #000000 !important;
+}
+
+/* Table Styles */
+.table-bordered {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.table-primary th {
+    background-color: #007bff !important;
+    color: #ffffff !important;
+}
+
+.table-warning th {
+    background-color: #ffc107 !important;
+    color: #000000 !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+}
+
+/* Button Styles */
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #218838;
+}

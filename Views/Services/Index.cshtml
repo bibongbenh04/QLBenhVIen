@@ -1,0 +1,54 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.ServiceViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.ServiceViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Quản lý Dịch vụ";
+}
+
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Services/index.css" rel="stylesheet" />
+</head>
+
+
+<div class="container-lg my-5">
+    <h1 class="page-header">Quản lý Dịch vụ</h1>
+
+    <a asp-action="Create" class="btn btn-success mb-4">Thêm dịch vụ</a>
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm dịch vụ theo tên hoặc mô tả"
+               data-search-table="service-table" data-search-cols="0,1" />
+    </form>
+
+    <table id="service-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Mô tả</th>
+                <th>Giá</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Model)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.Description</td>
+                    <td>@s.Price.ToString("N0") đ</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning">Sửa</a>
+                        <a asp-action="Delete" asp-route-id="@s.Id" class="btn btn-sm btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

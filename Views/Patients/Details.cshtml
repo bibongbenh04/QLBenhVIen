@@ -1,0 +1,73 @@
+@model HospitalManagement.Models.ViewModels.PatientDetailsViewModel
+
+@{
+    ViewData["Title"] = "Chi tiết bệnh nhân";
+}
+
+<head>
+    <link href="~/css/Patients/details.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header">
+            <h2>👤 Chi tiết bệnh nhân</h2>
+        </div>
+        <div class="card-body">
+            <dl class="row dl-horizontal">
+                <dt class="col-sm-3">Họ</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.FirstName)</dd>
+
+                <dt class="col-sm-3">Tên</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.LastName)</dd>
+
+                <dt class="col-sm-3">Ngày sinh</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.DateOfBirth)</dd>
+
+                <dt class="col-sm-3">Giới tính</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.Gender)</dd>
+
+                <dt class="col-sm-3">Số điện thoại</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.PhoneNumber)</dd>
+
+                <dt class="col-sm-3">Email</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.Email)</dd>
+
+                <dt class="col-sm-3">Địa chỉ</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.Address)</dd>
+
+                <dt class="col-sm-3">Tên liên hệ khẩn cấp</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.EmergencyContactName)</dd>
+
+                <dt class="col-sm-3">Số điện thoại khẩn cấp</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.EmergencyContactPhone)</dd>
+
+                <dt class="col-sm-3">Nhóm máu</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.BloodGroup)</dd>
+
+                <dt class="col-sm-3">Có bảo hiểm</dt>
+                <dd class="col-sm-9">
+                    @if (Model.Patient.HasInsurance)
+                    {
+                        <span class="text-success">Có</span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">Không</span>
+                    }
+                </dd>
+
+                <dt class="col-sm-3">Nhà cung cấp bảo hiểm</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.InsuranceProvider)</dd>
+
+                <dt class="col-sm-3">Số hợp đồng bảo hiểm</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Patient.InsurancePolicyNumber)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex">
+        <a asp-action="Edit" asp-route-id="@Model.Patient.Id" class="btn btn-primary">Sửa</a>
+        <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
+    </div>
+</div>

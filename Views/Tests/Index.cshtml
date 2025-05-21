@@ -1,0 +1,60 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.MedicalRecordViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.MedicalRecordViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Danh sách hồ sơ bệnh án";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Tests/index.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="page-header">Danh sách hồ sơ bệnh án</h1>
+    </div>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm bệnh nhân hoặc bác sĩ"
+                data-search-table="medical-record-test-table" data-search-cols="0,1" />
+    </form>
+
+    <div class="medical-record-table-responsive">
+        <table id="test-table" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Bệnh nhân</th>
+                    <th>Bác sĩ</th>
+                    <th>Chẩn đoán</th>
+                    <th>Điều trị</th>
+                    <th>Ngày nhập viện</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.PatientName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DoctorName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Diagnosis)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Treatment)</td>
+                        <td>@item.AdmissionDate.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Tests" asp-action="ListTest" asp-route-medicalRecordId="@item.Id">Danh sách</a>
+                            @* <a class="btn btn-sm btn-outline-secondary" asp-controller="MedicalRecords" asp-action="Edit" asp-route-id="@item.Id">Sửa</a> *@
+                            <a class="btn btn-sm btn-outline-secondary" asp-controller="MedicalRecords" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
+                            <a class="btn btn-sm btn-outline-secondary text-danger" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}
