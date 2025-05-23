@@ -1,0 +1,54 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.PatientViewModel> *@
+@model X.PagedList.IPagedList<HospitalManagement.Models.ViewModels.PatientViewModel>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Danh sách bệnh nhân";
+}
+<head>
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/css/Patients/index.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h1 class="page-header">Danh sách bệnh nhân</h1>
+
+    <form method="get" class="d-flex gap-2 mb-3">
+        <input type="text" class="form-control" placeholder="Tìm bệnh nhân theo tên"
+               data-search-table="patient-table" data-search-cols="0" />
+    </form>
+
+    <table id="patient-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Họ tên</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
+                <th>Địa chỉ</th>
+                <th>Số điện thoại</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                    <td>@item.DateOfBirth.ToString("dd/MM/yyyy")</td>
+                    <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>
+                        <a asp-action="ListMedicalRecord" asp-route-patientId="@item.Id" class="btn btn-sm btn-delete">Danh sách hồ sơ theo đợt</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @await Html.PartialAsync("_Pagination", Model)
+
+</div>
+
+@section Scripts {
+    <script src="~/js/search-table.js"></script>
+}

@@ -642,8 +642,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>hsw2ff5pwf</Fingerprint>
-      <Integrity>ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=</Integrity>
+      <Fingerprint>f6fkglj3m2</Fingerprint>
+      <Integrity>1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\Medications\index.css'))</OriginalItemSpec>

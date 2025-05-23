@@ -34,7 +34,7 @@ namespace HospitalManagement.Services
                 Reason = a.Reason,
                 Notes = a.Notes,
                 Status = a.Status,
-                HasMedicalRecord = a.MedicalRecord != null 
+                HasMedicalRecord = a.MedicalRecord != null
             });
 
         }
@@ -67,6 +67,27 @@ namespace HospitalManagement.Services
 
         public async Task CreateAppointmentAsync(AppointmentCreateViewModel model)
         {
+            // Một bệnh nhân chỉ được đặt 1 lịch trong khoảng thời gian khám
+            var existing = await _appointmentRepo.GetAsync(
+                a => a.PatientId == model.PatientId &&
+                    a.AppointmentDate.Date == model.AppointmentDate.Date &&
+                    a.Status != "Cancelled",
+                includeProperties: "MedicalRecord.Bill"
+            );
+
+            bool exists = existing.Any(a =>
+                a.MedicalRecord == null ||
+                a.MedicalRecord.Bill == null ||
+                a.MedicalRecord.Bill.PaymentStatus != "Paid"
+            );
+
+            if (exists)
+                throw new Exception("Bệnh nhân đã có lịch hẹn trong ngày này.");
+
+
+            if (exists)
+                throw new Exception("Bệnh nhân đã có lịch hẹn trong ngày này.");
+
             var entity = new Appointment
             {
                 DoctorId = model.DoctorId,
@@ -75,12 +96,14 @@ namespace HospitalManagement.Services
                 AppointmentTime = TimeSpan.Parse(model.AppointmentTime),
                 Reason = model.Reason,
                 Notes = model.Notes,
-                Status = "Chờ khám",
+                Status = model.Status,
                 CreatedAt = DateTime.Now
             };
+
             await _appointmentRepo.AddAsync(entity);
             await _appointmentRepo.SaveAsync();
         }
+
 
         public async Task UpdateAppointmentAsync(AppointmentViewModels model)
         {
@@ -121,6 +144,16 @@ namespace HospitalManagement.Services
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> HasExistingAppointment(int patientId, DateTime date)
+        {
+            var existing = await _appointmentRepo.GetAsync(
+                a => a.PatientId == patientId && a.AppointmentDate.Date == date.Date && a.Status != "Cancelled",
+                includeProperties: "MedicalRecord.Bill");
+
+            return existing.Any(a => a.MedicalRecord == null || a.MedicalRecord.Bill == null || a.MedicalRecord.Bill.PaymentStatus != "Paid");
+        }
+
 
     }
 

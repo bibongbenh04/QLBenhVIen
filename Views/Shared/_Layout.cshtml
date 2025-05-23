@@ -5,7 +5,7 @@
 
 @{
     var currentUser = await UserManager.GetUserAsync(User);
-    var avatarUrl = currentUser?.AvatarUrl ?? "~/uploads/avatars/user.png";
+    var avatarUrl = string.IsNullOrEmpty(currentUser?.AvatarUrl) ? Url.Content("~/uploads/avatars/user.png") : currentUser.AvatarUrl;
     var username = currentUser?.UserName ?? "Tài khoản";
 }
 

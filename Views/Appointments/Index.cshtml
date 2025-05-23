@@ -13,7 +13,7 @@
     <h1 class="page-header">Danh sách lịch hẹn</h1>
 
     <p>
-        <a asp-action="Create" class="btn btn-primary">Tạo lịch hẹn mới</a>
+        <a asp-controller="Appointments" asp-action="ListPatient" class="btn btn-primary">Tạo lịch hẹn mới</a>
     </p>
 
     <form method="get" class="d-flex gap-2 mb-3">
@@ -41,12 +41,14 @@
                     <td>@item.AppointmentDate.ToString("dd/MM/yyyy HH:mm")</td>
                     <td>@Html.DisplayFor(modelItem => item.Status)</td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-edit">Sửa</a>
+                        @if(item.Status != "Completed" && item.Status != "Cancelled"){                        
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-edit">Sửa</a>
+                        }
                         <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-details">Chi tiết</a>
                         <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-delete">Xóa</a>
                     </td>
                     <td>
-                        @if (item.Status == "Đã xác nhận" && !item.HasMedicalRecord)
+                        @if (item.Status == "Completed" && !item.HasMedicalRecord)
                         {
                             <a asp-controller="MedicalRecords" asp-action="Create" asp-route-appointmentId="@item.Id" class="btn btn-sm btn-success">Tạo hồ sơ</a>
                         }

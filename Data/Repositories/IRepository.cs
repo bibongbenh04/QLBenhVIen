@@ -19,6 +19,7 @@ namespace HospitalManagement.Data.Repositories
         Task DeleteAsync(object id);
         Task DeleteAsync(T entity);
         Task SaveAsync();
+        Task<bool> AnyAsync(Expression<Func<T, bool>> filter);
 
         ApplicationDbContext Context();
         IQueryable<T> Query();

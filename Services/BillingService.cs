@@ -43,15 +43,20 @@ namespace HospitalManagement.Services
             _testRepo = testRepo;
         }
 
-        public async Task<int> CreateBillAsync(BillCreateViewModel model)
+        public async Task<int> CreateBillAsync(BillCreateViewModel model, int medicalRecordId)
         {
+            var record = await _medicalRecordRepo.GetByIdAsync(medicalRecordId);
+            if (record == null)
+                throw new Exception($"Không tìm thấy hồ sơ bệnh án với ID = {medicalRecordId}");
+
             var bill = new Bill
             {
                 PatientId = model.PatientId,
+                MedicalRecordId = medicalRecordId,
                 BillDate = DateTime.Now,
                 InsuranceCoverage = model.InsuranceCoverage,
                 PaymentStatus = "Unpaid",
-                PaymentMethod = "Chưa chọn",
+                PaymentMethod = "Unknown",
                 BillItems = new List<BillItem>()
             };
 
@@ -74,8 +79,13 @@ namespace HospitalManagement.Services
             await _billRepo.AddAsync(bill);
             await _billRepo.SaveAsync();
 
+            record.Bill = bill;
+            await _medicalRecordRepo.UpdateAsync(record);
+            await _medicalRecordRepo.SaveAsync();
+
             return bill.Id;
         }
+
 
         public async Task UpdateBillAsync(BillViewModel model)
         {
@@ -108,13 +118,14 @@ namespace HospitalManagement.Services
         {
             var bills = await _billRepo.GetAsync(
                 filter: b => b.PatientId == patientId,
-                includeProperties: "Patient,BillItems");
+                includeProperties: "Patient,BillItems,MedicalRecord");
 
             return bills.Select(b => new BillViewModel
             {
                 Id = b.Id,
                 PatientId = b.PatientId,
                 PatientName = b.Patient.FirstName + " " + b.Patient.LastName,
+                MedicalRecordId = b.MedicalRecordId,
                 BillDate = b.BillDate,
                 TotalAmount = b.TotalAmount,
                 PaidAmount = b.PaidAmount,
@@ -139,7 +150,7 @@ namespace HospitalManagement.Services
         {
             var bill = await _billRepo.GetFirstOrDefaultAsync(
                 filter: b => b.Id == id,
-                includeProperties: "Patient,BillItems");
+                includeProperties: "Patient,BillItems,MedicalRecord");
 
             if (bill == null) return null;
 
@@ -148,6 +159,7 @@ namespace HospitalManagement.Services
                 Id = bill.Id,
                 PatientId = bill.PatientId,
                 PatientName = bill.Patient?.FirstName + " " + bill.Patient?.LastName,
+                MedicalRecordId = bill.MedicalRecordId,
                 BillDate = bill.BillDate,
                 TotalAmount = bill.TotalAmount,
                 PaidAmount = bill.PaidAmount,
@@ -170,6 +182,14 @@ namespace HospitalManagement.Services
 
         public async Task<BillCreateViewModel> CreateBillFromMedicalRecordAsync(int medicalRecordId)
         {
+            // Check: nếu đã có bill nào cho record này thì không cho tạo nữa
+            var existingBill = await _billRepo.GetFirstOrDefaultAsync(
+                b => b.MedicalRecordId == medicalRecordId);
+
+            if (existingBill != null)
+            {
+                throw new Exception("Hồ sơ này đã có bill, không thể tạo thêm.");
+            }
             var record = await _medicalRecordRepo.GetByIdAsync(medicalRecordId);
             if (record == null) throw new Exception("Không tìm thấy hồ sơ bệnh án.");
 
@@ -240,7 +260,8 @@ namespace HospitalManagement.Services
                 HasInsurance = patient.HasInsurance,
                 InsuranceProvider = patient.InsuranceProvider,
                 InsurancePolicyNumber = patient.InsurancePolicyNumber,
-                Items = items
+                Items = items,
+                MedicalRecordId = medicalRecordId
             };
         }
 
@@ -268,7 +289,7 @@ namespace HospitalManagement.Services
 
             if (newPaidAmount <= 0) throw new Exception("Invalid payment amount");
 
-            var discountedTotal = bill.TotalAmount * (1 - bill.InsuranceCoverage);
+            var discountedTotal = Math.Round(bill.TotalAmount * (1 - bill.InsuranceCoverage), 2);
             var remaining = discountedTotal - bill.PaidAmount;
 
             if (newPaidAmount > remaining)
@@ -279,8 +300,9 @@ namespace HospitalManagement.Services
             bill.PaymentMethod = paymentMethod;
 
             bill.PaymentStatus = bill.PaidAmount == 0 ? "Unpaid"
-                                : bill.PaidAmount < discountedTotal ? "Partial"
-                                : "Paid";
+                   : bill.DueAmount > 0 ? "Partial"
+                   : "Paid";
+            
 
             await _billRepo.UpdateAsync(bill);
             await _billRepo.SaveAsync();
@@ -288,5 +310,46 @@ namespace HospitalManagement.Services
 
         public Task<decimal> CalculateTotalRevenueAsync() => throw new NotImplementedException();
         public Task<decimal> CalculateMonthlyRevenueAsync() => throw new NotImplementedException();
+
+        public Task<int> CreateBillAsync(BillCreateViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<BillViewModel> GetBillByMedicalRecordIdAsync(int medicalRecordId)
+        {
+            var bill = await _billRepo.GetFirstOrDefaultAsync(
+                filter: b => b.MedicalRecordId == medicalRecordId,
+                includeProperties: "Patient,BillItems,MedicalRecord"
+            );
+
+            if (bill == null) return null;
+
+            return new BillViewModel
+            {
+                Id = bill.Id,
+                PatientId = bill.PatientId,
+                PatientName = bill.Patient?.FirstName + " " + bill.Patient?.LastName,
+                MedicalRecordId = medicalRecordId,
+                BillDate = bill.BillDate,
+                TotalAmount = bill.TotalAmount,
+                PaidAmount = bill.PaidAmount,
+                DueAmount = bill.DueAmount,
+                InsuranceCoverage = bill.InsuranceCoverage,
+                PaymentStatus = bill.PaymentStatus,
+                PaymentMethod = bill.PaymentMethod,
+                Items = bill.BillItems.Select(i => new BillItemViewModel
+                {
+                    Id = i.Id,
+                    BillId = i.BillId,
+                    ItemName = i.ItemName,
+                    ItemType = i.ItemType,
+                    Quantity = i.Quantity,
+                    UnitPrice = i.UnitPrice,
+                    Subtotal = i.Subtotal
+                }).ToList()
+            };
+        }
+
     }
 }

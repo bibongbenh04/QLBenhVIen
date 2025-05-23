@@ -35,6 +35,36 @@ namespace HospitalManagement.Controllers
             return View(pagedList);
         }
 
+        public async Task<IActionResult> ListPatient(int? page)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 5;
+
+            var patients = await _patientService.GetAllPatientsAsync();
+
+            var today = DateTime.Today;
+
+            var viewModels = new List<PatientViewModel>();
+            foreach (var p in patients)
+            {
+                bool hasToday = await _appointmentService.HasExistingAppointment(p.Id, today);
+                viewModels.Add(new PatientViewModel
+                {
+                    Id = p.Id,
+                    FirstName = p.FirstName,
+                    LastName = p.LastName,
+                    DateOfBirth = p.DateOfBirth,
+                    Gender = p.Gender,
+                    Address = p.Address,
+                    PhoneNumber = p.PhoneNumber,
+                    HasAppointmentToday = hasToday
+                });
+            }
+
+            return View(viewModels.ToPagedList(pageNumber, pageSize));
+        }
+
+
         public async Task<IActionResult> Details(int id)
         {
             var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
@@ -45,11 +75,13 @@ namespace HospitalManagement.Controllers
             return View(appointment);
         }
 
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int patientId)
         {
             var model = new AppointmentCreateViewModel
             {
-                AppointmentDate = DateTime.Now.Date.AddDays(1),
+                PatientId = patientId,
+                AppointmentDate = DateTime.Today,
+                Status = "Waiting",
                 Patients = (await _patientService.GetAllPatientsAsync()).ToList(),
                 Doctors = (await _doctorService.GetAllDoctorsAsync()).ToList()
             };
@@ -62,25 +94,30 @@ namespace HospitalManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
-                foreach (var err in ModelState)
-                {
-                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
-                    foreach (var e in err.Value.Errors)
-                    {
-                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
-                    }
-                }
-            }
-            if (ModelState.IsValid)
-            {
-                await _appointmentService.CreateAppointmentAsync(model);
-                return RedirectToAction(nameof(Index));
+                model.Patients = (await _patientService.GetAllPatientsAsync()).ToList();
+                model.Doctors = (await _doctorService.GetAllDoctorsAsync()).ToList();
+                return View(model);
             }
 
-            model.Patients = (await _patientService.GetAllPatientsAsync()).ToList();
-            model.Doctors = (await _doctorService.GetAllDoctorsAsync()).ToList();
-            return View(model);
+            var exists = await _appointmentService.HasExistingAppointment(model.PatientId, model.AppointmentDate);
+            if (exists)
+            {
+                TempData["DuplicateAppointment"] = true;
+                return RedirectToAction("ListPatient");
+            }
+
+            var availableDoctors = await _doctorService.GetAvailableDoctorsAsync(model.AppointmentDate, TimeSpan.Parse(model.AppointmentTime));
+            var selectedDoctor = availableDoctors.FirstOrDefault(d => d.Id == model.DoctorId);
+            if (selectedDoctor == null)
+            {
+                TempData["DoctorUnavailable"] = true;
+                return RedirectToAction("Create");
+            }
+
+            await _appointmentService.CreateAppointmentAsync(model);
+            return RedirectToAction(nameof(Index));
         }
+
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -127,17 +164,17 @@ namespace HospitalManagement.Controllers
         [Authorize(Roles = "Admin,Staff,Doctor")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                foreach (var err in ModelState)
-                {
-                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
-                    foreach (var e in err.Value.Errors)
-                    {
-                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
-                    }
-                }
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     foreach (var err in ModelState)
+            //     {
+            //         Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
+            //         foreach (var e in err.Value.Errors)
+            //         {
+            //             Console.WriteLine($"   => Error: {e.ErrorMessage}");
+            //         }
+            //     }
+            // }
             var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
             if (appointment == null)
             {

@@ -13,6 +13,7 @@ namespace HospitalManagement.Models.Entities
 
         public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
+        public Bill? Bill { get; set; } 
 
         [Required]
         [StringLength(500)]
@@ -29,5 +30,6 @@ namespace HospitalManagement.Models.Entities
         // Navigation properties
         public ICollection<Prescription> Prescriptions { get; set; }
         public ICollection<Test> Tests { get; set; }
+
     }
 }

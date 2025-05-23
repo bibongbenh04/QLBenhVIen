@@ -144,6 +144,14 @@ namespace HospitalManagement.Data
                 .HasForeignKey(t => t.ServiceId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Bill>()
+                .HasOne(b => b.MedicalRecord)
+                .WithOne(m => m.Bill)
+                .HasForeignKey<Bill>(b => b.MedicalRecordId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
+
         }
     }
 }

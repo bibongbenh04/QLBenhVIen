@@ -32,6 +32,7 @@ namespace HospitalManagement.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AvatarUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     LastLogin = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -231,7 +232,8 @@ namespace HospitalManagement.Migrations
                     HasInsurance = table.Column<bool>(type: "bit", nullable: false),
                     InsuranceProvider = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     InsurancePolicyNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -260,7 +262,8 @@ namespace HospitalManagement.Migrations
                     Biography = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ConsultationFee = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    DepartmentId = table.Column<int>(type: "int", nullable: false)
+                    DepartmentId = table.Column<int>(type: "int", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -293,7 +296,8 @@ namespace HospitalManagement.Migrations
                     Position = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     JoiningDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    DepartmentId = table.Column<int>(type: "int", nullable: true)
+                    DepartmentId = table.Column<int>(type: "int", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -308,32 +312,6 @@ namespace HospitalManagement.Migrations
                         name: "FK_Staff_Departments_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Bills",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PatientId = table.Column<int>(type: "int", nullable: false),
-                    BillDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DueAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    InsuranceCoverage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Bills", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Bills_Patients_PatientId",
-                        column: x => x.PatientId,
-                        principalTable: "Patients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -395,30 +373,6 @@ namespace HospitalManagement.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BillItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    BillId = table.Column<int>(type: "int", nullable: false),
-                    ItemName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ItemType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Subtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BillItems", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BillItems_Bills_BillId",
-                        column: x => x.BillId,
-                        principalTable: "Bills",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "MedicalRecords",
                 columns: table => new
                 {
@@ -442,6 +396,39 @@ namespace HospitalManagement.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_MedicalRecords_Patients_PatientId",
+                        column: x => x.PatientId,
+                        principalTable: "Patients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bills",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PatientId = table.Column<int>(type: "int", nullable: false),
+                    MedicalRecordId = table.Column<int>(type: "int", nullable: false),
+                    BillDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaidAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DueAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    InsuranceCoverage = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bills", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bills_MedicalRecords_MedicalRecordId",
+                        column: x => x.MedicalRecordId,
+                        principalTable: "MedicalRecords",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Bills_Patients_PatientId",
                         column: x => x.PatientId,
                         principalTable: "Patients",
                         principalColumn: "Id",
@@ -501,6 +488,30 @@ namespace HospitalManagement.Migrations
                         name: "FK_Tests_Services_ServiceId",
                         column: x => x.ServiceId,
                         principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BillItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BillId = table.Column<int>(type: "int", nullable: false),
+                    ItemName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ItemType = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Subtotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BillItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BillItems_Bills_BillId",
+                        column: x => x.BillId,
+                        principalTable: "Bills",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -588,6 +599,12 @@ namespace HospitalManagement.Migrations
                 name: "IX_BillItems_BillId",
                 table: "BillItems",
                 column: "BillId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bills_MedicalRecordId",
+                table: "Bills",
+                column: "MedicalRecordId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bills_PatientId",

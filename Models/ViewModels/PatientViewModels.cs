@@ -50,6 +50,8 @@ namespace HospitalManagement.Models.ViewModels
         public string InsurancePolicyNumber { get; set; }
 
         public string FullName => $"{FirstName} {LastName}";
+
+        public bool HasAppointmentToday { get; set; } = false;
     }
 
     public class PatientDetailsViewModel

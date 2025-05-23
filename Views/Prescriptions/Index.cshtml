@@ -48,7 +48,7 @@
                             <td>@Html.DisplayFor(modelItem => item.Treatment)</td>
                             <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
                             <td>
-                                <a asp-controller="Prescriptions" asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Chi tiết</a>
+                                @* <a asp-controller="Prescriptions" asp-action="DetailsByRecord" asp-route-patientId="@item.PatientId" asp-route-doctorId="@item.DoctorId" asp-route-recordDate="@item.RecordDate.ToString("o")" class="btn btn-sm btn-primary">Chi tiết</a> *@
                                 <a asp-controller="Prescriptions" asp-action="Create" asp-route-medicalRecordId="@item.Id" class="btn btn-sm btn-success">Tạo đơn thuốc</a>
                                 <a asp-controller="Prescriptions" asp-action="ListPrescription" asp-route-medicalRecordId="@item.Id" class="btn btn-sm btn-secondary">Danh sách</a>
                             </td>
@@ -64,4 +64,27 @@
 
 @section Scripts {
     <script src="~/js/search-table.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const params = new URLSearchParams(window.location.search);
+
+        if (params.get("noMedication") === "true") {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Danh sách thuốc trống!',
+                text: 'Bạn chưa tạo thuốc. Vui lòng thêm thuốc trước khi tạo đơn thuốc.',
+                confirmButtonColor: '#d33'
+            });
+
+            if (history.replaceState) {
+                const cleanUrl = window.location.origin + window.location.pathname;
+                history.replaceState(null, '', cleanUrl);
+            }
+        }
+    });
+</script>
+
 }

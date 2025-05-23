@@ -41,6 +41,7 @@ namespace HospitalManagement.Models.ViewModels
         public List<PatientViewModel> Patients { get; set; } = new();
         public List<DoctorViewModel> Doctors { get; set; } = new();
         public bool HasMedicalRecord { get; set; } 
+        
 
     }
 

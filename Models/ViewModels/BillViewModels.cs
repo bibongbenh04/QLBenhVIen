@@ -10,6 +10,7 @@ namespace HospitalManagement.Models.ViewModels
         public int Id { get; set; }
         public int PatientId { get; set; }
         public string PatientName { get; set; }
+        public int MedicalRecordId { get; set; }
         public DateTime BillDate { get; set; }
         public decimal InsuranceCoverage { get; set; }
         public decimal TotalAmount { get; set; }
@@ -42,6 +43,8 @@ namespace HospitalManagement.Models.ViewModels
         public string InsuranceProvider { get; set; }
         public string InsurancePolicyNumber { get; set; }
         public List<BillItemCreateViewModel> Items { get; set; }
+        public int MedicalRecordId { get; set; }
+
         [ValidateNever]
         public List<PatientViewModel> Patients { get; set; }
     }

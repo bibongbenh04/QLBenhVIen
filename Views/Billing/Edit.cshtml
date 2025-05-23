@@ -22,22 +22,22 @@
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Phần trăm giảm giá (BHYT)</label>
-                    <input type="number" class="form-control" name="InsuranceDiscount" value="80" min="0" max="100" step="1" placeholder="Nhập mức giảm %" readonly/>
+                    <input type="number" class="form-control" asp-for="@Model.InsuranceCoverage" readonly/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Hình thức thanh toán</label>
-                    <input asp-for="PaymentMethod" class="form-control" />
+                    <input asp-for="PaymentMethod" class="form-control" readonly/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Tiền đã thanh toán</label>
-                    <input asp-for="PaidAmount" class="form-control" />
+                    <input asp-for="PaidAmount" class="form-control" readonly/>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label fw-bold">Trạng thái thanh toán</label>
-                    <select asp-for="PaymentStatus" class="form-control">
+                    <select asp-for="PaymentStatus" class="form-control" aria-readonly="true">
                         <option value="Paid">Đã thanh toán</option>
                         <option value="Unpaid">Chưa thanh toán</option>
                         <option value="Partial">Thanh toán một phần</option>
@@ -61,16 +61,16 @@
                             <tr>
                                 <td>
                                     <input type="hidden" name="Items[@item.Id].Id" value="@item.Id" />
-                                    <input name="Items[@item.Id].ItemName" class="form-control" value="@item.ItemName" />
+                                    <input name="Items[@item.Id].ItemName" class="form-control" value="@item.ItemName" readonly/>
                                 </td>
                                 <td>
-                                    <input name="Items[@item.Id].ItemType" class="form-control" value="@item.ItemType" />
+                                    <input name="Items[@item.Id].ItemType" class="form-control" value="@item.ItemType" readonly/>
                                 </td>
                                 <td>
-                                    <input name="Items[@item.Id].Quantity" class="form-control" value="@item.Quantity" />
+                                    <input name="Items[@item.Id].Quantity" class="form-control" value="@item.Quantity" readonly/>
                                 </td>
                                 <td>
-                                    <input name="Items[@item.Id].UnitPrice" class="form-control" value="@item.UnitPrice" />
+                                    <input name="Items[@item.Id].UnitPrice" class="form-control" value="@item.UnitPrice" readonly/>
                                 </td>
                                 <td>
                                     <strong>@(item.Quantity * item.UnitPrice)</strong>
@@ -81,8 +81,10 @@
                 </table>
 
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
-                    <a asp-action="Index" class="btn btn-secondary w-100">Quay lại</a>
+                    @* @if(Model.PaymentStatus != "Paid"){
+                        <button type="submit" class="btn btn-primary w-100">Cập nhật</button>
+                    } *@
+                    <a asp-action="ListMedicalRecord" asp-route-patientId="@Model.PatientId" class="btn btn-secondary w-100">Quay lại</a>
                 </div>
             </form>
         </div>

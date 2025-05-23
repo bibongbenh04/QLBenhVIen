@@ -72,6 +72,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Appointments/ListPatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXExpc3RQYXRpZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/Bill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xCaWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/CreateFromMedicalRecord.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xDcmVhdGVGcm9tTWVkaWNhbFJlY29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -84,12 +92,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xJbmRleC5jc2h0bWw=
+[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/ListMedicalRecord.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xMaXN0TWVkaWNhbFJlY29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/ListBill.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xMaXN0QmlsbC5jc2h0bWw=
+[C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/ListPatient.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQmlsbGluZ1xMaXN0UGF0aWVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/doduc/Downloads/HospitalManagement/HospitalManagement/Views/Billing/Pay.cshtml]

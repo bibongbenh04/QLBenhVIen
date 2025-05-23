@@ -40,13 +40,14 @@ namespace HospitalManagement.Services
                 DoctorName = r.Appointment?.Doctor != null
                     ? r.Appointment.Doctor.FirstName + " " + r.Appointment.Doctor.LastName
                     : "N/A",
-                AdmissionDate = r.Appointment?.AppointmentDate ?? DateTime.MinValue
+                AdmissionDate = r.Appointment?.AppointmentDate ?? DateTime.MinValue,
+                HasBill = r.Bill != null
             });
         }
 
-        public async Task<IEnumerable<MedicalRecordViewModel>> GetMedicalRecordsByPatientAsync(int patientId)
+        public async Task<IEnumerable<MedicalRecordViewModel>> GetMedicalRecordsByPatientIdAsync(int patientId)
         {
-            var records = await _recordRepo.GetAsync(r => r.PatientId == patientId, null, "Appointment,Patient");
+            var records = await _recordRepo.GetAsync(r => r.PatientId == patientId, null, "Appointment.Doctor,Patient,Bill");
             return records.Select(r => new MedicalRecordViewModel
             {
                 Id = r.Id,
@@ -57,8 +58,10 @@ namespace HospitalManagement.Services
                 Treatment = r.Treatment,
                 Notes = r.Notes,
                 RecordDate = r.RecordDate,
+                DoctorId = r.Appointment.DoctorId,
                 DoctorName = r.Appointment.Doctor?.FirstName + " " + r.Appointment.Doctor?.LastName,
-                AdmissionDate = r.Appointment.AppointmentDate
+                AdmissionDate = r.Appointment.AppointmentDate,
+                HasBill = r.Bill != null
             });
         }
 
@@ -79,7 +82,8 @@ namespace HospitalManagement.Services
                 RecordDate = r.RecordDate,
                 DoctorId = r.Appointment.DoctorId,
                 DoctorName = r.Appointment.Doctor?.FirstName + " " + r.Appointment.Doctor?.LastName,
-                AdmissionDate = r.Appointment.AppointmentDate
+                AdmissionDate = r.Appointment.AppointmentDate,
+                HasBill = r.Bill != null
             };
         }
 
@@ -116,7 +120,8 @@ namespace HospitalManagement.Services
                     DoctorName = r.Appointment?.Doctor != null
                         ? r.Appointment.Doctor.FirstName + " " + r.Appointment.Doctor.LastName
                         : "N/A",
-                    AdmissionDate = r.Appointment?.AppointmentDate ?? DateTime.MinValue
+                    AdmissionDate = r.Appointment?.AppointmentDate ?? DateTime.MinValue,
+                    HasBill = r.Bill != null
                 },
 
                 Prescriptions = prescriptions.Select(p => new PrescriptionViewModel
@@ -172,7 +177,7 @@ namespace HospitalManagement.Services
             var appointment = await _appointmentRepo.GetByIdAsync(model.AppointmentId);
             if (appointment != null)
             {
-                appointment.Status = "Đã hoàn thành";
+                appointment.Status = "Completed";
                 await _appointmentRepo.UpdateAsync(appointment);
                 await _appointmentRepo.SaveAsync();
             }

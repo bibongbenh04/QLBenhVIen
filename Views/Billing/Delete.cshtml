@@ -78,7 +78,7 @@
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-danger w-100">Xác nhận xóa hóa đơn</button>
-                    <a asp-action="Index" class="btn btn-secondary w-100">Quay lại</a>
+                    <a asp-action="ListMedicalRecord" asp-route-patientId="@Model.PatientId" class="btn btn-secondary w-100">Quay lại</a>
                 </div>
             </form>
         </div>

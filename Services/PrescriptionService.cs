@@ -115,6 +115,43 @@ namespace HospitalManagement.Services
             };
         }
 
+        public async Task<PrescriptionViewModel> GetPrescriptionByPatientAndDoctorAndDateAsync(int patientId, int doctorId, DateTime recordDate)
+        {
+            var prescription = await _prescriptionRepository.Query()
+                .Include(p => p.Doctor)
+                .Include(p => p.MedicalRecord)
+                .Include(p => p.PrescriptionItems)
+                    .ThenInclude(i => i.Medication)
+                .Where(p =>
+                    p.DoctorId == doctorId &&
+                    p.MedicalRecord.PatientId == patientId &&
+                    p.MedicalRecord.RecordDate.Date == recordDate.Date)
+                .FirstOrDefaultAsync();
+
+            if (prescription == null)
+                return null;
+
+            return new PrescriptionViewModel
+            {
+                Id = prescription.Id,
+                MedicalRecordId = prescription.MedicalRecordId,
+                DoctorId = prescription.DoctorId,
+                DoctorName = prescription.Doctor?.FirstName + " " + prescription.Doctor?.LastName,
+                Notes = prescription.Notes,
+                PrescriptionDate = prescription.PrescriptionDate,
+                Items = prescription.PrescriptionItems.Select(i => new PrescriptionItemViewModel
+                {
+                    Id = i.Id,
+                    MedicationId = i.MedicationId,
+                    MedicationName = i.Medication?.Name,
+                    Dosage = i.Dosage,
+                    Instructions = i.Instructions,
+                    Quantity = i.Quantity,
+                    DurationDays = i.DurationDays
+                }).ToList()
+            };
+        }
+
         public async Task<IEnumerable<PrescriptionViewModel>> GetAllPrescriptionsByMedicalRecordIdAsync(int medicalRecordId)
         {
             var list = await _prescriptionRepository.GetAsync(x => x.MedicalRecordId == medicalRecordId, null, "Doctor,PrescriptionItems.Medication");

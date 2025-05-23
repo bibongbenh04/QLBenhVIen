@@ -6,6 +6,7 @@
 }
 <head>
     <link href="~/css/Appointments/create.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" rel="stylesheet" />
 </head>
 
 <div class="container-lg my-5">
@@ -16,8 +17,14 @@
         <div class="card-body">
             <form asp-action="Create" method="post">
                 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                <input asp-for="PatientId" hidden />
 
                 <div class="mb-3">
+                    <label class="form-label fw-bold">Bệnh nhân</label>
+                    <input class="form-control" value="@Model.Patients?.FirstOrDefault(p => p.Id == Model.PatientId)?.FullName" disabled />
+                </div>
+
+                @* <div class="mb-3">
                     <label asp-for="PatientId" class="form-label fw-bold"></label>
                     <select asp-for="PatientId" class="form-select">
                         <option value="">-- Chọn bệnh nhân --</option>
@@ -27,29 +34,24 @@
                         }
                     </select>
                     <span asp-validation-for="PatientId" class="text-danger"></span>
-                </div>
+                </div> *@
 
                 <div class="mb-3">
-                    <label asp-for="DoctorId" class="form-label fw-bold"></label>
-                    <select asp-for="DoctorId" class="form-select">
-                        <option value="">-- Chọn bác sĩ --</option>
-                        @foreach (var doctor in Model.Doctors)
-                        {
-                            <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
-                        }
-                    </select>
+                    <label class="form-label fw-bold">Tìm bác sĩ</label>
+                    <input type="text" id="search-doctor" class="form-control" placeholder="Tìm tên bác sĩ...">
+                    <input type="hidden" asp-for="DoctorId" id="doctor-id" />
                     <span asp-validation-for="DoctorId" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="AppointmentDate" class="form-label fw-bold"></label>
-                    <input asp-for="AppointmentDate" class="form-control" />
+                    <input asp-for="AppointmentDate" class="form-control" id="appointment-date" />
                     <span asp-validation-for="AppointmentDate" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label asp-for="AppointmentTime" class="form-label fw-bold"></label>
-                    <input asp-for="AppointmentTime" class="form-control" type="time" />
+                    <input asp-for="AppointmentTime" class="form-control" type="time" id="appointment-time" />
                     <span asp-validation-for="AppointmentTime" class="text-danger"></span>
                 </div>
 
@@ -65,24 +67,21 @@
                     <span asp-validation-for="Notes" class="text-danger"></span>
                 </div>
 
-                <div class="mb-3">
+                <<div class="mb-3">
                     <label asp-for="Status" class="form-label fw-bold"></label>
                     <select asp-for="Status" class="form-select">
-                        <option value="Đang chờ">Đang chờ</option>
-                        <option value="Đã xác nhận">Đã xác nhận</option>
-                        <option value="Đã hoàn thành">Đã hoàn thành</option>
-                        <option value="Đã hủy">Đã hủy</option>
+                        <option value="Waiting">Đang chờ</option>
+                        <option value="Confirmed">Đã xác nhận</option>
+                        <option value="Completed">Đã hoàn thành</option>
+                        <option value="Cancelled">Đã hủy</option>
                     </select>
                     <span asp-validation-for="Status" class="text-danger"></span>
                 </div>
 
+
                 <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-primary">
-                        Tạo lịch hẹn
-                    </button>
-                    <a asp-action="Index" class="btn btn-secondary">
-                        Quay lại danh sách
-                    </a>
+                    <button type="submit" class="btn btn-primary">Tạo lịch hẹn</button>
+                    <a asp-action="Index" class="btn btn-secondary">Quay lại danh sách</a>
                 </div>
             </form>
         </div>
@@ -91,4 +90,53 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <script>
+        @if (TempData["DuplicateAppointment"] != null)
+        {
+            <text>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Lịch hẹn đã tồn tại',
+                    text: 'Bệnh nhân này đã có lịch hẹn vào ngày này!',
+                    confirmButtonColor: '#ffc107'
+                });
+            </text>
+        }
+
+        $(function () {
+            $('#search-doctor').autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    const date = $('#appointment-date').val();
+                    const time = $('#appointment-time').val();
+
+                    if (!date || !time) {
+                        Swal.fire('Bạn cần chọn ngày và giờ trước!');
+                        return;
+                    }
+
+                    $.getJSON('/Doctors/SearchAvailable', {
+                        term: request.term,
+                        date: date,
+                        time: time
+                    }, function (data) {
+                        response(data.map(d => ({
+                            label: d.fullName + ' - ' + d.specialization,
+                            value: d.fullName,
+                            id: d.id
+                        })));
+                    });
+                },
+                select: function (event, ui) {
+                    $('#doctor-id').val(ui.item.id);
+                }
+            });
+        });
+
+    </script>
 }

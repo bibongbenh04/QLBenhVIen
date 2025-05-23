@@ -11,6 +11,10 @@ namespace HospitalManagement.Models.Entities
         public int PatientId { get; set; }
         public Patient Patient { get; set; }
 
+        public int MedicalRecordId { get; set; }
+        public MedicalRecord MedicalRecord { get; set; }
+
+
         [Required]
         public DateTime BillDate { get; set; }
 

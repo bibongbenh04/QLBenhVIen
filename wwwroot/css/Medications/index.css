@@ -41,23 +41,24 @@
 .btn-primary:hover {
     background-color: #0056b3;
     border-color: #0056b3;
-    color: #ffffff;
 }
 
-/* Action Button Styles */
 .btn-warning {
     background-color: #ffc107;
     border-color: #ffc107;
     color: #ffffff;
     font-weight: 600;
     border-radius: 0.25rem;
-    margin-right: 5px;
 }
 
 .btn-warning:hover {
     background-color: #e0a800;
     border-color: #e0a800;
-    color: #ffffff;
+}
+
+.btn-danger {
+    font-weight: 600;
+    border-radius: 0.25rem;
 }
 
 /* Header Styles */
@@ -67,4 +68,9 @@
     font-weight: 700;
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
+}
+
+/* Search box */
+.form-control::placeholder {
+    color: #999;
 }

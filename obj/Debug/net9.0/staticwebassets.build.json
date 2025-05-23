@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "c1RHLydbr6wuMgSG0XuVC10mFozvL1SbY0G+eH2KLEI=",
+  "Hash": "PNTSEsOqSWIfewRwvviKkC0Oy13z5JeDeCjdiiVE3Mw=",
   "Source": "HospitalManagement",
   "BasePath": "_content/HospitalManagement",
   "Mode": "Default",
@@ -3293,12 +3293,12 @@
       "OriginalItemSpec": "C:\\Users\\doduc\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.5\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Identity": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-hsw2ff5pwf.gz",
+      "Identity": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-f6fkglj3m2.gz",
       "SourceId": "HospitalManagement",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/HospitalManagement",
-      "RelativePath": "css/Medications/index#[.{fingerprint=hsw2ff5pwf}]?.css.gz",
+      "RelativePath": "css/Medications/index#[.{fingerprint=f6fkglj3m2}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -3307,8 +3307,8 @@
       "RelatedAsset": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\index.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "9dirnvg9k8",
-      "Integrity": "Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8=",
+      "Fingerprint": "2o496xrb2q",
+      "Integrity": "HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\index.css"
@@ -5869,8 +5869,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "hsw2ff5pwf",
-      "Integrity": "ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=",
+      "Fingerprint": "f6fkglj3m2",
+      "Integrity": "1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Medications\\index.css"
@@ -18115,12 +18115,12 @@
     },
     {
       "Route": "css/Medications/index.css",
-      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-hsw2ff5pwf.gz",
+      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-f6fkglj3m2.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002212389381"
+          "Quality": "0.002074688797"
         }
       ],
       "ResponseHeaders": [
@@ -18130,15 +18130,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "451"
+          "Value": "481"
         },
         {
           "Name": "ETag",
-          "Value": "\"Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8=\""
+          "Value": "\"HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18158,13 +18158,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=\""
+          "Value": "W/\"1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ="
+          "Value": "sha256-1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds="
         }
       ]
     },
@@ -18179,7 +18179,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1373"
+          "Value": "1422"
         },
         {
           "Name": "Content-Type",
@@ -18187,11 +18187,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=\""
+          "Value": "\"1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18201,13 +18201,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ="
+          "Value": "sha256-1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds="
         }
       ]
     },
     {
       "Route": "css/Medications/index.css.gz",
-      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-hsw2ff5pwf.gz",
+      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-f6fkglj3m2.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -18216,7 +18216,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "451"
+          "Value": "481"
         },
         {
           "Name": "Content-Type",
@@ -18224,11 +18224,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8=\""
+          "Value": "\"HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18246,18 +18246,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8="
+          "Value": "sha256-HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew="
         }
       ]
     },
     {
-      "Route": "css/Medications/index.hsw2ff5pwf.css",
-      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-hsw2ff5pwf.gz",
+      "Route": "css/Medications/index.f6fkglj3m2.css",
+      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-f6fkglj3m2.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.002212389381"
+          "Quality": "0.002074688797"
         }
       ],
       "ResponseHeaders": [
@@ -18267,15 +18267,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "451"
+          "Value": "481"
         },
         {
           "Name": "ETag",
-          "Value": "\"Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8=\""
+          "Value": "\"HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18295,13 +18295,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=\""
+          "Value": "W/\"1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hsw2ff5pwf"
+          "Value": "f6fkglj3m2"
         },
         {
           "Name": "label",
@@ -18309,12 +18309,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ="
+          "Value": "sha256-1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds="
         }
       ]
     },
     {
-      "Route": "css/Medications/index.hsw2ff5pwf.css",
+      "Route": "css/Medications/index.f6fkglj3m2.css",
       "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\index.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -18324,7 +18324,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1373"
+          "Value": "1422"
         },
         {
           "Name": "Content-Type",
@@ -18332,11 +18332,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ=\""
+          "Value": "\"1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18346,7 +18346,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hsw2ff5pwf"
+          "Value": "f6fkglj3m2"
         },
         {
           "Name": "label",
@@ -18354,13 +18354,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ga2NP9smlIQJhbr6aNmXMohKV2/gvOI51/nafC8WILQ="
+          "Value": "sha256-1/1eNecbOSppkRSnKPZ3feHW/e5PiqErC5xLq/CX4ds="
         }
       ]
     },
     {
-      "Route": "css/Medications/index.hsw2ff5pwf.css.gz",
-      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-hsw2ff5pwf.gz",
+      "Route": "css/Medications/index.f6fkglj3m2.css.gz",
+      "AssetFile": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\Debug\\net9.0\\compressed\\l1cpvouxqc-f6fkglj3m2.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -18369,7 +18369,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "451"
+          "Value": "481"
         },
         {
           "Name": "Content-Type",
@@ -18377,11 +18377,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8=\""
+          "Value": "\"HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 21 May 2025 02:00:19 GMT"
+          "Value": "Wed, 21 May 2025 16:19:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18399,7 +18399,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "hsw2ff5pwf"
+          "Value": "f6fkglj3m2"
         },
         {
           "Name": "label",
@@ -18407,7 +18407,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-Q9c/euIMZaHP8d5L5Nb12yhfdw/a0ieWzO6Y+KNTbw8="
+          "Value": "sha256-HibTlSx5ldqVn49U/eyodHKgJ3/ZOHPw8XFI54T44Ew="
         }
       ]
     },

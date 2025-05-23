@@ -13,13 +13,6 @@
 <div class="container-lg my-5">
     <h1 class="mb-4">Danh sách hồ sơ bệnh án</h1>
 
-    @if (TempData["ErrorMessage"] != null)
-    {
-        <div class="alert alert-danger">
-            @TempData["ErrorMessage"]
-        </div>
-    }
-
     <form method="get" class="d-flex gap-2 mb-3">
         <input type="text" class="form-control" placeholder="Tìm bệnh nhân hoặc bác sĩ"
                data-search-table="medical-record-bill-table" data-search-cols="0,1" />
@@ -33,8 +26,8 @@
                 <th>Chẩn đoán</th>
                 <th>Điều trị</th>
                 <th>Ngày nhập viện</th>
-                <th>Tạo Bill</th>
-                <th>Danh sách Bill</th>
+                <th>Tạo hóa đơn</th>
+                <th>Chi tiết hóa đơn</th>
             </tr>
         </thead>
         <tbody>
@@ -47,20 +40,32 @@
                     <td>@Html.DisplayFor(modelItem => item.Treatment)</td>
                     <td>@Html.DisplayFor(modelItem => item.AdmissionDate)</td>
                     <td>
-                        <a asp-controller="Billing"
-                           asp-action="CreateFromMedicalRecord"
-                           asp-route-medicalRecordId="@item.Id"
-                           class="btn btn-sm btn-bill">
-                            Tạo bill
-                        </a>
+                        @if(!item.HasBill){ // Đã tạo bill không tạo thêm nữa
+                            <a asp-controller="Billing"
+                            asp-action="CreateFromMedicalRecord"
+                            asp-route-medicalRecordId="@item.Id"
+                            class="btn btn-sm btn-bill">
+                                Tạo hóa đơn
+                            </a>
+                        }else{
+                            <span class="text-muted">Đã có hóa đơn</span>
+                        }
+
+                        
                     </td>
                     <td>
-                        <a asp-controller="Billing"
-                           asp-action="ListBill"
-                           asp-route-patientId="@item.PatientId"
+                        @if(item.HasBill){
+                            <a asp-controller="Billing"
+                           asp-action="Bill"
+                           asp-route-medicalRecordId="@item.Id"
                            class="btn btn-sm btn-list">
-                            Danh sách bill
-                        </a>
+                            Hóa đơn
+                            </a>
+                        }else{
+                            <span class="text-muted">Chưa tạo hóa đơn</span>
+                        }
+
+                        
                     </td>
                 </tr>
             }

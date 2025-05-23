@@ -24,25 +24,45 @@ namespace HospitalManagement.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> ListPatient(int? page)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
-            var medicalRecords = await _medicalRecordService.GetAllMedicalRecordsAsync();
+            var patients = await _patientService.GetAllPatientsAsync();
+            var pagedList = patients.ToPagedList(pageNumber, pageSize);
+            return View(pagedList);
+
+        }
+
+        public async Task<IActionResult> ListMedicalRecord(int patientId, int? page)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 5;
+
+            var medicalRecords = await _medicalRecordService.GetMedicalRecordsByPatientIdAsync(patientId);
             var pagedList = medicalRecords.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }
 
-        public async Task<IActionResult> ListBill(int patientId, int? page)
+        public async Task<IActionResult> Bill(int medicalRecordId)
         {
-            int pageNumber = page ?? 1;
-            int pageSize = 5;
+            var bill = await _billingService.GetBillByMedicalRecordIdAsync(medicalRecordId);
+            if (bill == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy hóa đơn cho hồ sơ này.";
+                var record = await _medicalRecordService.GetMedicalRecordByIdAsync(medicalRecordId);
+                if (record != null)
+                {
+                    return RedirectToAction("ListMedicalRecord", new { patientId = record.PatientId });
+                }
+                return RedirectToAction("ListPatient");
+            }
 
-            var bills = await _billingService.GetBillsByPatientIdAsync(patientId);
-            var pagedList = bills.ToPagedList(pageNumber, pageSize);
-            return View(pagedList);
+            return View(bill);
         }
+
+
 
         public async Task<IActionResult> Details(int id)
         {
@@ -67,26 +87,17 @@ namespace HospitalManagement.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> CreateFromMedicalRecord(BillCreateViewModel model)
         {
             if (!ModelState.IsValid)
-            {
-                foreach (var err in ModelState)
-                {
-                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
-                    foreach (var e in err.Value.Errors)
-                    {
-                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
-                    }
-                }
-            }
-            if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
-            await _billingService.CreateBillAsync(model);
-            return RedirectToAction("Index");
+
+            await _billingService.CreateBillAsync(model, model.MedicalRecordId);
+
+            return RedirectToAction("ListMedicalRecord", new { patientId = model.PatientId });
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Pay(int id)
@@ -125,12 +136,8 @@ namespace HospitalManagement.Controllers
             await _billingService.ApplyPaymentAsync(model.Id, model.PaidAmount, model.PaymentMethod);
 
             TempData["Success"] = "Thanh toán thành công.";
-            return RedirectToAction("ListBill", new { patientId = model.PatientId });
+            return RedirectToAction("Bill", new { medicalRecordId = model.MedicalRecordId });
         }
-
-
-
-
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -149,7 +156,7 @@ namespace HospitalManagement.Controllers
             if (ModelState.IsValid)
             {
                 await _billingService.UpdateBillAsync(model);
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Bill), new { id = model.Id });
             }
             return View(model);
         }
@@ -178,13 +185,8 @@ namespace HospitalManagement.Controllers
                 TempData["Error"] = $"Không thể xóa hóa đơn: {ex.Message}";
             }
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ListPatient));
         }
 
-        // public async Task<IActionResult> PatientBills(int patientId)
-        // {
-        //     var bills = await _billingService.GetBillsByPatientAsync(patientId);
-        //     return View(bills);
-        // }
     }
 }

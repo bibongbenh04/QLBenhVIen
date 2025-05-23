@@ -22,6 +22,8 @@ namespace HospitalManagement.Models.ViewModels
         public int DoctorId { get; set; }
         public string DoctorName { get; set; }
         public DateTime AdmissionDate { get; set; }
+        public bool HasBill { get; set; } = false;
+
     }
 
     public class MedicalRecordDetailsViewModel

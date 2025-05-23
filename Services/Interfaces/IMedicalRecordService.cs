@@ -7,7 +7,7 @@ namespace HospitalManagement.Services.Interfaces
     public interface IMedicalRecordService
     {
         Task<IEnumerable<MedicalRecordViewModel>> GetAllMedicalRecordsAsync();
-        Task<IEnumerable<MedicalRecordViewModel>> GetMedicalRecordsByPatientAsync(int patientId);
+        Task<IEnumerable<MedicalRecordViewModel>> GetMedicalRecordsByPatientIdAsync(int patientId);
         Task<MedicalRecordViewModel> GetMedicalRecordByIdAsync(int id);
         Task<MedicalRecordDetailsViewModel> GetMedicalRecordDetailsAsync(int id);
         Task<int> CreateMedicalRecordAsync(MedicalRecordCreateViewModel model);
@@ -15,3 +15,4 @@ namespace HospitalManagement.Services.Interfaces
         Task DeleteMedicalRecordAsync(int id);
     }
 }
+

@@ -287,5 +287,44 @@ namespace HospitalManagement.Services
             await _scheduleRepository.SaveAsync();
             return doctorId;
         }
+
+        public async Task<List<DoctorViewModel>> GetAvailableDoctorsAsync(DateTime date, TimeSpan time)
+        {
+            var dayOfWeek = date.DayOfWeek;
+
+            var schedules = await _scheduleRepository.GetAsync(s =>
+                s.DayOfWeek == dayOfWeek &&
+                s.StartTime <= time && time <= s.EndTime &&
+                s.IsAvailable,
+                includeProperties: "Doctor"
+            );
+
+            var availableDoctors = schedules.Select(s => s.Doctor)
+                .Where(d => d.IsActive)
+                .Distinct()
+                .Select(d => new DoctorViewModel
+                {
+                    Id = d.Id,
+                    FirstName = d.FirstName,
+                    LastName = d.LastName,
+                    Gender = d.Gender,
+                    Email = d.Email,
+                    PhoneNumber = d.PhoneNumber,
+                    Specialization = d.Specialization,
+                    DepartmentId = d.DepartmentId,
+                    DepartmentName = d.Department?.Name,
+                    ConsultationFee = d.ConsultationFee,
+                    UserId = d.UserId
+                })
+                .ToList();
+
+            return availableDoctors;
+        }
+
+
+
     }
+
+
+
 }

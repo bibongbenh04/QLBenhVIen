@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalManagement.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250521010133_InitialMigrationFour")]
-    partial class InitialMigrationFour
+    [Migration("20250522172509_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -174,6 +174,9 @@ namespace HospitalManagement.Migrations
                     b.Property<decimal>("InsuranceCoverage")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("MedicalRecordId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PaidAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -194,6 +197,9 @@ namespace HospitalManagement.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MedicalRecordId")
+                        .IsUnique();
 
                     b.HasIndex("PatientId");
 
@@ -891,11 +897,19 @@ namespace HospitalManagement.Migrations
 
             modelBuilder.Entity("HospitalManagement.Models.Entities.Bill", b =>
                 {
+                    b.HasOne("HospitalManagement.Models.Entities.MedicalRecord", "MedicalRecord")
+                        .WithOne("Bill")
+                        .HasForeignKey("HospitalManagement.Models.Entities.Bill", "MedicalRecordId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("HospitalManagement.Models.Entities.Patient", "Patient")
                         .WithMany("Bills")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("MedicalRecord");
 
                     b.Navigation("Patient");
                 });
@@ -1132,6 +1146,8 @@ namespace HospitalManagement.Migrations
 
             modelBuilder.Entity("HospitalManagement.Models.Entities.MedicalRecord", b =>
                 {
+                    b.Navigation("Bill");
+
                     b.Navigation("Prescriptions");
 
                     b.Navigation("Tests");

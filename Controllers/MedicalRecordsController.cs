@@ -113,11 +113,5 @@ namespace HospitalManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> PatientRecords(int patientId)
-        {
-            var records = await _medicalRecordService.GetMedicalRecordsByPatientAsync(patientId);
-            return View(records);
-        }
-
     }
 }

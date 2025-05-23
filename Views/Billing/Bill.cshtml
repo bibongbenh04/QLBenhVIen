@@ -1,0 +1,49 @@
+@* @model IEnumerable<HospitalManagement.Models.ViewModels.BillViewModel> *@
+@model HospitalManagement.Models.ViewModels.BillViewModel
+@{
+    ViewData["Title"] = "Hóa đơn của bệnh nhân";
+}
+<head>
+    <link href="~/css/Billing/list_bill.css" rel="stylesheet" />
+</head>
+
+<div class="container-lg my-5">
+    <h1 class="page-header">Hóa đơn của bệnh nhân</h1>
+
+    <table id="bill-table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Họ tên bệnh nhân</th>
+                <th>Ngày tạo</th>
+                <th>Tổng tiền</th>
+                <th>Đã thanh toán</th>
+                <th>Còn lại</th>
+                <th>Trạng thái</th>
+                <th>Phương thức</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.PatientName</td>
+                <td>@Model.BillDate.ToString("dd/MM/yyyy")</td>
+                <td>@Model.TotalAmount.ToString("C")</td>
+                <td>@Model.PaidAmount.ToString("C")</td>
+                <td>@Model.DueAmount.ToString("C")</td>
+                <td>@Model.PaymentStatus</td>
+                <td>@Model.PaymentMethod</td>
+                <td>
+                    <!--Ràng buộc thanh toán xong chỉ được xem chi tiết-->
+                    @if(@Model.PaymentStatus != "Paid"){
+                        <a asp-controller="Billing" asp-action="Pay" asp-route-id="@Model.Id" class="btn btn-sm btn-pay">Thanh toán</a>
+                        <a asp-controller="Billing" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-edit">Chi tiết</a>
+                    }
+                    else {
+                        <a asp-controller="Billing" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-edit">Chi tiết</a>
+                    }
+                    <a asp-controller="Billing" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-sm btn-delete">Xoá</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

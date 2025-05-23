@@ -10,6 +10,7 @@ namespace HospitalManagement.Services.Interfaces
         Task<IEnumerable<PrescriptionViewModel>> GetPrescriptionsByPatientAsync(int patientId);
         Task<IEnumerable<PrescriptionViewModel>> GetPrescriptionsByDoctorAsync(int doctorId);
         Task<PrescriptionViewModel> GetPrescriptionByIdAsync(int id);
+        Task<PrescriptionViewModel> GetPrescriptionByPatientAndDoctorAndDateAsync(int patientId, int doctorId, DateTime visitDate);
         Task<IEnumerable<PrescriptionViewModel>> GetAllPrescriptionsByMedicalRecordIdAsync(int medicalRecordId);
         Task<int> CreatePrescriptionAsync(PrescriptionCreateViewModel model);
         Task UpdatePrescriptionAsync(PrescriptionViewModel model);

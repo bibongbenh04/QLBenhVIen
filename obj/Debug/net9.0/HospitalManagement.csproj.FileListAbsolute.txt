@@ -643,7 +643,6 @@ C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\i9mx0948ld-ejvbezxbkk.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\pvn838721m-6qktydnfma.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\p4j00oklg6-an4689mky0.gz
-C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\l1cpvouxqc-hsw2ff5pwf.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\i3og81mfy0-58mvdq8tdp.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\fi4i8pp9y7-90o8gzbpcw.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\nptdftp969-16op7k48fa.gz
@@ -662,3 +661,5 @@ C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\eum749r0ab-2kyyx9jjq4.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\li5qevu3q8-lyp3n8spfk.gz
 C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\gk3hexkgdk-zcb2wxr1qp.gz
+C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\HospitalManagement.sourcelink.json
+C:\Users\doduc\Downloads\HospitalManagement\HospitalManagement\obj\Debug\net9.0\compressed\l1cpvouxqc-f6fkglj3m2.gz

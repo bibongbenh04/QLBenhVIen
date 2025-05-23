@@ -232,5 +232,20 @@ namespace HospitalManagement.Controllers
             var doctorId = await _doctorService.DeleteDoctorScheduleAsync(id);
             return RedirectToAction("Details", new { id = doctorId });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> SearchAvailable(string term, DateTime date, TimeSpan time)
+        {
+            var doctors = await _doctorService.GetAvailableDoctorsAsync(date, time);
+            var matched = doctors
+                .Where(d => (d.FirstName + " " + d.LastName).Contains(term, StringComparison.OrdinalIgnoreCase))
+                .Select(d => new {
+                    id = d.Id,
+                    fullName = d.FirstName + " " + d.LastName,
+                    specialization = d.Specialization
+                });
+            return Json(matched);
+        }
+
     }
 }
