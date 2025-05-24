@@ -13,8 +13,7 @@ namespace HospitalManagement.Models.Entities
         public DateTime TestDate { get; set; } = DateTime.Now;
         public string Results { get; set; }
         public string Status { get; set; }
-
-        
+        public bool IsActive { get; set; } = true;
     }
 
 }

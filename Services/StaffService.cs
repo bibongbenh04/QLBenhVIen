@@ -18,6 +18,25 @@ namespace HospitalManagement.Services
             _staffRepo = staffRepo;
         }
 
+        public async Task<List<StaffViewModels>> GetAllAsync()
+        {
+            var staffList = await _staffRepo.GetAsync();
+            if (staffList == null) return null;
+
+            return staffList.Select(s => new StaffViewModels
+            {
+                Id = s.Id,
+                FullName = s.FirstName + " " + s.LastName,
+                Gender = s.Gender,
+                PhoneNumber = s.PhoneNumber,
+                Email = s.Email,
+                Position = s.Position,
+                JoiningDate = s.JoiningDate,
+                DepartmentId = s.DepartmentId,
+                DepartmentName = s.Department?.Name
+            }).ToList();
+        }
+
         public async Task<List<StaffViewModels>> GetStaffByDepartmentIdAsync(int departmentId)
         {
             var staffList = await _staffRepo.GetAsync(s => s.DepartmentId == departmentId && s.IsActive, includeProperties: "Department");
@@ -65,7 +84,8 @@ namespace HospitalManagement.Services
 
         public async Task<StaffEditViewModel> GetStaffByIdAsync(int id)
         {
-            var staff = await _staffRepo.GetByIdAsync(id);
+            var _staff = await _staffRepo.GetAsync(st => st.Id == id && st.IsActive);
+            var staff = _staff.FirstOrDefault();
             if (staff == null) return null;
 
             return new StaffEditViewModel
@@ -105,7 +125,8 @@ namespace HospitalManagement.Services
         {
             var staff = await _staffRepo.GetByIdAsync(id);
             if (staff == null) return;
-            await _staffRepo.DeleteAsync(staff);
+            // await _staffRepo.DeleteAsync(staff);
+            staff.IsActive = false;
             await _staffRepo.SaveAsync();
         }
     }

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace HospitalManagement.Models.ViewModels
 {
@@ -44,9 +45,9 @@ namespace HospitalManagement.Models.ViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
         [Display(Name = "Role")]
-        public List<string> Roles { get; set; }
+        [ValidateNever]
+        public List<string> Roles { get; set; } = new List<string>();
     }
 
     public class ChangePasswordViewModel

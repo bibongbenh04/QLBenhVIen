@@ -18,5 +18,6 @@ namespace HospitalManagement.Models.Entities
         public decimal Price { get; set; }
 
         public ICollection<Test> Tests { get; set; }
+        public bool IsActive { get; set; } = true;
     }
 }

@@ -197,7 +197,8 @@ namespace HospitalManagement.Services
         public async Task DeleteDoctorAsync(int id)
         {
             var doctor = await _doctorRepository.GetByIdAsync(id);
-            await _doctorRepository.DeleteAsync(doctor);
+            // await _doctorRepository.DeleteAsync(doctor);
+            doctor.IsActive = false;
             await _doctorRepository.SaveAsync();
         }
 
@@ -246,24 +247,24 @@ namespace HospitalManagement.Services
             await _scheduleRepository.SaveAsync();
         }
 
-        public async Task<IEnumerable<DoctorViewModel>> GetPaginatedDoctorsAsync(int pageNumber, int pageSize)
-        {
-            var query = _doctorRepository.Query()
-                .Include(d => d.Department)
-                .Select(d => new DoctorViewModel
-                {
-                    Id = d.Id,
-                    FirstName = d.FirstName,
-                    LastName = d.LastName,
-                    Email = d.Email,
-                    PhoneNumber = d.PhoneNumber,
-                    DepartmentName = d.Department.Name
-                });
+        // public async Task<IEnumerable<DoctorViewModel>> GetPaginatedDoctorsAsync(int pageNumber, int pageSize)
+        // {
+        //     var query = _doctorRepository.Query()
+        //         .Include(d => d.Department)
+        //         .Select(d => new DoctorViewModel
+        //         {
+        //             Id = d.Id,
+        //             FirstName = d.FirstName,
+        //             LastName = d.LastName,
+        //             Email = d.Email,
+        //             PhoneNumber = d.PhoneNumber,
+        //             DepartmentName = d.Department.Name
+        //         });
 
-            return query;
-        }
+        //     return query;
+        // }
 
-        public async Task<DoctorScheduleViewModel> GetScheduleByIdAsync(int id)
+        public async Task<DoctorScheduleViewModel?> GetScheduleByIdAsync(int id)
         {
             var s = await _scheduleRepository.GetByIdAsync(id);
             return s == null ? null : new DoctorScheduleViewModel
@@ -320,11 +321,5 @@ namespace HospitalManagement.Services
 
             return availableDoctors;
         }
-
-
-
     }
-
-
-
 }

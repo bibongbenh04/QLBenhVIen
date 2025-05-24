@@ -23,6 +23,10 @@ namespace HospitalManagement.Data
         public DbSet<BillItem> BillItems { get; set; }
         public DbSet<DoctorSchedule> DoctorSchedules { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<DoctorPayroll> DoctorPayrolls { get; set; }
+        public DbSet<StaffPayroll> StaffPayrolls { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -150,7 +154,37 @@ namespace HospitalManagement.Data
                 .HasForeignKey<Bill>(b => b.MedicalRecordId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<DoctorPayroll>()
+                .HasOne(p => p.Doctor)
+                .WithMany(d => d.Payrolls)
+                .HasForeignKey(p => p.DoctorId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<StaffPayroll>()
+                .HasOne(p => p.Staff)
+                .WithMany()
+                .HasForeignKey(p => p.StaffId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Bill>().Property(b => b.TotalAmount).HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>().Property(b => b.PaidAmount).HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>().Property(b => b.DueAmount).HasPrecision(18, 2);
+            modelBuilder.Entity<Bill>().Property(b => b.InsuranceCoverage).HasPrecision(5, 4);
+
+            modelBuilder.Entity<BillItem>().Property(b => b.UnitPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<BillItem>().Property(b => b.Subtotal).HasPrecision(18, 2);
+
+            modelBuilder.Entity<Medication>().Property(m => m.UnitPrice).HasPrecision(18, 2);
+            modelBuilder.Entity<Service>().Property(s => s.Price).HasPrecision(18, 2);
+
+            modelBuilder.Entity<DoctorPayroll>().Property(p => p.BaseSalary).HasPrecision(18, 2);
+            modelBuilder.Entity<DoctorPayroll>().Property(p => p.Bonus).HasPrecision(18, 2);
+            modelBuilder.Entity<DoctorPayroll>().Property(p => p.TotalSalary).HasPrecision(18, 2);
+
+            modelBuilder.Entity<StaffPayroll>().Property(p => p.BaseSalary).HasPrecision(18, 2);
+            modelBuilder.Entity<StaffPayroll>().Property(p => p.Allowance).HasPrecision(18, 2);
+            modelBuilder.Entity<StaffPayroll>().Property(p => p.Deduction).HasPrecision(18, 2);
+            modelBuilder.Entity<StaffPayroll>().Property(p => p.TotalSalary).HasPrecision(18, 2);
 
         }
     }

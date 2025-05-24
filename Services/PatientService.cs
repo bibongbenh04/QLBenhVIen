@@ -47,7 +47,7 @@ namespace HospitalManagement.Services
         {
             var doctor = await _appointmentRepository.Query()
                 .Include(a => a.Doctor)
-                .Where(a => a.Doctor.UserId == doctorUserId)
+                .Where(a => a.Doctor.UserId == doctorUserId && a.IsActive)
                 .Select(a => a.Patient)
                 .Distinct()
                 .ToListAsync();
@@ -59,7 +59,7 @@ namespace HospitalManagement.Services
         {
             var patient = await _patientRepository.GetByIdAsync(id);
             if (patient == null)
-                return null;
+                return new PatientDetailsViewModel();
 
             var appointments = await _appointmentRepository.GetAsync(
                 a => a.PatientId == id,
@@ -181,7 +181,9 @@ namespace HospitalManagement.Services
 
         public async Task DeletePatientAsync(int id)
         {
-            await _patientRepository.DeleteAsync(id);
+            // await _patientRepository.DeleteAsync(id);
+            var p = await _patientRepository.GetByIdAsync(id);
+            p.IsActive = false;
             await _patientRepository.SaveAsync();
         }
 

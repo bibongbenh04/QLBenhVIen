@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using X.PagedList.Extensions;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HospitalManagement.Controllers
 {
@@ -36,12 +37,14 @@ namespace HospitalManagement.Controllers
         }
 
         [HttpGet]
-        
-        public async Task<IActionResult> Create(int departmentId)
+
+        public async Task<IActionResult> Create(int? departmentId)
         {
-            ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
+            // ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
+            ViewBag.DepartmentList = new SelectList(await _departmentService.GetAllDepartmentsAsync(), "Id", "Name");
             ViewBag.StaffUsers = await _accountService.GetAvailableStaffUsersAsync();
-            return View(new StaffCreateViewModel { DepartmentId = departmentId });
+            // return View(new StaffCreateViewModel { DepartmentId = departmentId });
+            return View(new StaffCreateViewModel { DepartmentId = departmentId ?? 0 });
         }
 
         [HttpPost]
@@ -50,12 +53,41 @@ namespace HospitalManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
-                ViewBag.StaffUsers = await _accountService.GetAvailableStaffUsersAsync();
+                foreach (var err in ModelState)
+                {
+                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
+                    foreach (var e in err.Value.Errors)
+                    {
+                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
+                    }
+                }
+            }
+            // if (!ModelState.IsValid)
+            // {
+            //     // ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
+            //     ViewBag.DepartmentList = new SelectList(await _departmentService.GetAllDepartmentsAsync(), "Id", "Name");
+            //     ViewBag.StaffUsers = await _accountService.GetAvailableStaffUsersAsync();
+            //     return View(model);
+            // }
+
+            var user = await _accountService.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                TempData["EmailError"] = "Email chưa được đăng ký tài khoản.";
                 return View(model);
             }
 
+
+            model.UserId = user.Id;
+
             await _staffService.CreateStaffAsync(model);
+
+            var roles = await _accountService.GetRolesAsync(user.Id);
+            if (!roles.Contains("Staff"))
+            {
+                await _accountService.AssignRoleAsync(user.Id, "Staff");
+            }
+
             return RedirectToAction("Index", new { departmentId = model.DepartmentId });
         }
 

@@ -11,12 +11,11 @@ namespace HospitalManagement.Services.Interfaces
         Task<IEnumerable<AppointmentViewModels>> GetAppointmentsByDoctorAsync(int doctorId);
         Task<IEnumerable<AppointmentViewModels>> GetAppointmentsByPatientAsync(int patientId);
         Task<IEnumerable<AppointmentViewModels>> GetAppointmentsByDateAsync(DateTime date);
-
         Task<AppointmentViewModels> GetAppointmentByIdAsync(int id);
         Task CreateAppointmentAsync(AppointmentCreateViewModel model);
         Task UpdateAppointmentAsync(AppointmentViewModels model);
         Task DeleteAppointmentAsync(int id);
-        Task<List<string>> GetAvailableTimeSlotsAsync(int doctorId, DateTime date);
+        // Task<List<string>> GetAvailableTimeSlotsAsync(int doctorId, DateTime date);
         Task<bool> HasExistingAppointment(int patientId, DateTime date);
     }
 }

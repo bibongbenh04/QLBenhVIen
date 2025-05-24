@@ -1,0 +1,65 @@
+@model HospitalManagement.Models.ViewModels.StaffPayrollViewModel
+@{
+    ViewData["Title"] = "Tạo bảng lương nhân viên";
+}
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Create" method="post">
+    <input type="hidden" asp-for="StaffId" class="form-control"/>
+    <div class="form-group">
+        <label>Nhân viên</label>
+        <input asp-for="StaffName" class="form-control" readonly />
+
+    </div>
+    <div class="form-group">
+        <label>Tháng</label>
+        <input asp-for="Month" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Năm</label>
+        <input asp-for="Year" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Lương cơ bản</label>
+        <input asp-for="BaseSalary" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Phụ cấp</label>
+        <input asp-for="Allowance" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Khấu trừ</label>
+        <input asp-for="Deduction" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Ghi chú</label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Trạng thái</label>
+        <select asp-for="Status" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Lưu</button>
+    <a asp-action="Index" asp-route-staffId="@Model.StaffId" class="btn btn-secondary">Quay lại</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const errorMessage = `@Html.Raw(@TempData["ErrorMessage"]?.ToString().Replace("`", "\\`"))`;;
+            if (errorMessage) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Không thể tạo bảng lương',
+                    text: errorMessage,
+                    confirmButtonColor: '#dc3545'
+                });
+            }
+        });
+    </script>
+}

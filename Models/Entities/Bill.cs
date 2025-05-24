@@ -34,6 +34,7 @@ namespace HospitalManagement.Models.Entities
 
         // Navigation properties
         public ICollection<BillItem> BillItems { get; set; }
+
     }
 
     public class BillItem

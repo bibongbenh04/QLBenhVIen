@@ -91,14 +91,45 @@ namespace HospitalManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
+                foreach (var err in ModelState)
+                {
+                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
+                    foreach (var e in err.Value.Errors)
+                    {
+                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
+                    }
+                }
+            }
+            if (!ModelState.IsValid)
+            {
                 ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
                 ViewBag.DoctorUsers = await _accountService.GetAvailableDoctorUsersAsync();
                 return View(model);
             }
 
+            var user = await _accountService.FindByEmailAsync(model.Email);
+            if (user == null)
+            {
+                ViewBag.EmailError = "Email chưa được đăng ký tài khoản.";
+                ViewBag.Departments = await _departmentService.GetAllDepartmentsAsync();
+                ViewBag.DoctorUsers = await _accountService.GetAvailableDoctorUsersAsync();
+                return View(model);
+            }
+
+
             try
             {
+                model.UserId = user.Id;
+
                 await _doctorService.CreateDoctorAsync(model, model.UserId);
+
+                // Gán quyền Doctor nếu chưa có
+                var roles = await _accountService.GetRolesAsync(user.Id);
+                if (!roles.Contains("Doctor"))
+                {
+                    await _accountService.AssignRoleAsync(user.Id, "Doctor");
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)

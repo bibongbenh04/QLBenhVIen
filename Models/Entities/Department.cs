@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace HospitalManagement.Models.Entities
 {
@@ -17,5 +15,7 @@ namespace HospitalManagement.Models.Entities
 
         // Navigation properties
         public ICollection<Doctor> Doctors { get; set; }
+
+        public bool IsActive { get; set; } = true;
     }
 }

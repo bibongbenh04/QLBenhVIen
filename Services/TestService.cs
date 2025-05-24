@@ -23,12 +23,12 @@ namespace HospitalManagement.Services
         {
             var tests = await _testRepository.Query()
                             .Include(t => t.MedicalRecord)
-                        .ThenInclude(m => m.Patient)
-                    .Include(t => t.MedicalRecord)
-                        .ThenInclude(m => m.Appointment)
+                            .ThenInclude(m => m.Patient)
+                            .Include(t => t.MedicalRecord)
+                            .ThenInclude(m => m.Appointment)
                             .ThenInclude(a => a.Doctor)
-                    .Where(t => t.MedicalRecordId == medicalRecordId)
-                    .ToListAsync();
+                            .Where(t => t.MedicalRecordId == medicalRecordId && t.IsActive)
+                            .ToListAsync();
 
             return tests.Select(t => new TestViewModel
             {
@@ -52,7 +52,8 @@ namespace HospitalManagement.Services
                 ServiceId = model.ServiceId,
                 Status = "Ordered",
                 TestDate = DateTime.Now,
-                Results = ""
+                Results = "",
+                IsActive = true
             };
 
             await _testRepository.AddAsync(entity);
@@ -62,8 +63,8 @@ namespace HospitalManagement.Services
 
         public async Task<TestViewModel> GetTestByIdAsync(int id)
         {
-            var t = await _testRepository.Query().Include(x => x.Service).FirstOrDefaultAsync(x => x.Id == id);
-            if (t == null) return null;
+            var t = await _testRepository.Query().Include(x => x.Service).FirstOrDefaultAsync(x => x.Id == id && x.IsActive);
+            if (t == null) return new TestViewModel();
 
             return new TestViewModel
             {
@@ -100,7 +101,8 @@ namespace HospitalManagement.Services
         {
             var entity = await _testRepository.GetByIdAsync(id);
             if (entity == null) return;
-            await _testRepository.DeleteAsync(entity);
+            // await _testRepository.DeleteAsync(entity);
+            entity.IsActive = false;
             await _testRepository.SaveAsync();
         }
 

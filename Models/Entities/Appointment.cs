@@ -32,5 +32,8 @@ namespace HospitalManagement.Models.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public MedicalRecord MedicalRecord { get; set; }
+        public bool IsActive { get; set; } = true;
+        public bool IsPaidByPatient { get; set; } = false;
+        public bool IsPaidToDoctor { get; set; } = false;
     }
 }

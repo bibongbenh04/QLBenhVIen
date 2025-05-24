@@ -41,7 +41,7 @@ namespace HospitalManagement.Models.ViewModels
         public List<PatientViewModel> Patients { get; set; } = new();
         public List<DoctorViewModel> Doctors { get; set; } = new();
         public bool HasMedicalRecord { get; set; } 
-        
+        public bool IsPaid { get; set; } = false;
 
     }
 
@@ -73,5 +73,7 @@ namespace HospitalManagement.Models.ViewModels
         public List<PatientViewModel>? Patients { get; set; }
         public List<DoctorViewModel>? Doctors { get; set; }
         public List<string>? AvailableTimeSlots { get; set; }
+        public bool IsPaidByPatient { get; set; } = false;
+        public bool IsPaidToDoctor { get; set; } = false;
     }
 }

@@ -18,7 +18,10 @@
     <!-- Feature Grid -->
     <div class="row g-4">
         @foreach (var feature in new[] {
-            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý Bác sĩ", Description = "Cập nhật thông tin bác sĩ, chuyên khoa và lịch làm việc.", Controller = "Doctors", Action = "Index" },
+            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý bác sĩ", Description = "Cập nhật thông tin bác sĩ, chuyên khoa và lịch làm việc.", Controller = "Doctors", Action = "Index" },
+            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý nhân viên", Description = "Cập nhật thông tin nhân viên.", Controller = "Staffs", Action = "Index" },
+            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý lương bác sĩ", Description = "Tính lương bác sĩ", Controller = "DoctorPayrolls", Action = "ListDoctor" },
+            new { Icon = "bi-person-lines-fill", Color = "success", Title = "Quản lý lương nhân viên", Description = "Tính lương nhân viên", Controller = "StaffPayrolls", Action = "ListStaff" },
             new { Icon = "bi-hospital", Color = "danger", Title = "Quản lý Phòng ban", Description = "Tổ chức, sắp xếp các phòng ban, khoa trong bệnh viện.", Controller = "Departments", Action = "Index" },
             new { Icon = "bi-capsule", Color = "secondary", Title = "Quản Lý thuốc", Description = "Quản lý danh sách thuốc trong kho.", Controller = "Medications", Action = "Index" },
             new { Icon = "bi-heart-pulse", Color = "info", Title = "Quản Lý dịch vụ", Description = "Quản lý danh sách dịch vụ bệnh viện.", Controller = "Services", Action = "Index" },

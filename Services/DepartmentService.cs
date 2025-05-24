@@ -19,7 +19,7 @@ namespace HospitalManagement.Services
 
         public async Task<IEnumerable<DepartmentViewModels>> GetAllDepartmentsAsync()
         {
-            var departments = await _departmentRepository.GetAllAsync();
+            var departments = await _departmentRepository.GetAsync(d => d.IsActive);
             return departments.Select(d => new DepartmentViewModels
             {
                 Id = d.Id,
@@ -65,7 +65,8 @@ namespace HospitalManagement.Services
         public async Task DeleteDepartmentAsync(int id)
         {
             var dept = await _departmentRepository.GetByIdAsync(id);
-            await _departmentRepository.DeleteAsync(dept);
+            // await _departmentRepository.DeleteAsync(dept);
+            dept.IsActive = false;
             await _departmentRepository.SaveAsync();
         }
     }

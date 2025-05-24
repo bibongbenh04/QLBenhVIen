@@ -37,5 +37,7 @@ namespace HospitalManagement.Models.Entities
 
         // Navigation properties
         public ICollection<PrescriptionItem> PrescriptionItems { get; set; }
+
+        public bool IsActive { get; set; } = true;
     }
 }

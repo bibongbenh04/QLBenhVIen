@@ -54,7 +54,7 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <div class="mb-3">
+                        @* <div class="mb-3">
                             <label for="Roles">Chọn vai trò:</label>
                             @foreach (var role in ViewBag.AllRoles as List<string>)
                             {
@@ -63,7 +63,7 @@
                                     <label class="form-check-label">@role</label>
                                 </div>
                             }
-                        </div>
+                        </div> *@
 
 
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>

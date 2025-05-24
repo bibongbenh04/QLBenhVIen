@@ -302,6 +302,23 @@ namespace HospitalManagement.Services
             bill.PaymentStatus = bill.PaidAmount == 0 ? "Unpaid"
                    : bill.DueAmount > 0 ? "Partial"
                    : "Paid";
+
+            if (bill.PaymentStatus == "Paid")
+            {
+                // Tìm hồ sơ bệnh án
+                var record = await _medicalRecordRepo.GetByIdAsync(bill.MedicalRecordId);
+                if (record != null)
+                {
+                    // Tìm cuộc hẹn tương ứng
+                    var appointment = await _appointmentRepo.GetByIdAsync(record.AppointmentId);
+                    if (appointment != null)
+                    {
+                        appointment.IsPaidByPatient = true;
+                        await _appointmentRepo.UpdateAsync(appointment);
+                    }
+                }
+            }
+
             
 
             await _billRepo.UpdateAsync(bill);

@@ -1,0 +1,53 @@
+@model HospitalManagement.Models.ViewModels.DoctorPayrollViewModel
+@{
+    ViewData["Title"] = "Cập nhật bảng lương bác sĩ";
+}
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="DoctorId" />
+
+    <div class="form-group">
+        <label>Bác sĩ</label>
+        <input asp-for="DoctorName" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Tháng / Năm</label>
+        <input asp-for="Month" class="form-control" readonly />
+        <input asp-for="Year" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Số cuộc hẹn</label>
+        <input asp-for="TotalAppointments" class="form-control" readonly />
+    </div>
+
+    <div class="form-group">
+        <label>Lương cơ bản</label>
+        <input asp-for="BaseSalary" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Thưởng</label>
+        <input asp-for="Bonus" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Ghi chú</label>
+        <textarea asp-for="Notes" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Trạng thái</label>
+        <select asp-for="Status" class="form-control">
+            <option value="Pending">Pending</option>
+            <option value="Paid">Paid</option>
+            <option value="Cancelled">Cancelled</option>
+        </select>
+    </div>
+    @if(Model.Status == "Pending"){
+        <button type="submit" class="btn btn-primary">Lưu</button>
+    }
+    <a asp-action="Index" asp-route-doctorId="@Model.DoctorId" class="btn btn-secondary">Quay lại</a>
+</form>

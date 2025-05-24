@@ -1,5 +1,6 @@
 using HospitalManagement.Models.Entities;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -41,7 +42,7 @@ namespace HospitalManagement.Models.ViewModels
         public int DepartmentId { get; set; }
         public string? DepartmentName { get; set; }
 
-        [Required]
+        [ValidateNever]
         public string UserId { get; set; }
     }
 

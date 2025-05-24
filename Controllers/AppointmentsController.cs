@@ -94,6 +94,17 @@ namespace HospitalManagement.Controllers
         {
             if (!ModelState.IsValid)
             {
+                foreach (var err in ModelState)
+                {
+                    Console.WriteLine($"[MODELSTATE] Key: {err.Key}");
+                    foreach (var e in err.Value.Errors)
+                    {
+                        Console.WriteLine($"   => Error: {e.ErrorMessage}");
+                    }
+                }
+            }
+            if (!ModelState.IsValid)
+            {
                 model.Patients = (await _patientService.GetAllPatientsAsync()).ToList();
                 model.Doctors = (await _doctorService.GetAllDoctorsAsync()).ToList();
                 return View(model);
@@ -157,7 +168,7 @@ namespace HospitalManagement.Controllers
 
             model.Patients = (await _patientService.GetAllPatientsAsync()).ToList();
             model.Doctors = (await _doctorService.GetAllDoctorsAsync()).ToList();
-            
+
             return View(model);
         }
 
@@ -202,12 +213,20 @@ namespace HospitalManagement.Controllers
             await _appointmentService.DeleteAppointmentAsync(id);
             return RedirectToAction(nameof(Index));
         }
-
+        
         [HttpGet]
-        public async Task<IActionResult> GetAvailableTimeSlots(int doctorId, DateTime date)
+        public async Task<IActionResult> SearchAvailable(string term, DateTime date, TimeSpan time)
         {
-            var timeSlots = await _appointmentService.GetAvailableTimeSlotsAsync(doctorId, date);
-            return Json(timeSlots);
+            var doctors = await _doctorService.GetAvailableDoctorsAsync(date, time);
+            var matched = doctors
+                .Where(d => (d.FirstName + " " + d.LastName).Contains(term, StringComparison.OrdinalIgnoreCase))
+                .Select(d => new {
+                    id = d.Id,
+                    fullName = d.FirstName + " " + d.LastName,
+                    specialization = d.Specialization
+                });
+            return Json(matched);
         }
+
     }
 }

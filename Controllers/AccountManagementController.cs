@@ -33,7 +33,7 @@ namespace HospitalManagement.Controllers
             var user = await _accountService.GetUserByIdAsync(id);
             if (user == null) return NotFound();
 
-            var allRoles = new List<string> { "Admin", "Doctor", "Patient", "Staff" };
+            var allRoles = new List<string> { "Admin", "Doctor", "Staff" };
             var userRoles = await _accountService.GetRolesAsync(user.Id);
 
             ViewBag.AllRoles = allRoles;

@@ -1,0 +1,26 @@
+@model HospitalManagement.Models.ViewModels.DoctorPayrollViewModel
+@{
+    ViewData["Title"] = "Xóa bảng lương bác sĩ";
+}
+<h2>@ViewData["Title"]</h2>
+<h4>Bạn có chắc chắn muốn xóa bảng lương sau?</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-3">Bác sĩ</dt>
+    <dd class="col-sm-9">@Model.DoctorName</dd>
+
+    <dt class="col-sm-3">Tháng / Năm</dt>
+    <dd class="col-sm-9">@($"{Model.Month}/{Model.Year}")</dd>
+
+    <dt class="col-sm-3">Tổng số cuộc hẹn</dt>
+    <dd class="col-sm-9">@Model.TotalAppointments</dd>
+
+    <dt class="col-sm-3">Tổng lương</dt>
+    <dd class="col-sm-9">@Model.TotalSalary.ToString("N0")</dd>
+</dl>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Xóa</button>
+    <a asp-action="Index" asp-route-doctorId="@Model.DoctorId" class="btn btn-secondary">Hủy</a>
+</form>

@@ -31,6 +31,28 @@ builder.Services.AddAuthentication()
         options.AccessDeniedPath = "";
     });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("IsReceptionist", policy =>
+        policy.RequireClaim("StaffPosition", "TiepTan"));
+
+    options.AddPolicy("IsAccountant", policy =>
+        policy.RequireClaim("StaffPosition", "KeToan"));
+
+    options.AddPolicy("IsCashier", policy =>
+        policy.RequireClaim("StaffPosition", "TaiVu"));
+
+    options.AddPolicy("IsPharmacist", policy =>
+        policy.RequireClaim("StaffPosition", "BanThuoc"));
+
+    options.AddPolicy("IsManager", policy =>
+        policy.RequireClaim("StaffPosition", "QuanLyChuyenMon"));
+
+    options.AddPolicy("IsResourceManager", policy =>
+        policy.RequireClaim("StaffPosition", "QuanLyTaiNguyen"));
+});
+
+
 // Identity config
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -74,6 +96,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 
 
 
+
 // TempData config using session
 builder.Services.AddSession();
 builder.Services.Configure<CookieTempDataProviderOptions>(options =>
@@ -100,6 +123,9 @@ builder.Services.AddScoped<IBillingService, BillingService>();
 builder.Services.AddScoped<IStaffService, StaffService>();
 builder.Services.AddScoped<IServiceCatalogService, ServiceCatalogService>();
 builder.Services.AddScoped<IDashboardService, DashboardService>();
+builder.Services.AddScoped<IDoctorPayrollService, DoctorPayrollService>();
+builder.Services.AddScoped<IStaffPayrollService, StaffPayrollService>();
+
 
 var app = builder.Build();
 

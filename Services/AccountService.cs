@@ -74,33 +74,16 @@ namespace HospitalManagement.Services
                             Email = user.Email,
                             UserId = user.Id,
                             DepartmentId = 1,
-                            Specialization = "Chưa xác định",
+                            Specialization = "Unknown",
                             ConsultationFee = 0,
+                            Gender = "Unknown",
+                            PhoneNumber = "Unknown",
                             IsActive = true
                         });
                     }
                     else
                     {
                         existingDoctor.IsActive = true;
-                    }
-                    break;
-
-                case "Patient":
-                    var existingPatient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == userId);
-                    if (existingPatient == null)
-                    {
-                        _context.Patients.Add(new Patient
-                        {
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            Email = user.Email,
-                            UserId = user.Id,
-                            IsActive = true
-                        });
-                    }
-                    else
-                    {
-                        existingPatient.IsActive = true;
                     }
                     break;
 
@@ -115,6 +98,9 @@ namespace HospitalManagement.Services
                             Email = user.Email,
                             UserId = user.Id,
                             DepartmentId = 1,
+                            Gender = "Unknown",
+                            PhoneNumber = "Unknown",
+                            Position = "Unknown",
                             IsActive = true
                         });
                     }
@@ -144,14 +130,6 @@ namespace HospitalManagement.Services
                     if (doctor != null)
                     {
                         doctor.IsActive = false;
-                    }
-                    break;
-
-                case "Patient":
-                    var patient = await _context.Patients.FirstOrDefaultAsync(p => p.UserId == userId);
-                    if (patient != null)
-                    {
-                        patient.IsActive = false;
                     }
                     break;
 
@@ -199,5 +177,16 @@ namespace HospitalManagement.Services
                 .Where(u => !assignedStaffIds.Contains(u.Id))
                 .ToList();
         }
+
+        public async Task<ApplicationUser> FindByEmailAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<IdentityResult> AddToRoleAsync(ApplicationUser user, string role)
+        {
+            return await _userManager.AddToRoleAsync(user, role);
+        }
+
     }
 }

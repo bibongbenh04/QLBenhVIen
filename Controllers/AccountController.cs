@@ -34,7 +34,7 @@ namespace HospitalManagement.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
+        public IActionResult Login(string? returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -43,7 +43,7 @@ namespace HospitalManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -69,10 +69,10 @@ namespace HospitalManagement.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
+        public IActionResult Register(string? returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Patient", "Staff" };
+            ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Staff" };
             return View();
         }
 
@@ -80,10 +80,10 @@ namespace HospitalManagement.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl)
         {
             ViewData["ReturnUrl"] = returnUrl;
-            ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Patient", "Staff" };
+            ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Staff" };
 
             if (!ModelState.IsValid)
             {
@@ -104,16 +104,6 @@ namespace HospitalManagement.Controllers
             if (result.Succeeded)
             {
                 await _userManager.AddToRolesAsync(user, model.Roles);
-
-                if (model.Roles.Contains("Patient"))
-                {
-                    await _patientService.CreatePatientAsync(new PatientViewModel
-                    {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        Email = model.Email
-                    }, user.Id);
-                }
 
                 if (model.Roles.Contains("Doctor"))
                 {
@@ -200,7 +190,7 @@ namespace HospitalManagement.Controllers
 
 
         [HttpGet]
-        [Authorize]
+        // [Authorize]
         public async Task<IActionResult> ChangePassword()
         {
             return View();

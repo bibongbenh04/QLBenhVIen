@@ -48,8 +48,8 @@ namespace HospitalManagement.Models.Entities
         public ICollection<DoctorSchedule> Schedules { get; set; }
         public ICollection<Appointment> Appointments { get; set; }
         public ICollection<Prescription> Prescriptions { get; set; }
+        public ICollection<DoctorPayroll> Payrolls { get; set;}
 
-        [ValidateNever]
         public bool IsActive { get; set; } = true;
 
     }

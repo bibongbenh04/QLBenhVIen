@@ -20,7 +20,7 @@ namespace HospitalManagement.Services.Interfaces
         Task<IEnumerable<DoctorScheduleViewModel>> GetDoctorSchedulesAsync(int doctorId);
         Task UpdateDoctorScheduleAsync(DoctorScheduleViewModel model);
         Task<List<DoctorViewModel>> GetAvailableDoctorsAsync(DateTime date, TimeSpan time);
-        Task<IEnumerable<DoctorViewModel>> GetPaginatedDoctorsAsync(int pageNumber, int pageSize);
+        // Task<IEnumerable<DoctorViewModel>> GetPaginatedDoctorsAsync(int pageNumber, int pageSize);
 
     }
 }

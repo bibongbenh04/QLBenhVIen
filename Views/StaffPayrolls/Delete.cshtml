@@ -1,0 +1,12 @@
+@model HospitalManagement.Models.ViewModels.StaffPayrollViewModel
+@{
+    ViewData["Title"] = "Xác nhận xoá bảng lương";
+}
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="StaffId" />
+    <div class="alert alert-danger">Bạn có chắc muốn xoá bảng lương tháng @Model.Month/@Model.Year của @Model.StaffName không?</div>
+    <button type="submit" class="btn btn-danger">Xoá</button>
+    <a asp-action="Index" asp-route-staffId="@Model.StaffId" class="btn btn-secondary">Huỷ</a>
+</form>

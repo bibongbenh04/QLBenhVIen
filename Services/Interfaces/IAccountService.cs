@@ -1,5 +1,6 @@
 using HospitalManagement.Models.Entities;
 using HospitalManagement.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace HospitalManagement.Services.Interfaces
         Task<bool> RemoveRoleAsync(string userId, string role);
 
         Task<List<ApplicationUser>> GetAvailableStaffUsersAsync();
+        Task<ApplicationUser> FindByEmailAsync(string email);
+        Task<IdentityResult> AddToRoleAsync(ApplicationUser user, string role);
         
     }
 }

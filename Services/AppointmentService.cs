@@ -20,7 +20,7 @@ namespace HospitalManagement.Services
 
         public async Task<IEnumerable<AppointmentViewModels>> GetAllAppointmentsAsync()
         {
-            var appointments = await _appointmentRepo.GetAsync(null, null, "Doctor,Patient,MedicalRecord");
+            var appointments = await _appointmentRepo.GetAsync(a => a.IsActive, null, "Doctor,Patient,MedicalRecord");
 
             return appointments.Select(a => new AppointmentViewModels
             {
@@ -46,7 +46,7 @@ namespace HospitalManagement.Services
                 "Patient,Doctor,MedicalRecord"
             );
 
-            if (a == null) return null;
+            if (a == null) return new AppointmentViewModels();
 
             return new AppointmentViewModels
             {
@@ -80,10 +80,6 @@ namespace HospitalManagement.Services
                 a.MedicalRecord.Bill == null ||
                 a.MedicalRecord.Bill.PaymentStatus != "Paid"
             );
-
-            if (exists)
-                throw new Exception("Bệnh nhân đã có lịch hẹn trong ngày này.");
-
 
             if (exists)
                 throw new Exception("Bệnh nhân đã có lịch hẹn trong ngày này.");
@@ -122,8 +118,18 @@ namespace HospitalManagement.Services
         public async Task DeleteAppointmentAsync(int id)
         {
             var a = await _appointmentRepo.GetByIdAsync(id);
-            await _appointmentRepo.DeleteAsync(a);
+            // await _appointmentRepo.DeleteAsync(a);
+            a.IsActive = false;
             await _appointmentRepo.SaveAsync();
+        }
+
+        public async Task<bool> HasExistingAppointment(int patientId, DateTime date)
+        {
+            var existing = await _appointmentRepo.GetAsync(
+                a => a.PatientId == patientId && a.AppointmentDate.Date == date.Date && a.Status != "Cancelled" && a.IsActive,
+                includeProperties: "MedicalRecord.Bill");
+
+            return existing.Any(a => a.MedicalRecord == null || a.MedicalRecord.Bill == null || a.MedicalRecord.Bill.PaymentStatus != "Paid");
         }
 
         public Task<IEnumerable<AppointmentViewModels>> GetAppointmentsByDoctorAsync(int doctorId)
@@ -140,21 +146,6 @@ namespace HospitalManagement.Services
         {
             throw new NotImplementedException();
         }
-        public Task<List<string>> GetAvailableTimeSlotsAsync(int doctorId, DateTime date)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<bool> HasExistingAppointment(int patientId, DateTime date)
-        {
-            var existing = await _appointmentRepo.GetAsync(
-                a => a.PatientId == patientId && a.AppointmentDate.Date == date.Date && a.Status != "Cancelled",
-                includeProperties: "MedicalRecord.Bill");
-
-            return existing.Any(a => a.MedicalRecord == null || a.MedicalRecord.Bill == null || a.MedicalRecord.Bill.PaymentStatus != "Paid");
-        }
-
-
     }
 
 }

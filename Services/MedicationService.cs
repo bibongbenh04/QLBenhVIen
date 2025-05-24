@@ -64,13 +64,14 @@ namespace HospitalManagement.Services
             var entity = await _medicationRepo.GetByIdAsync(id);
             if (entity == null) return;
 
-            await _medicationRepo.DeleteAsync(entity);
+            // await _medicationRepo.DeleteAsync(entity);
+            entity.IsActive = false;
             await _medicationRepo.SaveAsync();
         }
 
         public async Task<IEnumerable<MedicationViewModel>> GetAllMedicationsAsync()
         {
-            var data = await _medicationRepo.GetAsync();
+            var data = await _medicationRepo.GetAsync(m => m.IsActive);
             return data.Select(m => new MedicationViewModel
             {
                 Id = m.Id,
@@ -111,7 +112,7 @@ namespace HospitalManagement.Services
         public async Task<IEnumerable<MedicationViewModel>> SearchMedicationsAsync(string searchTerm)
         {
             var data = await _medicationRepo.GetAsync(
-                m => m.Name.Contains(searchTerm) || m.GenericName.Contains(searchTerm));
+                m => (m.Name.Contains(searchTerm) || m.GenericName.Contains(searchTerm)) && m.IsActive);
 
             return data.Select(m => new MedicationViewModel
             {
