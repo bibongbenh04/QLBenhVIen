@@ -7,7 +7,7 @@ using X.PagedList.Extensions;
 
 namespace HospitalManagement.Controllers
 {
-    [Authorize(Roles = "Admin,Staff")]
+    [Authorize(Policy = "BillingControllerAccess")]
     public class BillingController : Controller
     {
         private readonly IBillingService _billingService;

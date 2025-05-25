@@ -6,52 +6,55 @@ using System.Threading.Tasks;
 using X.PagedList;
 using X.PagedList.Extensions;
 
-[Authorize(Roles = "Admin")]
-public class ServicesController : Controller
+namespace HospitalManagement.Controllers
 {
-    private readonly IServiceCatalogService _serviceCatalogService;
-
-    public ServicesController(IServiceCatalogService serviceCatalogService)
+    [Authorize(Policy = "ServicesControllerAccess")]
+    public class ServicesController : Controller
     {
-        _serviceCatalogService = serviceCatalogService;
-    }
+        private readonly IServiceCatalogService _serviceCatalogService;
 
-    public async Task<IActionResult> Index(int? page)
-    {
-        int pageNumber = page ?? 1;
-        int pageSize = 5;
+        public ServicesController(IServiceCatalogService serviceCatalogService)
+        {
+            _serviceCatalogService = serviceCatalogService;
+        }
 
-        var services = await _serviceCatalogService.GetAllAsync();
-        var pagedList = services.ToPagedList(pageNumber, pageSize);
-        return View(pagedList);
-    }
+        public async Task<IActionResult> Index(int? page)
+        {
+            int pageNumber = page ?? 1;
+            int pageSize = 5;
 
-    public IActionResult Create() => View();
+            var services = await _serviceCatalogService.GetAllAsync();
+            var pagedList = services.ToPagedList(pageNumber, pageSize);
+            return View(pagedList);
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Create(ServiceViewModel model)
-    {
-        if (!ModelState.IsValid) return View(model);
-        await _serviceCatalogService.CreateAsync(model);
-        return RedirectToAction(nameof(Index));
-    }
+        public IActionResult Create() => View();
 
-    public async Task<IActionResult> Edit(int id) => View(await _serviceCatalogService.GetByIdAsync(id));
+        [HttpPost]
+        public async Task<IActionResult> Create(ServiceViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            await _serviceCatalogService.CreateAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Edit(ServiceViewModel model)
-    {
-        if (!ModelState.IsValid) return View(model);
-        await _serviceCatalogService.UpdateAsync(model);
-        return RedirectToAction(nameof(Index));
-    }
+        public async Task<IActionResult> Edit(int id) => View(await _serviceCatalogService.GetByIdAsync(id));
 
-    public async Task<IActionResult> Delete(int id) => View(await _serviceCatalogService.GetByIdAsync(id));
+        [HttpPost]
+        public async Task<IActionResult> Edit(ServiceViewModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            await _serviceCatalogService.UpdateAsync(model);
+            return RedirectToAction(nameof(Index));
+        }
 
-    [HttpPost, ActionName("Delete")]
-    public async Task<IActionResult> DeleteConfirmed(int id)
-    {
-        await _serviceCatalogService.DeleteAsync(id);
-        return RedirectToAction(nameof(Index));
+        public async Task<IActionResult> Delete(int id) => View(await _serviceCatalogService.GetByIdAsync(id));
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            await _serviceCatalogService.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

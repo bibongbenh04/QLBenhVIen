@@ -2,6 +2,7 @@
 @using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Quản lý tài khoản";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -13,8 +14,9 @@
     <h2 class="mb-4">Danh sách tài khoản người dùng</h2>
 
     <form method="get" class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control" placeholder="Tìm tài khoản theo tên hoặc email"
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm tài khoản theo tên hoặc email"
                data-search-table="account-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table id="account-table" class="table table-hover table-bordered">
@@ -57,7 +59,9 @@
         </tbody>
     </table>
 
-    @await Html.PartialAsync("_Pagination", Model)
+    <div class="d-flex justify-content-center mt-4">
+        @await Html.PartialAsync("_Pagination", Model)
+    </div>
 </div>
 
 @section Scripts {

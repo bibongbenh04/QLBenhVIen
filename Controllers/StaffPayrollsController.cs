@@ -8,6 +8,7 @@ using HospitalManagement.Models.Entities;
 
 namespace HospitalManagement.Controllers
 {
+    [Authorize(Policy = "StaffPayrollsControllerAccess")]
     public class StaffPayrollsController : Controller
     {
         private readonly IStaffPayrollService _staffPayrollService;
@@ -121,7 +122,7 @@ namespace HospitalManagement.Controllers
                 Notes = payroll.Notes,
                 Status = payroll.Status
             };
-            
+
 
             return View(model);
         }

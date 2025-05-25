@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace HospitalManagement.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "StaffsControllerAccess")]
     public class StaffsController : Controller
     {
         private readonly IStaffService _staffService;

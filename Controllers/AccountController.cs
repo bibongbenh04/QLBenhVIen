@@ -190,7 +190,7 @@ namespace HospitalManagement.Controllers
 
 
         [HttpGet]
-        // [Authorize]
+        [Authorize]
         public async Task<IActionResult> ChangePassword()
         {
             return View();

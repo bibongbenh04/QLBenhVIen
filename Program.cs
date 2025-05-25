@@ -34,22 +34,117 @@ builder.Services.AddAuthentication()
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("IsReceptionist", policy =>
-        policy.RequireClaim("StaffPosition", "TiepTan"));
+        policy.RequireClaim("Position", "TiepTan"));
 
     options.AddPolicy("IsAccountant", policy =>
-        policy.RequireClaim("StaffPosition", "KeToan"));
+        policy.RequireClaim("Position", "KeToan"));
 
     options.AddPolicy("IsCashier", policy =>
-        policy.RequireClaim("StaffPosition", "TaiVu"));
+        policy.RequireClaim("Position", "TaiVu"));
 
     options.AddPolicy("IsPharmacist", policy =>
-        policy.RequireClaim("StaffPosition", "BanThuoc"));
+        policy.RequireClaim("Position", "BanThuoc"));
 
     options.AddPolicy("IsManager", policy =>
-        policy.RequireClaim("StaffPosition", "QuanLyChuyenMon"));
+        policy.RequireClaim("Position", "QuanLyChuyenMon"));
 
     options.AddPolicy("IsResourceManager", policy =>
-        policy.RequireClaim("StaffPosition", "QuanLyTaiNguyen"));
+        policy.RequireClaim("Position", "QuanLyTaiNguyen"));
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("DoctorsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("StaffsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon") ||
+        context.User.HasClaim("Position", "QuanLyTaiNguyen")
+    ));
+
+    options.AddPolicy("DoctorPayrollsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "KeToan") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("StaffPayrollsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "KeToan") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("DepartmentsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "QuanLyTaiNguyen")
+    ));
+
+    options.AddPolicy("MedicationsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "BanThuoc") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon") ||
+        context.User.HasClaim("Position", "QuanLyTaiNguyen")
+    ));
+
+    options.AddPolicy("ServicesControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon") ||
+        context.User.HasClaim("Position", "QuanLyTaiNguyen")
+    ));
+
+    options.AddPolicy("PatientsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "TiepTan")
+    ));
+
+    options.AddPolicy("AppointmentsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.HasClaim("Position", "TiepTan")
+    ));
+
+    options.AddPolicy("MedicalRecordsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.IsInRole("Doctor") ||
+        context.User.HasClaim("Position", "TiepTan") || 
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("TestsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.IsInRole("Doctor") ||
+        context.User.HasClaim("Position", "TiepTan") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("PrescriptionsControllerAccess", policy =>
+    policy.RequireAssertion(context =>
+        context.User.IsInRole("Admin") ||
+        context.User.IsInRole("Doctor") ||
+        context.User.HasClaim("Position", "BanThuoc") ||
+        context.User.HasClaim("Position", "QuanLyChuyenMon")
+    ));
+
+    options.AddPolicy("BillingControllerAccess", policy =>
+        policy.RequireAssertion(context =>
+            context.User.HasClaim("Position", "KeToan") ||
+            context.User.HasClaim("Position", "TaiVu") ||
+            context.User.HasClaim("Position", "QuanLyTaiNguyen") ||
+            context.User.HasClaim("Position", "QuanLyChuyenMon")
+        ));
 });
 
 

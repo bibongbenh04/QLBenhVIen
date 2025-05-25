@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HospitalManagement.Controllers
 {
-    [Authorize(Roles = "Admin,Staff")]
+    [Authorize(Policy = "DoctorsControllerAccess")]
     public class DoctorsController : Controller
     {
         private readonly IDoctorService _doctorService;

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace HospitalManagement.Services
@@ -115,6 +116,20 @@ namespace HospitalManagement.Services
             return true;
         }
 
+        public async Task AssignClaimAsync(string userId, string claimType, string claimValue)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return;
+
+            var claims = await _userManager.GetClaimsAsync(user);
+            var existingClaim = claims.FirstOrDefault(c => c.Type == claimType);
+            if (existingClaim != null)
+                await _userManager.RemoveClaimAsync(user, existingClaim);
+
+            await _userManager.AddClaimAsync(user, new Claim(claimType, claimValue));
+        }
+
+
         public async Task<bool> RemoveRoleAsync(string userId, string role)
         {
             var user = await _userManager.FindByIdAsync(userId);
@@ -187,6 +202,13 @@ namespace HospitalManagement.Services
         {
             return await _userManager.AddToRoleAsync(user, role);
         }
+
+        public async Task<IList<Claim>> GetClaimsAsync(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            return await _userManager.GetClaimsAsync(user);
+        }
+
 
     }
 }

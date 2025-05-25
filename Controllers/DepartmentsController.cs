@@ -7,7 +7,7 @@ using X.PagedList.Extensions;
 
 namespace HospitalManagement.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "DepartmentsControllerAccess")]
     public class DepartmentsController : Controller
     {
         private readonly IDepartmentService _departmentService;

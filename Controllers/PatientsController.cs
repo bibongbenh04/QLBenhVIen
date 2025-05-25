@@ -10,7 +10,7 @@ using HospitalManagement.Models.Entities;
 
 namespace HospitalManagement.Controllers
 {
-    [Authorize(Roles = "Admin,Doctor,Staff")]
+    [Authorize(Policy = "PatientsControllerAccess")]
     public class PatientsController : Controller
     {
         private readonly IPatientService _patientService;

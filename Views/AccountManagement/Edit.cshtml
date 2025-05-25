@@ -3,11 +3,13 @@
     ViewData["Title"] = "Cấp quyền người dùng";
     var allRoles = ViewBag.AllRoles as List<string>;
     var userRoles = ViewBag.UserRoles as IList<string>;
+    var selectedPosition = ViewBag.StaffPosition as string;
 }
 
 <head>
     <link href="~/css/AccountManagement/edit.css" rel="stylesheet" />
 </head>
+
 <div class="container-lg my-5">
     <div class="card border-0 shadow-sm">
         <div class="card-header">
@@ -22,11 +24,33 @@
                     @foreach (var role in allRoles)
                     {
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="roles" value="@role" @(userRoles.Contains(role) ? "checked" : "") />
+                            <input class="form-check-input role-checkbox" type="checkbox" name="roles" value="@role" @(userRoles.Contains(role) ? "checked" : "") />
                             <label class="form-check-label">@role</label>
                         </div>
                     }
                 </div>
+
+                <select name="staffPosition" class="form-select">
+    <option value="">-- Chọn chức danh --</option>
+    @{
+        var positions = new Dictionary<string, string>
+        {
+            { "TiepTan", "Tiếp Tân" },
+            { "KeToan", "Kế Toán" },
+            { "TaiVu", "Tài Vụ" },
+            { "BanThuoc", "Bán Thuốc" },
+            { "QuanLyChuyenMon", "QL Chuyên Môn" },
+            { "QuanLyTaiNguyen", "QL Tài Nguyên" }
+        };
+
+        foreach (var pos in positions)
+        {
+            var isSelected = selectedPosition == pos.Key ? "selected=\"selected\"" : "";
+            @:<option value="@pos.Key" @Html.Raw(isSelected)>@pos.Value</option>
+        }
+    }
+</select>
+
 
                 <button type="submit" class="btn btn-primary mt-3">Lưu thay đổi</button>
                 <a asp-action="Index" class="btn btn-secondary mt-3 ms-2">Quay lại</a>
@@ -34,3 +58,19 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        const staffCheckbox = document.querySelector('input[type=checkbox][value=Staff]');
+        const staffPositionContainer = document.getElementById('staff-position-container');
+
+        function togglePosition() {
+            staffPositionContainer.style.display = staffCheckbox.checked ? 'block' : 'none';
+        }
+
+        if (staffCheckbox) {
+            togglePosition();
+            staffCheckbox.addEventListener('change', togglePosition);
+        }
+    </script>
+}
