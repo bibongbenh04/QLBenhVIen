@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Thông tin phòng ban";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -21,8 +22,9 @@
     </div>
 
     <form method="get" class="d-flex gap-2 mb-4 justify-content-end">
-        <input type="text" class="form-control w-25" placeholder="Tìm tên hoặc mô tả..."
+        <input type="text" class="form-control w-25" name="keyword" value="@keyword" placeholder="Tìm tên hoặc mô tả..."
                data-search-table="department-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <div class="table-responsive">

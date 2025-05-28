@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace HospitalManagement.Controllers
 {
@@ -14,6 +15,8 @@ namespace HospitalManagement.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IPatientService _patientService;
         private readonly IDoctorService _doctorService;
+        private readonly IEmailSenderService _emailSender;
+
 
         private readonly RoleManager<IdentityRole> _roleManager;
 
@@ -22,13 +25,15 @@ namespace HospitalManagement.Controllers
             SignInManager<ApplicationUser> signInManager,
             IPatientService patientService,
             IDoctorService doctorService,
-            RoleManager<IdentityRole> roleManager)
+            RoleManager<IdentityRole> roleManager,
+            IEmailSenderService emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _patientService = patientService;
             _doctorService = doctorService;
             _roleManager = roleManager;
+            _emailSender = emailSender;
         }
 
 
@@ -45,15 +50,22 @@ namespace HospitalManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
         {
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null || !await _userManager.IsEmailConfirmedAsync(user))
+            {
+                ModelState.AddModelError(string.Empty, "Email chưa được xác nhận.");
+                return View(model);
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    var user = await _userManager.FindByEmailAsync(model.Email);
-                    user.LastLogin = DateTime.Now;
-                    await _userManager.UpdateAsync(user);
+                    var _user = await _userManager.FindByEmailAsync(model.Email);
+                    _user.LastLogin = DateTime.Now;
+                    await _userManager.UpdateAsync(_user);
 
                     return RedirectToLocal(returnUrl);
                 }
@@ -77,6 +89,53 @@ namespace HospitalManagement.Controllers
         }
 
 
+        // [HttpPost]
+        // [AllowAnonymous]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Register(RegisterViewModel model, string? returnUrl)
+        // {
+        //     ViewData["ReturnUrl"] = returnUrl;
+        //     ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Staff" };
+
+        //     if (!ModelState.IsValid)
+        //     {
+        //         return View(model);
+        //     }
+
+        //     var user = new ApplicationUser
+        //     {
+        //         UserName = model.Email,
+        //         Email = model.Email,
+        //         FirstName = model.FirstName,
+        //         LastName = model.LastName,
+        //         CreatedAt = DateTime.Now,
+        //         IsActive = true
+        //     };
+
+        //     var result = await _userManager.CreateAsync(user, model.Password);
+        //     if (result.Succeeded)
+        //     {
+        //         await _userManager.AddToRolesAsync(user, model.Roles);
+
+        //         if (model.Roles.Contains("Doctor"))
+        //         {
+        //             await _doctorService.CreateDoctorAsync(new DoctorViewModel
+        //             {
+        //                 FirstName = model.FirstName,
+        //                 LastName = model.LastName,
+        //                 Email = model.Email,
+        //                 DepartmentId = 1
+        //             }, user.Id);
+        //         }
+
+        //         await _signInManager.SignInAsync(user, isPersistent: false);
+        //         return RedirectToLocal(returnUrl);
+        //     }
+
+        //     AddErrors(result);
+        //     return View(model);
+        // }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -85,10 +144,7 @@ namespace HospitalManagement.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             ViewBag.AllRoles = new List<string> { "Admin", "Doctor", "Staff" };
 
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            if (!ModelState.IsValid) return View(model);
 
             var user = new ApplicationUser
             {
@@ -105,24 +161,39 @@ namespace HospitalManagement.Controllers
             {
                 await _userManager.AddToRolesAsync(user, model.Roles);
 
-                if (model.Roles.Contains("Doctor"))
-                {
-                    await _doctorService.CreateDoctorAsync(new DoctorViewModel
-                    {
-                        FirstName = model.FirstName,
-                        LastName = model.LastName,
-                        Email = model.Email,
-                        DepartmentId = 1
-                    }, user.Id);
-                }
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action(nameof(ConfirmEmail), "Account",
+                    new { userId = user.Id, token = token }, Request.Scheme);
 
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToLocal(returnUrl);
+                await _emailSender.SendEmailAsync(user.Email, "Xác nhận tài khoản",
+                    $"Vui lòng <a href='{confirmationLink}'>click vào đây để xác nhận</a>.");
+
+                TempData["Info"] = "Vui lòng kiểm tra email để xác nhận tài khoản.";
+                return RedirectToAction(nameof(Login));
             }
 
             AddErrors(result);
             return View(model);
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (userId == null || token == null)
+                return RedirectToAction("Index", "Home");
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null) return NotFound();
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (result.Succeeded)
+                return View("ConfirmEmailSuccess");
+
+            return View("ConfirmEmailFailed");
+        }
+
+
 
 
         [HttpPost]
@@ -230,6 +301,15 @@ namespace HospitalManagement.Controllers
             }
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied(string returnUrl = null)
+        {
+            // Redirect về trang chính với thông báo SweetAlert
+            return RedirectToAction("Index", "Home", new { accessDenied = true });
+        }
+
+
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
@@ -241,5 +321,67 @@ namespace HospitalManagement.Controllers
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
+        {
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl ??= Url.Content("~/");
+
+            if (remoteError != null)
+            {
+                TempData["Error"] = $"Lỗi từ nhà cung cấp: {remoteError}";
+                return RedirectToAction(nameof(Login));
+            }
+
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+                return RedirectToAction(nameof(Login));
+
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
+            if (result.Succeeded)
+                return RedirectToLocal(returnUrl);
+
+            var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+            if (email == null)
+            {
+                TempData["Error"] = "Không lấy được email từ Google.";
+                return RedirectToAction(nameof(Login));
+            }
+
+            var user = new ApplicationUser
+            {
+                UserName = email,
+                Email = email,
+                EmailConfirmed = true,
+                CreatedAt = DateTime.UtcNow,
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName) ?? "",
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname) ?? "",
+                IsActive = true
+            };
+
+            var identityResult = await _userManager.CreateAsync(user);
+            if (identityResult.Succeeded)
+            {
+                await _userManager.AddLoginAsync(user, info);
+
+
+                await _signInManager.SignInAsync(user, false);
+                return RedirectToLocal(returnUrl);
+            }
+
+            AddErrors(identityResult);
+            return RedirectToAction(nameof(Login));
+        }
+
     }
 }

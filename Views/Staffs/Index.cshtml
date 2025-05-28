@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Nhân viên theo phòng ban";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -22,10 +23,13 @@
     <form method="get" class="mb-3">
         <div class="input-group search-bar">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" placeholder="Tìm theo tên hoặc email"
+            <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm theo tên hoặc email"
                    data-search-table="staff-table" data-search-cols="0,3" />
+            <button type="submit" class="btn btn-primary">Tìm</button>
         </div>
     </form>
+
+    
 
     <div class="table-responsive">
         <table id="staff-table" class="table table-bordered table-hover">

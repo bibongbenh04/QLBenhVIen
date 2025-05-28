@@ -92,23 +92,48 @@ namespace HospitalManagement.Controllers
         }
 
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var medicalRecords = await _medicalRecordService.GetAllMedicalRecordsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                medicalRecords = medicalRecords.Where(u =>
+                    !string.IsNullOrEmpty(u.PatientName) && u.PatientName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.DoctorName) && u.DoctorName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.AdmissionDate.ToString()) && u.AdmissionDate.ToString().ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = medicalRecords.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
             
         }
 
-        public async Task<IActionResult> ListPrescription(int medicalRecordId, int? page)
+        public async Task<IActionResult> ListPrescription(int medicalRecordId, int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var prescriptions = await _prescriptionService.GetAllPrescriptionsByMedicalRecordIdAsync(medicalRecordId);
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                prescriptions = prescriptions.Where(u =>
+                    !string.IsNullOrEmpty(u.DoctorName) && u.DoctorName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.PrescriptionDate.ToString()) && u.PrescriptionDate.ToString().ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = prescriptions.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }

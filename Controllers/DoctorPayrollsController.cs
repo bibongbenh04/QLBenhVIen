@@ -33,12 +33,25 @@ namespace HospitalManagement.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> ListDoctor(int? page)
+        public async Task<IActionResult> ListDoctor(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var doctors = await _doctorService.GetAllDoctorsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                doctors = doctors.Where(u =>
+                    !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Specialization) && u.Specialization.ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
+
             var pagedList = doctors.ToPagedList(pageNumber, pageSize);
 
             return View("ListDoctor", pagedList);

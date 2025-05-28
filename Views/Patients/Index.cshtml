@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Danh sách bệnh nhân";
+    var keyword = ViewBag.Keyword as string;
 }
 <head>
     <link href="~/css/pagination.css" rel="stylesheet" />
@@ -18,8 +19,9 @@
     </p>
 
     <form method="get" class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control" placeholder="Tìm bệnh nhân theo tên"
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm bệnh nhân theo tên"
                data-search-table="patient-table" data-search-cols="0" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table id="patient-table" class="table table-hover">

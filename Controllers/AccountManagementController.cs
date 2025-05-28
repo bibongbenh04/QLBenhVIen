@@ -27,7 +27,7 @@ namespace HospitalManagement.Controllers
         //     return View(pagedList);
         // }
         
-        public async Task<IActionResult> Index(int? page, string keyword)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;

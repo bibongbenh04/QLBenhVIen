@@ -28,12 +28,24 @@ namespace HospitalManagement.Controllers
             return View(list);
         }
 
-        public async Task<IActionResult> ListStaff(int? page)
+        public async Task<IActionResult> ListStaff(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var staffList = await _staffService.GetAllAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                staffList = staffList.Where(u =>
+                    !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Email) && u.Email.ToLower().Contains(keyword)
+                ).ToList();
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = staffList.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }

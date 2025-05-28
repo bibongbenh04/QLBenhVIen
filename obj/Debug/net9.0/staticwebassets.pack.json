@@ -1,491 +1,491 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\AccountManagement\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\AccountManagement\\edit.css",
       "PackagePath": "staticwebassets\\css\\AccountManagement\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\AccountManagement\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\AccountManagement\\index.css",
       "PackagePath": "staticwebassets\\css\\AccountManagement\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Account\\login.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Account\\login.css",
       "PackagePath": "staticwebassets\\css\\Account\\login.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Account\\register.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Account\\register.css",
       "PackagePath": "staticwebassets\\css\\Account\\register.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\create.css",
       "PackagePath": "staticwebassets\\css\\Appointments\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\delete.css",
       "PackagePath": "staticwebassets\\css\\Appointments\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\details.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\details.css",
       "PackagePath": "staticwebassets\\css\\Appointments\\details.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\edit.css",
       "PackagePath": "staticwebassets\\css\\Appointments\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Appointments\\index.css",
       "PackagePath": "staticwebassets\\css\\Appointments\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\create_from_medical_record.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\create_from_medical_record.css",
       "PackagePath": "staticwebassets\\css\\Billing\\create_from_medical_record.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\delete.css",
       "PackagePath": "staticwebassets\\css\\Billing\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\edit.css",
       "PackagePath": "staticwebassets\\css\\Billing\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\index.css",
       "PackagePath": "staticwebassets\\css\\Billing\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\list_bill.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\list_bill.css",
       "PackagePath": "staticwebassets\\css\\Billing\\list_bill.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\pay.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Billing\\pay.css",
       "PackagePath": "staticwebassets\\css\\Billing\\pay.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\create.css",
       "PackagePath": "staticwebassets\\css\\Departments\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\delete.css",
       "PackagePath": "staticwebassets\\css\\Departments\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\edit.css",
       "PackagePath": "staticwebassets\\css\\Departments\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Departments\\index.css",
       "PackagePath": "staticwebassets\\css\\Departments\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\add_schedule.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\add_schedule.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\add_schedule.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\create.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\delete.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\delete_schedule.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\delete_schedule.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\delete_schedule.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\details.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\details.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\details.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\edit.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Doctors\\index.css",
       "PackagePath": "staticwebassets\\css\\Doctors\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\add_test.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\add_test.css",
       "PackagePath": "staticwebassets\\css\\MedicalRecords\\add_test.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\create.css",
       "PackagePath": "staticwebassets\\css\\MedicalRecords\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\details.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\details.css",
       "PackagePath": "staticwebassets\\css\\MedicalRecords\\details.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\edit_test.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\edit_test.css",
       "PackagePath": "staticwebassets\\css\\MedicalRecords\\edit_test.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\MedicalRecords\\index.css",
       "PackagePath": "staticwebassets\\css\\MedicalRecords\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\create.css",
       "PackagePath": "staticwebassets\\css\\Medications\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\delete.css",
       "PackagePath": "staticwebassets\\css\\Medications\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\edit.css",
       "PackagePath": "staticwebassets\\css\\Medications\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Medications\\index.css",
       "PackagePath": "staticwebassets\\css\\Medications\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\create.css",
       "PackagePath": "staticwebassets\\css\\Patients\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\delete.css",
       "PackagePath": "staticwebassets\\css\\Patients\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\details.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\details.css",
       "PackagePath": "staticwebassets\\css\\Patients\\details.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\edit.css",
       "PackagePath": "staticwebassets\\css\\Patients\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Patients\\index.css",
       "PackagePath": "staticwebassets\\css\\Patients\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\create.css",
       "PackagePath": "staticwebassets\\css\\Prescriptions\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\details.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\details.css",
       "PackagePath": "staticwebassets\\css\\Prescriptions\\details.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\index.css",
       "PackagePath": "staticwebassets\\css\\Prescriptions\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\list_prescription.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Prescriptions\\list_prescription.css",
       "PackagePath": "staticwebassets\\css\\Prescriptions\\list_prescription.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\create.css",
       "PackagePath": "staticwebassets\\css\\Services\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\delete.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\delete.css",
       "PackagePath": "staticwebassets\\css\\Services\\delete.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\edit.css",
       "PackagePath": "staticwebassets\\css\\Services\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Services\\index.css",
       "PackagePath": "staticwebassets\\css\\Services\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Staffs\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Staffs\\index.css",
       "PackagePath": "staticwebassets\\css\\Staffs\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\create.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\create.css",
       "PackagePath": "staticwebassets\\css\\Tests\\create.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\edit.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\edit.css",
       "PackagePath": "staticwebassets\\css\\Tests\\edit.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\index.css",
       "PackagePath": "staticwebassets\\css\\Tests\\index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\list_test.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\Tests\\list_test.css",
       "PackagePath": "staticwebassets\\css\\Tests\\list_test.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\home_index.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\home_index.css",
       "PackagePath": "staticwebassets\\css\\home_index.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\pagination.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\pagination.css",
       "PackagePath": "staticwebassets\\css\\pagination.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\site.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\favicon.ico",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\js\\search-table.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\js\\search-table.js",
       "PackagePath": "staticwebassets\\js\\search-table.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\js\\site.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\dist\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.js"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\1f3eeeee-0533-43bd-b79f-7c6ac8e6a969_Avatar.jpg",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\1f3eeeee-0533-43bd-b79f-7c6ac8e6a969_Avatar.jpg",
       "PackagePath": "staticwebassets\\uploads\\avatars\\1f3eeeee-0533-43bd-b79f-7c6ac8e6a969_Avatar.jpg"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\2e7e96e8-4400-4eea-a720-f6c8fd6f9390_Avatar.jpg",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\2e7e96e8-4400-4eea-a720-f6c8fd6f9390_Avatar.jpg",
       "PackagePath": "staticwebassets\\uploads\\avatars\\2e7e96e8-4400-4eea-a720-f6c8fd6f9390_Avatar.jpg"
     },
     {
-      "Id": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\user.png",
+      "Id": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\wwwroot\\uploads\\avatars\\user.png",
       "PackagePath": "staticwebassets\\uploads\\avatars\\user.png"
     },
     {

@@ -18,12 +18,25 @@ namespace HospitalManagement.Controllers
             _medicationService = medicationService;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var medications = await _medicationService.GetAllMedicationsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                medications = medications.Where(u =>
+                    !string.IsNullOrEmpty(u.Name) && u.Name.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Description) && u.Description.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Brand) && u.Brand.ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = medications.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }

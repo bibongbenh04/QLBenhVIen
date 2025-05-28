@@ -24,23 +24,46 @@ namespace HospitalManagement.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
-        public async Task<IActionResult> ListPatient(int? page)
+        public async Task<IActionResult> ListPatient(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var patients = await _patientService.GetAllPatientsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                patients = patients.Where(u =>
+                    !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = patients.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
 
         }
 
-        public async Task<IActionResult> ListMedicalRecord(int patientId, int? page)
+        public async Task<IActionResult> ListMedicalRecord(int patientId, int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var medicalRecords = await _medicalRecordService.GetMedicalRecordsByPatientIdAsync(patientId);
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                medicalRecords = medicalRecords.Where(u =>
+                    (!string.IsNullOrEmpty(u.PatientName) && u.PatientName.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(u.DoctorName) && u.DoctorName.ToLower().Contains(keyword))
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = medicalRecords.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }
@@ -93,8 +116,8 @@ namespace HospitalManagement.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            await _billingService.CreateBillAsync(model, model.MedicalRecordId);
-
+            // await _billingService.CreateBillAsync(model, model.MedicalRecordId);
+            await _billingService.AddBillWithEncryptionAsync(model);
             return RedirectToAction("ListMedicalRecord", new { patientId = model.PatientId });
         }
 

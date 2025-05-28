@@ -28,22 +28,45 @@ namespace HospitalManagement.Controllers
             _medicalRecordService = medicalRecordService;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var medicalRecords = await _medicalRecordService.GetAllMedicalRecordsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                medicalRecords = medicalRecords.Where(u =>
+                    !string.IsNullOrEmpty(u.PatientName) && u.PatientName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.DoctorName) && u.DoctorName.ToLower().Contains(keyword)
+                ).ToList();
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = medicalRecords.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }
 
-        public async Task<IActionResult> ListTest(int medicalRecordId, int? page)
+        public async Task<IActionResult> ListTest(int medicalRecordId, int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var tests = await _testService.GetTestByMedicalRecordIdAsync(medicalRecordId);
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                tests = tests.Where(u =>
+                    !string.IsNullOrEmpty(u.Service.Name) && u.Service.Name.ToLower().Contains(keyword)
+                ).ToList();
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = tests.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }

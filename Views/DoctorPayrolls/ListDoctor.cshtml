@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Danh sách bác sĩ";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -14,8 +15,9 @@
     <h1 class="page-header">Danh sách bác sĩ</h1>
 
     <form method="get" class="form-search">
-        <input type="text" class="form-control" placeholder="Tìm bác sĩ theo tên hoặc chuyên môn..."
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm bác sĩ theo tên hoặc chuyên môn..."
                data-search-table="doctor-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <div class="table-responsive">

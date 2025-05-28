@@ -30,12 +30,24 @@ namespace HospitalManagement.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin,Staff")]
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var doctors = await _doctorService.GetAllDoctorsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                doctors = doctors.Where(u =>
+                    !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Specialization) && u.Specialization.ToLower().Contains(keyword)
+                );
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = doctors.ToPagedList(pageNumber, pageSize);
 
             return View("Index", pagedList);
@@ -59,12 +71,24 @@ namespace HospitalManagement.Controllers
 
         [Authorize(Roles = "Admin,Staff")]
         [HttpGet("Doctors/Index/{departmentId}")]
-        public async Task<IActionResult> Index(int departmentId, int? page)
+        public async Task<IActionResult> Index(int departmentId, int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var doctors = await _doctorService.GetDoctorsByDepartmentIdAsync(departmentId);
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                doctors = doctors.Where(u =>
+                    !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword) || 
+                    !string.IsNullOrEmpty(u.Specialization) && u.Specialization.ToLower().Contains(keyword)
+                ).ToList();
+            }
+
+            ViewBag.Keyword = keyword;
+
             var pagedList = doctors.ToPagedList(pageNumber, pageSize);
             return View("Index", pagedList);
         }

@@ -4,6 +4,7 @@
 
 @{
     ViewData["Title"] = "Quản lý Dịch vụ";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -17,8 +18,9 @@
 
     <a asp-action="Create" class="btn btn-success mb-4">Thêm dịch vụ</a>
     <form method="get" class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control" placeholder="Tìm dịch vụ theo tên hoặc mô tả"
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm dịch vụ theo tên hoặc mô tả"
                data-search-table="service-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table id="service-table" class="table table-hover">

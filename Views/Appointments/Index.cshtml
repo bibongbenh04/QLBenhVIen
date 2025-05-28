@@ -3,6 +3,7 @@
 @using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Danh sách lịch hẹn";
+    var keyword = ViewBag.Keyword as string;
 }
 <head>
     <link href="~/css/pagination.css" rel="stylesheet" />
@@ -17,8 +18,9 @@
     </p>
 
     <form method="get" class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control" placeholder="Tìm lịch hẹn theo tên bệnh nhân hoặc bác sĩ"
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm lịch hẹn theo tên bệnh nhân hoặc bác sĩ"
                data-search-table="appointment-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table id="appointment-table" class="table table-hover">

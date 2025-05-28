@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = "Danh sách thuốc";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -19,8 +20,9 @@
     <form method="get" class="d-flex gap-2 mb-3">
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-search"></i></span>
-            <input type="text" class="form-control" placeholder="Tìm thuốc theo tên, hoạt chất hoặc hãng"
+            <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm thuốc theo tên, hoạt chất hoặc hãng"
                    data-search-table="medication-table" data-search-cols="0,1,2" />
+            <button type="submit" class="btn btn-primary">Tìm</button>
         </div>
     </form>
 

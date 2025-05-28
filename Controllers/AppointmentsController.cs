@@ -25,17 +25,29 @@ namespace HospitalManagement.Controllers
             _doctorService = doctorService;
         }
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string? keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
 
             var list = await _appointmentService.GetAllAppointmentsAsync();
+
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                list = list.Where(u =>
+                    (!string.IsNullOrEmpty(u.PatientName) && u.PatientName.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(u.DoctorName) && u.DoctorName.ToLower().Contains(keyword)) ||
+                    (!string.IsNullOrEmpty(u.AppointmentDate.ToString()) && u.AppointmentDate.ToString().ToLower().Contains(keyword))
+                );
+            }
+
+            ViewBag.Keyword = keyword;
             var pagedList = list.ToPagedList(pageNumber, pageSize);
             return View(pagedList);
         }
 
-        public async Task<IActionResult> ListPatient(int? page)
+        public async Task<IActionResult> ListPatient(int? page, string keyword)
         {
             int pageNumber = page ?? 1;
             int pageSize = 5;
@@ -61,9 +73,16 @@ namespace HospitalManagement.Controllers
                 });
             }
 
+            if (!string.IsNullOrEmpty(keyword))
+            {
+                keyword = keyword.ToLower();
+                viewModels = viewModels.Where(u => !string.IsNullOrEmpty(u.FullName) && u.FullName.ToLower().Contains(keyword)).ToList();;
+            }
+
+            ViewBag.Keyword = keyword;
+
             return View(viewModels.ToPagedList(pageNumber, pageSize));
         }
-
 
         public async Task<IActionResult> Details(int id)
         {
@@ -128,7 +147,6 @@ namespace HospitalManagement.Controllers
             await _appointmentService.CreateAppointmentAsync(model);
             return RedirectToAction(nameof(Index));
         }
-
 
         public async Task<IActionResult> Edit(int id)
         {

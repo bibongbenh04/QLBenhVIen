@@ -18,5 +18,6 @@ namespace HospitalManagement.Services.Interfaces
         Task<decimal> CalculateMonthlyRevenueAsync();
         Task<BillCreateViewModel> CreateBillFromMedicalRecordAsync(int medicalRecordId);
         Task<BillViewModel> GetBillByMedicalRecordIdAsync(int medicalRecordId);
+        Task<int> AddBillWithEncryptionAsync(BillCreateViewModel model);
     }
 }

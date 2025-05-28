@@ -3,6 +3,7 @@
 @using X.PagedList.Mvc.Core
 @{
     ViewData["Title"] = "Danh sách hồ sơ bệnh án";
+    var keyword = ViewBag.Keyword as string;
 }
 
 <head>
@@ -14,8 +15,9 @@
     <h1 class="mb-4">Danh sách hồ sơ bệnh án</h1>
 
     <form method="get" class="d-flex gap-2 mb-3">
-        <input type="text" class="form-control" placeholder="Tìm bệnh nhân hoặc bác sĩ"
+        <input type="text" class="form-control" name="keyword" value="@keyword" placeholder="Tìm bệnh nhân hoặc bác sĩ"
                data-search-table="medical-record-bill-table" data-search-cols="0,1" />
+        <button type="submit" class="btn btn-primary">Tìm</button>
     </form>
 
     <table id="medical-record-bill-table" class="table table-hover">

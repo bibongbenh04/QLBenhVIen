@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using HospitalManagement.Models.Entities;
 using HospitalManagement.Models.ViewModels;
 using HospitalManagement.Services.Interfaces;
@@ -6,11 +7,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HospitalManagement.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace HospitalManagement.Services
 {
     public class BillingService : IBillingService
     {
+        private readonly ApplicationDbContext _context;
         private readonly IRepository<Bill> _billRepo;
         private readonly IRepository<BillItem> _billItemRepo;
         private readonly IRepository<Patient> _patientRepo;
@@ -20,8 +26,10 @@ namespace HospitalManagement.Services
         private readonly IRepository<PrescriptionItem> _prescriptionItemRepo;
         private readonly IRepository<Medication> _medicationRepo;
         private readonly IRepository<Test> _testRepo;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public BillingService(
+            ApplicationDbContext context,
             IRepository<Bill> billRepo,
             IRepository<BillItem> billItemRepo,
             IRepository<Patient> patientRepo,
@@ -30,8 +38,10 @@ namespace HospitalManagement.Services
             IRepository<Prescription> prescriptionRepo,
             IRepository<PrescriptionItem> prescriptionItemRepo,
             IRepository<Medication> medicationRepo,
-            IRepository<Test> testRepo)
+            IRepository<Test> testRepo,
+            IHttpContextAccessor httpContextAccessor)
         {
+            _context = context;
             _billRepo = billRepo;
             _billItemRepo = billItemRepo;
             _patientRepo = patientRepo;
@@ -41,6 +51,7 @@ namespace HospitalManagement.Services
             _prescriptionItemRepo = prescriptionItemRepo;
             _medicationRepo = medicationRepo;
             _testRepo = testRepo;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<int> CreateBillAsync(BillCreateViewModel model, int medicalRecordId)
@@ -319,7 +330,7 @@ namespace HospitalManagement.Services
                 }
             }
 
-            
+
 
             await _billRepo.UpdateAsync(bill);
             await _billRepo.SaveAsync();
@@ -367,6 +378,136 @@ namespace HospitalManagement.Services
                 }).ToList()
             };
         }
+
+
+        // public async Task<BillViewModel> GetBillByMedicalRecordIdAsync(int medicalRecordId)
+        // {
+        //     var user = _httpContextAccessor.HttpContext?.User;
+
+        //     var isAdmin = user.IsInRole("Admin");
+        //     var isTaiVu = user.IsInRole("TaiVu");
+        //     var isKeToan = user.IsInRole("KeToan");
+
+        //     Console.WriteLine($"Roles: Admin = {user.IsInRole("Admin")}, TaiVu = {user.IsInRole("TaiVu")}");
+
+        //     var procedureName = isAdmin || isTaiVu || isKeToan ? "sp_GetDecryptedBill" : "sp_GetEncryptedBill";
+        //     // var procedureName = "sp_GetDecryptedBill";
+
+        //     var connection = _context.Database.GetDbConnection();
+        //     await using var cmd = connection.CreateCommand();
+        //     cmd.CommandText = procedureName;
+        //     cmd.CommandType = CommandType.StoredProcedure;
+
+        //     var param = cmd.CreateParameter();
+        //     param.ParameterName = "@MedicalRecordId";
+        //     param.Value = medicalRecordId;
+        //     cmd.Parameters.Add(param);
+
+        //     await connection.OpenAsync();
+
+        //     BillViewModel result = null;
+
+        //     await using (var reader = await cmd.ExecuteReaderAsync())
+        //     {
+        //         if (await reader.ReadAsync())
+        //         {
+        //             string FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+        //             string LastName = reader.GetString(reader.GetOrdinal("LastName"));
+        //             result = new BillViewModel
+        //             {
+        //                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
+        //                 PatientId = reader.GetInt32(reader.GetOrdinal("PatientId")),
+        //                 PatientName = FirstName + " " + LastName,
+        //                 MedicalRecordId = reader.GetInt32(reader.GetOrdinal("MedicalRecordId")),
+        //                 BillDate = reader.GetDateTime(reader.GetOrdinal("BillDate")),
+        //                 TotalAmount = reader.IsDBNull(reader.GetOrdinal("TotalAmount")) ? 0 : reader.GetDecimal(reader.GetOrdinal("TotalAmount")),
+        //                 InsuranceCoverage = reader.GetDecimal(reader.GetOrdinal("InsuranceCoverage")),
+        //                 PaidAmount = reader.GetDecimal(reader.GetOrdinal("PaidAmount")),
+        //                 DueAmount = reader.GetDecimal(reader.GetOrdinal("DueAmount")),
+        //                 PaymentStatus = reader.GetString(reader.GetOrdinal("PaymentStatus")),
+        //                 PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod")),
+        //                 Items = new List<BillItemViewModel>()
+        //             };
+        //         }
+        //     }
+
+        //     await connection.CloseAsync();
+
+        //     if (result == null) return null;
+
+        //     var items = await _billItemRepo.GetAsync(bi => bi.BillId == result.Id);
+        //     result.Items = items.Select(bi => new BillItemViewModel
+        //     {
+        //         Id = bi.Id,
+        //         BillId = bi.BillId,
+        //         ItemName = bi.ItemName,
+        //         ItemType = bi.ItemType,
+        //         Quantity = bi.Quantity,
+        //         UnitPrice = bi.UnitPrice,
+        //         Subtotal = bi.Subtotal
+        //     }).ToList();
+
+        //     return result;
+        // }
+        
+        public async Task<int> AddBillWithEncryptionAsync(BillCreateViewModel model)
+        {
+            var connection = _context.Database.GetDbConnection();
+            await using var cmd = connection.CreateCommand();
+
+            cmd.CommandText = "sp_AddBillWithEncryption";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            var total = model.Items.Sum(i => i.UnitPrice * i.Quantity);
+            var due = total * (1 - model.InsuranceCoverage);
+
+            cmd.Parameters.AddRange(new[]
+            {
+                new SqlParameter("@PatientId", model.PatientId),
+                new SqlParameter("@MedicalRecordId", model.MedicalRecordId),
+                new SqlParameter("@BillDate", DateTime.Now),
+                new SqlParameter("@TotalAmount", SqlDbType.Decimal) { Value = total },
+                new SqlParameter("@PaidAmount", SqlDbType.Decimal) { Value = 0m },
+                new SqlParameter("@DueAmount", SqlDbType.Decimal) { Value = due },
+                new SqlParameter("@InsuranceCoverage", SqlDbType.Decimal) { Value = model.InsuranceCoverage },
+                new SqlParameter("@PaymentStatus", "Unpaid"),
+                new SqlParameter("@PaymentMethod", "Unknown"),
+                new SqlParameter
+                {
+                    ParameterName = "@NewBillId",
+                    SqlDbType = SqlDbType.Int,
+                    Direction = ParameterDirection.Output
+                }
+            });
+
+            await connection.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            var billId = (int)cmd.Parameters["@NewBillId"].Value;
+
+            // Insert các BillItems sau khi có billId
+            foreach (var item in model.Items)
+            {
+                var itemCmd = connection.CreateCommand();
+                itemCmd.CommandText = @"
+                    INSERT INTO BillItems (BillId, ItemName, ItemType, Quantity, UnitPrice, Subtotal)
+                    VALUES (@BillId, @ItemName, @ItemType, @Quantity, @UnitPrice, @Subtotal);";
+                itemCmd.Parameters.AddRange(new[]
+                {
+                    new SqlParameter("@BillId", billId),
+                    new SqlParameter("@ItemName", item.ItemName),
+                    new SqlParameter("@ItemType", item.ItemType),
+                    new SqlParameter("@Quantity", item.Quantity),
+                    new SqlParameter("@UnitPrice", item.UnitPrice),
+                    new SqlParameter("@Subtotal", item.Quantity * item.UnitPrice)
+                });
+
+                await itemCmd.ExecuteNonQueryAsync();
+            }
+
+            await connection.CloseAsync();
+            return billId;
+        }
+
 
     }
 }

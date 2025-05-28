@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj": {}
+    "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj": {
+    "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj",
+        "projectUniqueName": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj",
         "projectName": "HospitalManagement",
-        "projectPath": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj",
+        "projectPath": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\HospitalManagement.csproj",
         "packagesPath": "C:\\Users\\doduc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\doduc\\Downloads\\HospitalManagement\\HospitalManagement\\obj\\",
+        "outputPath": "C:\\Users\\doduc\\OneDrive - MSFT\\Documents\\HospitalManagement\\HospitalManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -50,6 +50,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.12.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[9.0.5, )"
